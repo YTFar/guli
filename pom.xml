@@ -16,7 +16,6 @@
         <module>guli-provider-user</module>
         <module>guli-api</module>
         <module>guli-utils</module>
-        <module>test-mybatis-plus</module>
     </modules>
 
     <!--依赖环境的版本信息-->
@@ -27,6 +26,8 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <junit.version>4.12</junit.version>
         <log4j.version>1.2.17</log4j.version>
+        <!--    api测试接口工具依赖版本(本版可能与springboot2.1.4不符以后报错再做修改)    -->
+        <swagger.version>2.7.0</swagger.version>
     </properties>
 
     <!--springcloud的基本依赖 -->
@@ -87,6 +88,16 @@
                 <groupId>log4j</groupId>
                 <artifactId>log4j</artifactId>
                 <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
