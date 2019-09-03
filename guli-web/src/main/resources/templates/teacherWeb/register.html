@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)https://www.qhkch.com/#/user/reg -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>谷粒学院教师管理平台注册</title>
+    <meta name="keywords" content="期货 持仓成本 建仓过程 永安期货 基差分析 现货报价 套利分析 仓单查询 龙虎比 牛熊线">
+    <meta name="description" content="奇货可查：最专业的期货数据分析平台">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../ls_files/layui.css" media="all">
+    <link rel="stylesheet" href="../ls_files/login.css" media="all">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+    <div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
+        <div class="layadmin-user-login-main">
+            <div class="layadmin-user-login-box layadmin-user-login-header">
+                <h2><a href="https://www.qhkch.com/" title="尚硅谷旗下线上平台">谷粒学院</a></h2>
+                <p>尚硅谷旗下线上平台</p>
+            </div>
+            <div class="layadmin-user-login-box layadmin-user-login-body layui-form" lay-filter="user_reg_form">
+                <div class="layui-form-item"><label class="layadmin-user-login-icon layui-icon layui-icon-cellphone"
+                                                    for="LAY-user-login-cellphone"></label>
+                    <input type="text" name="phone" id="LAY-user-login-cellphone" lay-verify="required|phone"
+                           placeholder="手机" class="layui-input" autocomplete="off">
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-row">
+                        <div class="layui-col-xs7"><label class="layadmin-user-login-icon layui-icon layui-icon-vercode"
+                                                          for="LAY-user-login-smscode"></label> <input type="text"
+                                                                                                       name="smscode"
+                                                                                                       id="LAY-user-login-smscode"
+                                                                                                       lay-verify="required|smscode"
+                                                                                                       placeholder="短信验证码"
+                                                                                                       class="layui-input"
+                                                                                                       autocomplete="off">
+                        </div>
+                        <div class="layui-col-xs5">
+                            <div style="margin-left: 10px;">
+                                <button type="button" class="layui-btn layui-btn-primary layui-btn-fluid"
+                                        id="LAY-user-reg-getsmscode">获取验证码
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item"><label class="layadmin-user-login-icon layui-icon layui-icon-password"
+                                                    for="LAY-user-login-password"></label> <input type="password"
+                                                                                                  name="password"
+                                                                                                  id="LAY-user-login-password"
+                                                                                                  lay-verify="required|password"
+                                                                                                  placeholder="密码"
+                                                                                                  class="layui-input">
+                </div>
+                <div class="layui-form-item"><label class="layadmin-user-login-icon layui-icon layui-icon-username"
+                                                    for="LAY-user-login-username"></label> <input type="text"
+                                                                                                  name="username"
+                                                                                                  id="LAY-user-login-username"
+                                                                                                  lay-verify="required|username"
+                                                                                                  placeholder="用户名"
+                                                                                                  class="layui-input"
+                                                                                                  autocomplete="off">
+                </div>
+                <p class="errorShow">
+
+                </p>
+                <div class="layui-form-item">
+                    <button class="layui-btn layui-btn-fluid" lay-submit="" id="layui-button" lay-filter="LAY-user-reg-submit">注 册</button>
+                </div>
+                <div class="layui-trans layui-form-item layadmin-user-login-other"> <!--<label>社交账号注册</label>-->
+                    <!--<a href="javascript:;"><i class="layui-icon layui-icon-login-qq"></i></a>-->
+                    <!--<a href="javascript:;"><i class="layui-icon layui-icon-login-wechat"></i></a>-->
+                    <!--<a href="javascript:;"><i class="layui-icon layui-icon-login-weibo"></i></a>--> <a
+                            href="login.html"
+                            class="layadmin-user-jump-change layadmin-link layui-show-xs-inline-block">登录</a></div>
+            </div>
+        </div>
+        <div class="layui-trans layadmin-user-login-footer"><p>谷粒学院(http://www.gulixueyuan.com) 京ICP备17055252号</p></div>
+    </div>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/verify.js"></script>
+    <script>
+
+        //用户名
+        $("#LAY-user-login-username").blur(function(){
+            verify($(this));
+        });
+
+        //密码
+        $("#LAY-user-login-password").blur(function(){
+            verify($(this));
+        });
+
+        //电话
+        $("#LAY-user-login-cellphone").blur(function(){
+            verify($(this));
+        });
+
+        //手机验证码
+        $("#LAY-user-login-smscode").blur(function(){
+            verify($(this));
+        });
+
+        //点击注册
+        $("#layui-button").click(function(){
+            if(verify($("#LAY-user-login-cellphone"))==false|| verify($("#LAY-user-login-smscode"))==false  ||
+                verify($("#LAY-user-login-password"))==false || verify($("#LAY-user-login-username"))==false){
+                return false;
+            }
+            // //用户协议
+            // alert($("#layui-form-checkbox").attr("class"));
+            // if($("#layui-form-checkbox").attr("class")!="layui-unselect layui-form-checkbox layui-form-checked"){
+            //     errorShow.attr("style","display: block;")
+            //     errorShow.text("用户协议必须勾!");
+            //     return false;
+            // }
+            //此处发送注册请求
+
+        });
+    </script>
+    <style id="LAY_layadmin_theme">.layui-side-menu, .layadmin-pagetabs .layui-tab-title li:after, .layadmin-pagetabs .layui-tab-title li.layui-this:after, .layui-layer-admin .layui-layer-title, .layadmin-side-shrink .layui-side-menu .layui-nav > .layui-nav-item > .layui-nav-child {
+        background-color: undefined !important;
+    }
+
+    .layui-nav-tree .layui-this, .layui-nav-tree .layui-this > a, .layui-nav-tree .layui-nav-child dd.layui-this, .layui-nav-tree .layui-nav-child dd.layui-this a {
+        background-color: undefined !important;
+    }
+
+    .layui-layout-admin .layui-logo {
+        background-color: undefined !important;
+    }
+
+    .layui-layout-admin .layui-header {
+        background-color: #393D49;
+    }
+
+    .layui-layout-admin .layui-header a, .layui-layout-admin .layui-header a cite {
+        color: #f8f8f8;
+    }
+
+    .layui-layout-admin .layui-header a:hover {
+        color: #fff;
+    }
+
+    .layui-layout-admin .layui-header .layui-nav .layui-nav-more {
+        border-top-color: #fbfbfb;
+    }
+
+    .layui-layout-admin .layui-header .layui-nav .layui-nav-mored {
+        border-color: transparent;
+        border-bottom-color: #fbfbfb;
+    }
+
+    .layui-layout-admin .layui-header .layui-nav .layui-this:after, .layui-layout-admin .layui-header .layui-nav-bar {
+        background-color: #fff;
+        background-color: rgba(255, 255, 255, .5);
+    }
+
+    .layadmin-pagetabs .layui-tab-title li:after {
+        display: none;
+    }</style>
+    </body>
+</html>

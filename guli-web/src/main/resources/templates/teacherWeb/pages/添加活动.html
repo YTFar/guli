@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <title>众创数字资产综合运营管理平台</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css"/>
+    <link rel="stylesheet" href="../../css/admin.css"/>
+    <link rel="stylesheet" href="../../layui_files_upload/css/layui.css"/>
+    <style>
+        .layui-upload-img {
+            width: 100px;
+            height: 100px;
+            margin: 0 10px 10px 0;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form" action="">
+    <table class="layui-table layui-table-add" lay-skin="nob">
+        <tbody>
+
+        <!--<tr>-->
+        <!--<th>-->
+        <!--标题-->
+        <!--</th>-->
+        <!--<td>-->
+        <!--<div class="layui-form-item">-->
+        <!--<label class="layui-form-label">单行输入框</label>-->
+        <!--<div class="layui-input-block">-->
+        <!--<input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</td>-->
+        <!--</tr>-->
+        <tr>
+            <th style="width: 125px">
+                折扣类型
+            </th>
+            <td>
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <select name="modules" lay-verify="required" lay-reqtext="请选择课程的二级分类!" lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+                            <option value="1">layer</option>
+                            <option value="2">form</option>
+                            <option value="3">layim</option>
+                            <option value="4">element</option>
+                            <option value="5">laytpl</option>
+                            <option value="6">upload</option>
+                            <option value="7">laydate</option>
+                            <option value="8">laypage</option>
+                            <option value="9">flow</option>
+                            <option value="10">util</option>
+                            <option value="11">code</option>
+                            <option value="12">tree</option>
+                            <option value="13">layedit</option>
+                            <option value="14">nav</option>
+                            <option value="15">tab</option>
+                            <option value="16">table</option>
+                            <option value="17">select</option>
+                            <option value="18">checkbox</option>
+                            <option value="19">switch</option>
+                            <option value="20">radio</option>
+                        </select>
+                    </div>
+                </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th style="width: 125px">折率</th>
+            <td>
+                <!--表单元素必须包含此div,才可实现表单验证-->
+                <div class="layui-form-item">
+                    <div style="width: 30%;">
+                        <input type="text" name="price" lay-verify="required|price" lay-reqtext="价格不能为空？"
+                               placeholder="请输入课程价格,输入0免费" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </td>
+        </tr>
+       <tr>
+           <th style="width: 125px">
+               活动到期时间
+           </th>
+           <td>
+               <div class="layui-form-item">
+                   <div class="layui-inline">
+                       <div class="layui-input-inline">
+                           <input type="text" class="layui-input" id="test11" placeholder="yyyy年MM月dd日">
+                       </div>
+                   </div>
+               </div>
+           </td>
+       </tr>
+        </tbody>
+    </table>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" id="dminprogram-btn" lay-filter="demo1">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<script type="text/javascript" src="../../layui_files_upload/layui.js"></script>
+<script>
+    layui.use(['jquery', 'form', 'upload', 'layer', 'layedit', 'laydate'], function () {
+
+        var $ = layui.jquery
+            , upload = layui.upload;
+
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+        //自定义格式
+        laydate.render({
+            elem: '#test11'
+            ,format: 'yyyy年MM月dd日',
+            trigger: 'click'
+        });
+
+        //自定义验证规则
+        form.verify({
+            price: [
+                /(^[1-9]\d*(\.\d{1,2})?$)|(^0(\.\d{1,2})?$)/
+                , '价格只能为数字'
+            ]
+            , pass: [
+                /^[\S]{6,12}$/
+                , '密码必须6到12位，且不能出现空格'
+            ]
+            // , upload: function (value) {
+            //     if (value.length < 1) {
+            //         return '图片不能为空';
+            //     }
+            // }
+            ,refund_date:[
+                /^([0-9]*)$/
+                ,'日期只能为整数'
+        ]
+            , content: function (value) {
+                layedit.sync(editIndex);
+            }
+        });
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#test1'
+            , auto: false
+            //后端接口
+            , url: ""
+            , bindAction: "#dminprogram-btn"
+            , choose: function (obj) {//choose 不自动上传时可以
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                //将图片收藏路径放入图片input中
+                $(".layui-upload-hide").val("123");
+                // alert(res.data.src);
+
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <span class="layui-btn layui-btn-xs demo-retry">重试</span>');
+                demoText.find('.demo-retry').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+        // 添加课程
+        $(document).on("click", ".activity", function() {
+            layer.open({
+                type:2
+                ,area:['80%', '80%']
+                ,title:"添加课程"
+                ,content: '添加课程.html'
+            });
+        });
+        //监听提交
+        form.on('submit(demo1)', function (data) {
+            layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息'
+            })
+            return false;
+        });
+    });
+</script>
+</body>
+</html>
