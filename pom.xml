@@ -17,7 +17,6 @@
         <module>guli-api</module>
         <module>guli-utils</module>
         <module>guli-common</module>
-        <module>test-mybatis-plus</module>
         <module>test-mybatis</module>
     </modules>
 
