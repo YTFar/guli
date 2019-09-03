@@ -12,12 +12,16 @@
         <module name="guli-web" />
         <module name="guli-eureka" />
         <module name="guli-provider-product" />
-        <module name="test-mybatis-plus" />
+        <module name="guli-common" />
+        <module name="test-mybatis" />
         <module name="guli-utils" />
         <module name="guli-provider-user" />
         <module name="guli-model" />
         <module name="guli-api" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="test-mybatis-plus" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

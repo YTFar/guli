@@ -16,6 +16,9 @@
         <module>guli-provider-user</module>
         <module>guli-api</module>
         <module>guli-utils</module>
+        <module>guli-common</module>
+        <module>test-mybatis-plus</module>
+        <module>test-mybatis</module>
     </modules>
 
     <!--依赖环境的版本信息-->
