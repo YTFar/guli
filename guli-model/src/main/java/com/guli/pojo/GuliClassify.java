@@ -14,7 +14,7 @@ import java.io.Serializable;
 * @author slz
 * @since 2019-09-02
 */
-public class GuliClassify extends Model<GuliClassify> {
+public class GuliClassify extends Model<GuliClassify> implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
