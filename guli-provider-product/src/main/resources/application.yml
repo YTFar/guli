@@ -1,19 +1,54 @@
 server:
-  port: 6001
+  port: 7002
+
+spring:
+  application:
+    name: test-mybatis-plus
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/templates/,classpath:/static/,classpath:/META-NF/resources/,classpath:/resources/,classpath:/public/,classpath:/upload
+  thymeleaf:
+    encoding: UTF-8
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/guli?serverTimezone=GMT
+    username: root
+    password: bushini
+    #jackson
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+#整合mybatisplus
+mybatis-plus:
+  type-aliases-package: com.cssl.pojo
+  mapper-locations: mapper/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+      field-strategy: not_empty
+      column-underline: false
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+      refresh: true
 
 eureka:
-  server:
-    enable-self-preservation: false   #禁用保护
-    eviction-interval-timer-in-ms: 10000
-  instance:
-    #hostname: localhost              #eureka服务端的实例名称(单机)
-    hostname: eureka6001.com          #eureka服务端的实例名称(集群)
-  client:
-    register-with-eureka: false       #false表示不向注册中心注册自己。
-    fetch-registry: false             #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
+  client: #客户端注册进eureka服务列表内
+    #实例是否在eureka服务器上注册自己的信息以供其他服务发现，默认为true
+    #    register-with-eureka: true
     service-url:
-      #defaultZone: http://localhost:6001/eureka/       #设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址（单机）。
-      defaultZone: http://eureka6002.com:6002/eureka/  #（集群）
+      defaultZone: http://localhost:6001/eureka
+      #Eureka服务器集群
+      #defaultZone: http://eureka6001.com:6001/eureka/,http://eureka6002.com:6002/eureka/
+  instance:
+    instance-id: test-mybatis-plus8001
+    prefer-ip-address: true     #访问路径可以显示IP地址
 
 
 
