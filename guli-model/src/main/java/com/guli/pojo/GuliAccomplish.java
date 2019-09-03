@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 * @author slz
 * @since 2019-09-03
 */
-    public class GuliAccomplish extends Model<GuliAccomplish> {
+public class GuliAccomplish extends Model<GuliAccomplish> {
 
     private static final long serialVersionUID = 1L;
 
