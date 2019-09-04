@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <title>后台管理系统</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css"/>
+    <link rel="stylesheet" href="../../css/admin.css"/>
+</head>
+<body>
+	    <table class="layui-table layui-table-add" lay-skin="nob">
+		  <tbody>
+		  	<tr>
+		      <th class="pad" width="100">订单编号</th>
+		      <td>SW00152100</td>
+		    </tr>
+		    <tr>
+		      <th class="pad">收货人</th>
+		      <td>张三</td>
+		    </tr>
+		    <tr>
+		      <th class="pad">手机号码</th>
+		      <td>13688888888</td>
+		    </tr>
+			<tr>
+				<th class="pad" width="100">商品名称</th>
+				<td>java基础</td>
+			</tr>
+			<tr>
+				<th class="pad">订单价格</th>
+				<td><span class="price">10000</span></td>
+			</tr>
+			<tr>
+				<th class="pad">优惠抵扣</th>
+				<td><span class="price">25000</span></td>
+			</tr>
+			<tr>
+				<th class="pad">订单状态</th>
+				<td>交易关闭</td>
+			</tr>
+			<tr>
+				<th class="pad">创建时间</th>
+				<td>2017-05-05 12:00:00</td>
+			</tr>
+			<tr>
+				<th class="pad">变更时间</th>
+				<td>2018-05-08 08:00:00</td>
+			</tr>
+			<tr>
+				<th class="pad">退款有效期</th>
+				<td>7天</td>
+			</tr>
+		  </tbody>
+		</table>
+
+
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script>
+		layui.use(['jquery','form'], function(){
+			var $ = layui.jquery;
+		});
+	</script>
+
+</body>
+</html>
