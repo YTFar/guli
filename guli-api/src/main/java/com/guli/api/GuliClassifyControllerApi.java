@@ -13,6 +13,6 @@ public interface GuliClassifyControllerApi {
 
     @ApiOperation("查询全部课程分类")
     @ApiIgnore
-    public ObjectResult getAllClassify();
+    public ObjectResult findAllClassify();
 
 }

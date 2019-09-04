@@ -10,6 +10,6 @@ public interface GuliCourseControllerApi {
 
     @ApiOperation("查询全部课程")
     @ApiIgnore
-    public ObjectResult getAllCourse();
+    public ObjectResult findAllCourse();
 
 }

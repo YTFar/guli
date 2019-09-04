@@ -10,6 +10,6 @@ public interface GuliAccomplishControllerApi {
 
     @ApiOperation("查询全部目录完成")
     @ApiIgnore
-    public ObjectResult getAllAccomplish();
+    public ObjectResult findAllAccomplish();
 
 }
