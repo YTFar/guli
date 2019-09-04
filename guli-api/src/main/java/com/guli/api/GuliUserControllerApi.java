@@ -13,6 +13,8 @@ import java.util.List;
  */
 @Api(value="用户管理接口",description = "用户管理接口，提供用户的增、删、改、查")
 public interface GuliUserControllerApi {
-    @ApiOperation("用户计划查询")
-    public List<GuliUser> guliUserList();
+
+//    @ApiOperation("用户计划查询")
+//    public List<GuliUser> guliUserList();
+
 }

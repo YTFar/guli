@@ -1,4 +1,4 @@
-package com.guli.api.config;
+package com.guli.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
