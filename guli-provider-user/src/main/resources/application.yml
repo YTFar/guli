@@ -4,16 +4,6 @@ server:
 spring:
   application:
     name: test-mybatis-plus
-  mvc:
-    static-path-pattern: /**
-  resources:
-    static-locations: classpath:/templates/,classpath:/static/,classpath:/META-NF/resources/,classpath:/resources/,classpath:/public/,classpath:/upload
-  thymeleaf:
-    encoding: UTF-8
-    cache: false
-    prefix: classpath:/templates/
-    suffix: .html
-
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -24,6 +14,20 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+
+  # Redis数据库
+  redis:
+    database: 0
+    host: 106.15.187.32
+    #    password:
+    port: 6379
+    timeout: 5000
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 5
+        min-idle: -1
 
 #整合mybatisplus
 mybatis-plus:
