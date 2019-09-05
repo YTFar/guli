@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: test-mybatis-plus
+    name: guli-provider-user
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -51,7 +51,7 @@ eureka:
       #Eureka服务器集群
       #defaultZone: http://eureka6001.com:6001/eureka/,http://eureka6002.com:6002/eureka/
   instance:
-    instance-id: test-mybatis-plus8001
+    instance-id: guli-provider-user7001
     prefer-ip-address: true     #访问路径可以显示IP地址
 
 

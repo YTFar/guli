@@ -19,7 +19,7 @@ import java.util.List;
  * @author slz
  * @since 2019-09-02
  */
-@FeignClient("TEST-MYBATIS-PLUS")
+@FeignClient("TEST-MYBATIS")
 public interface GuliClassifyService {
 
 //    @GetMapping("/dept/get/{id}")
@@ -33,7 +33,7 @@ public interface GuliClassifyService {
 //    @PostMapping("/dept/add")
 //    public boolean add(Dept dept);
 
-    @RequestMapping(value = "/guliClassify/getUser")
-    IPage<GuliClassify> fenYe(Page page);
+    @RequestMapping(value = "/guliClassify/findAllClassify")
+    IPage<GuliClassify> fenYe();
 
 }

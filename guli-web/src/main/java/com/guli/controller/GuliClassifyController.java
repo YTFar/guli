@@ -21,9 +21,9 @@ public class GuliClassifyController implements GuliUserControllerApi {
     @Autowired
     GuliClassifyService guliClassifyService;
 
-    @RequestMapping(value = "/guliClassify/getUser")
+    @RequestMapping(value = "/findAllClassify")
     public String hello() {
-        IPage<GuliClassify> guliClassifyIPage = guliClassifyService.fenYe(new Page(1, 2));
+        IPage<GuliClassify> guliClassifyIPage = guliClassifyService.fenYe();
         return "";
     }
 
