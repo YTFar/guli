@@ -1,5 +1,6 @@
 package com.guli.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.guli.pojo.GuliUser;
 import com.guli.mapper.GuliUserMapper;
 import com.guli.service.GuliUserService;
@@ -17,4 +18,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class GuliUserServiceImpl extends ServiceImpl<GuliUserMapper, GuliUser> implements GuliUserService {
 
+//    private GuliUserService guliUserService;
+//
+//    @Override
+//    public GuliUser login(QueryWrapper<GuliUser> queryWrapper) {
+//        return guliUserService.login(queryWrapper);
+//    }
 }

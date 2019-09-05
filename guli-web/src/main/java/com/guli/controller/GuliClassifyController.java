@@ -1,32 +1,29 @@
-package com.guli.controller;
-
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.guli.api.GuliUserControllerApi;
-import com.guli.pojo.GuliClassify;
-import com.guli.pojo.GuliUser;
-import com.guli.service.GuliClassifyService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.List;
-
-@RestController
-@RequestMapping("/guliClassify")
-public class GuliClassifyController implements GuliUserControllerApi {
-
-    @Autowired
-    GuliClassifyService guliClassifyService;
-
-    @RequestMapping(value = "/findAllClassify")
-    public String hello() {
-        IPage<GuliClassify> guliClassifyIPage = guliClassifyService.fenYe();
-        return "";
-    }
-
+//package com.guli.controller;
+//
+//import com.guli.api.GuliUserControllerApi;
+//import com.guli.pojo.GuliUser;
+//import com.guli.service.GuliClassifyService;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.web.bind.annotation.GetMapping;
+//import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RestController;
+//
+//import java.util.ArrayList;
+//import java.util.List;
+//
+//@RestController
+//@RequestMapping("/guliClassify")
+//public class GuliClassifyController implements GuliUserControllerApi {
+//
+//    @Autowired
+//    GuliClassifyService guliClassifyService;
+//
+////    @RequestMapping(value = "/guliClassify/getUser")
+////    public String hello() {
+////        IPage<GuliClassify> guliClassifyIPage = guliClassifyService.fenYe(new Page(1, 2));
+////        return "";
+////    }
+//
 //    @Override
 //    @GetMapping("/list")
 //    public List<GuliUser> guliUserList() {
@@ -60,4 +57,4 @@ public class GuliClassifyController implements GuliUserControllerApi {
 //        list.add(guliUser3);
 //        return list;
 //    }
-}
+//}
