@@ -18,7 +18,6 @@
         <module>guli-utils</module>
         <module>guli-common</module>
         <module>test-mybatis</module>
-        <module>test-session1</module>
     </modules>
 
     <!--依赖环境的版本信息-->

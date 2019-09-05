@@ -33,7 +33,7 @@ public class ExceptionCatch {
         //记录日志
         LOGGER.error("catch exception:{}"+customException.getMessage());
         ResultCode resultCode = customException.getResultCode();
-        return new ResponseResult();
+        return new ResponseResult(resultCode);
     }
 
     @ExceptionHandler(Exception.class)//捕获哪一类异常

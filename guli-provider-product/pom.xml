@@ -12,6 +12,11 @@
     <artifactId>guli-provider-product</artifactId>
 
 <dependencies>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>2.9.9</version>
+    </dependency>
     <!-- 将微服务provider注册进eureka -->
     <dependency>
         <groupId>org.springframework.cloud</groupId>

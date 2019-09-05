@@ -3,9 +3,8 @@ package com.guli.controller;
 
 import com.guli.api.GuliClassifyControllerApi;
 import com.guli.response.ObjectResult;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * <p>

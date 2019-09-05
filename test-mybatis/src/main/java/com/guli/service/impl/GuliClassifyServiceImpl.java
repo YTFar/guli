@@ -33,14 +33,6 @@ public class GuliClassifyServiceImpl extends ServiceImpl<GuliClassifyMapper, Gul
 
     @Override
     public IPage<GuliClassify> fenYe(Page page) {
-
-//        IPage<GuliClassify> easybuyNewsIPage = guliClassifyMapper.selectPageVo(page);
-//        return easybuyNewsIPage;
-        System.out.println("------------------------------------------");
-        System.out.println("1111111111111111111111111111111111111111111");
-        System.out.println("------------------------------------------");
-        //从缓存中查询当前对象
-//        redisUtil.get("ls");
         IPage<GuliClassify> page1 = (IPage<GuliClassify>)redisTemplate.opsForValue().get("page");
         //没有取到
         if(page1 == null){
@@ -50,7 +42,6 @@ public class GuliClassifyServiceImpl extends ServiceImpl<GuliClassifyMapper, Gul
             //存到缓存当中
             redisTemplate.opsForValue().set("page",page1);
         }
-//        IPage<GuliClassify> easybuyNewsIPage = guliClassifyMapper.selectPageVo(page);
         return page1;
     }
 
