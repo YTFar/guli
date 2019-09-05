@@ -13,4 +13,5 @@
         <result column="user_auth" property="userAuth" />
     </resultMap>
 
+
 </mapper>

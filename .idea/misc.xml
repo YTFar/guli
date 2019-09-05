@@ -8,6 +8,8 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/guli-web/pom.xml" />
+        <option value="$PROJECT_DIR$/test-mybatis/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
