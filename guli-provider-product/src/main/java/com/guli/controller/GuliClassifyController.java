@@ -1,9 +1,20 @@
 package com.guli.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.guli.api.GuliClassifyControllerApi;
+import com.guli.mapper.GuliClassifyMapper;
+import com.guli.message.response.CommonCode;
+import com.guli.pojo.GuliClassify;
+import com.guli.response.ObjectResult;
+import com.guli.service.GuliClassifyService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -15,6 +26,17 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 @RequestMapping("/guliClassify")
-public class GuliClassifyController {
+public class GuliClassifyController implements GuliClassifyControllerApi {
 
+    @Resource
+    private GuliClassifyMapper guliClassifyMapper;
+
+    @RequestMapping("/findAllClassify")
+    @Override
+    public ObjectResult findAllClassify() {
+        List<GuliClassify> list = guliClassifyMapper.selectList(
+                new QueryWrapper<GuliClassify>()
+        );
+        return new ObjectResult(CommonCode.SUCCESS,list);
+    }
 }

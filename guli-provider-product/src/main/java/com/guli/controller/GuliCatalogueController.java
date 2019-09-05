@@ -17,10 +17,5 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 @RequestMapping("/guliCatalogue")
-public class GuliCatalogueController implements GuliClassifyControllerApi{
-
-    @Override
-    public ObjectResult getAllClassify() {
-        return null;
-    }
+public class GuliCatalogueController{
 }
