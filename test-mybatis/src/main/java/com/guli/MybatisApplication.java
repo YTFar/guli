@@ -11,8 +11,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 //@EnableEurekaClient //注册到服务中
 @EnableCaching
 //这个注解是用来 设置sesion的时间，和在网关访问的情况下立即去redis拿数据
-@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 300,
-        redisFlushMode = RedisFlushMode.IMMEDIATE)
+//@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 300,redisFlushMode = RedisFlushMode.IMMEDIATE)
 public class MybatisApplication {
 
     public static void main(String[] args) {

@@ -1,8 +1,11 @@
 package com.guli.api;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.guli.pojo.GuliUser;
+import com.guli.response.ObjectResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,7 +17,7 @@ import java.util.List;
 @Api(value="用户管理接口",description = "用户管理接口，提供用户的增、删、改、查")
 public interface GuliUserControllerApi {
 
-//    @ApiOperation("用户计划查询")
-//    public List<GuliUser> guliUserList();
+    @ApiOperation("用户登陆")
+    public GuliUser login(String userName,String pwd);
 
 }

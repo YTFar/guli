@@ -20,7 +20,7 @@ import org.springframework.stereotype.Controller;
 public class GuliCatalogueController implements GuliClassifyControllerApi{
 
     @Override
-    public ObjectResult findAllClassify() {
+    public ObjectResult getAllClassify() {
         return null;
     }
 }

@@ -1,7 +1,9 @@
 package com.guli.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.guli.pojo.GuliUser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -12,5 +14,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2019-09-03
  */
 public interface GuliUserService extends IService<GuliUser> {
+
+//    GuliUser login(QueryWrapper<GuliUser> queryWrapper);
 
 }

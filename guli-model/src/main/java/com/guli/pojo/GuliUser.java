@@ -1,6 +1,8 @@
 package com.guli.pojo;
 
     import com.baomidou.mybatisplus.annotation.IdType;
+    import com.baomidou.mybatisplus.annotation.TableField;
+    import com.baomidou.mybatisplus.annotation.TableName;
     import com.baomidou.mybatisplus.extension.activerecord.Model;
     import com.baomidou.mybatisplus.annotation.TableId;
     import java.io.Serializable;
@@ -13,26 +15,33 @@ package com.guli.pojo;
 * @author slz
 * @since 2019-09-03
 */
+    @TableName("guli_user") //  注解指定表名
     public class GuliUser extends Model<GuliUser> {
 
     private static final long serialVersionUID = 1L;
 
-            @TableId(value = "user_id", type = IdType.AUTO)
+    @TableId(value = "user_id", type = IdType.AUTO)
     private Long userId;
 
+    @TableField("user_name")
     private String userName;
 
+    @TableField("user_password")
     private String userPassword;
 
+    @TableField("user_phone")
     private String userPhone;
 
+    @TableField("user_email")
     private String userEmail;
 
+    @TableField("user_iamge")
     private String userIamge;
 
             /**
             * 0 用戶 1 教师 2 管理员
             */
+            @TableField("user_auth")
     private Integer userAuth;
 
         public Long getUserId() {
