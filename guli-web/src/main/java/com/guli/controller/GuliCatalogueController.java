@@ -2,9 +2,12 @@ package com.guli.controller;
 
 
 import com.guli.api.GuliClassifyControllerApi;
+import com.guli.pojo.GuliClassify;
 import com.guli.response.ObjectResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 /**
  * <p>
@@ -19,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class GuliCatalogueController implements GuliClassifyControllerApi{
 
     @Override
-    public ObjectResult findAllClassify() {
+    public List<GuliClassify> findAllClassify() {
         return null;
     }
 }

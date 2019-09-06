@@ -33,10 +33,10 @@ public class GuliClassifyController implements GuliClassifyControllerApi {
 
     @RequestMapping("/findAllClassify")
     @Override
-    public ObjectResult findAllClassify() {
+    public List<GuliClassify> findAllClassify() {
         List<GuliClassify> list = guliClassifyMapper.selectList(
                 new QueryWrapper<GuliClassify>()
         );
-        return new ObjectResult(CommonCode.SUCCESS,list);
+        return list;
     }
 }

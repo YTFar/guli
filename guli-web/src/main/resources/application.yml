@@ -14,6 +14,8 @@ eureka:
 spring:
   application:
     name: guli-web
+  main:
+    allow-bean-definition-overriding: true
   thymeleaf:
       encoding: utf-8
       cache: false
