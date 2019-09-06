@@ -1,7 +1,6 @@
 package com.guli.api;
 
-import com.guli.pojo.GuliUser;
-import com.guli.response.ObjectResult;
+import com.guli.pojo.GuliClassify;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import springfox.documentation.annotations.ApiIgnore;
@@ -13,6 +12,6 @@ public interface GuliClassifyControllerApi {
 
     @ApiOperation("查询全部课程分类")
     @ApiIgnore
-    public ObjectResult findAllClassify();
+    public List<GuliClassify> findAllClassify();
 
 }

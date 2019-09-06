@@ -14,7 +14,7 @@ public interface GuliCourseControllerApi {
 
     @ApiOperation("查询全部课程")
     @ApiIgnore
-    public ObjectResult findAllCourse();
+    public List<GuliCourse> findAllCourse();
 
     @ApiOperation("查询热门课程")
     @ApiIgnore
