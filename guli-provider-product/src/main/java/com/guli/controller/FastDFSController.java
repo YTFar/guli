@@ -1,9 +1,8 @@
 package com.guli.controller;
 
-import com.guli.service.impl.FastDFSService;
+import com.guli.service.FastDFSService;
 import com.guli.api.FastDFSControllerApi;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +27,7 @@ public class FastDFSController implements FastDFSControllerApi {
      * @return 保存路径
      */
     @Override
-    @PostMapping(value = "uploadPictures")
+    @PostMapping(value = "/uploadPictures")
     public String uploadPictures(@RequestParam("multipartFile") MultipartFile multipartFile) {
         return fastDFSService.uploadPictures(multipartFile);
     }

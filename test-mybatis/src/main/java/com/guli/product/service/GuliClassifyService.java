@@ -1,4 +1,4 @@
-package com.guli.service;
+package com.guli.product.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

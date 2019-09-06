@@ -1,8 +1,6 @@
 package com.guli.api;
 
 import com.guli.pojo.GuliClassify;
-import com.guli.pojo.GuliUser;
-import com.guli.response.ObjectResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import springfox.documentation.annotations.ApiIgnore;

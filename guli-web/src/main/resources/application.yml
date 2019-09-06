@@ -11,10 +11,6 @@ eureka:
     instance-id: guli-web8001
     prefer-ip-address: true     #访问路径可以显示IP地址
 
-  instance:
-    instance-id: guli-web8001
-    prefer-ip-address: true     #访问路径可以显示IP地址
-
 spring:
   application:
     name: guli-web
