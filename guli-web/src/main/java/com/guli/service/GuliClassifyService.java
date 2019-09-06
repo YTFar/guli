@@ -1,4 +1,4 @@
-package com.guli.product.service;
+package com.guli.service;
 
 import com.guli.pojo.GuliClassify;
 import org.springframework.cloud.openfeign.FeignClient;
