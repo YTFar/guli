@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/guliUser")
 public class GuliUserController {
 
-    @Autowired
-    GuliUserService guliUserService;
-    @PostMapping("/login")
-    public ObjectResult login(@PathVariable("userName") String userName, @PathVariable("pwd") String pwd) {
-        GuliUser guliUser = guliUserService.login(userName,pwd);
-        return new ObjectResult(CommonCode.SUCCESS,guliUser);
-    }
+//    @Autowired
+//    GuliUserService guliUserService;
+//    @PostMapping("/login")
+//    public ObjectResult login(@PathVariable("userName") String userName, @PathVariable("pwd") String pwd) {
+//        GuliUser guliUser = guliUserService.login(userName,pwd);
+//        return new ObjectResult(CommonCode.SUCCESS,guliUser);
+//    }
 
 }

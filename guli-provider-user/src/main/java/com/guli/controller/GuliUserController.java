@@ -33,8 +33,8 @@ public class GuliUserController implements GuliUserControllerApi {
     @Autowired
     private GuliUserMapper guliUserMapper;
 
-    @Autowired
-    private GuliUserService guliUserService;
+//    @Autowired
+//    private GuliUserService guliUserService;
 
 
 

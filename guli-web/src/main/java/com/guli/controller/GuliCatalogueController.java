@@ -25,4 +25,9 @@ public class GuliCatalogueController implements GuliClassifyControllerApi{
     public List<GuliClassify> findAllClassify() {
         return null;
     }
+
+    @Override
+    public List<GuliClassify> findTwoClassify(int id) {
+        return null;
+    }
 }
