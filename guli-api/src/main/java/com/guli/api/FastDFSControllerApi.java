@@ -4,6 +4,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Map;
+
 /**
  * @author 齐天大圣
  * @date 2019/9/5 14:25
@@ -13,5 +15,5 @@ import org.springframework.web.multipart.MultipartFile;
 public interface FastDFSControllerApi {
 
     @ApiOperation("图片上传")
-    public String uploadPictures(MultipartFile multipartFile);
+    public Map upload(MultipartFile multipartFile);
 }
