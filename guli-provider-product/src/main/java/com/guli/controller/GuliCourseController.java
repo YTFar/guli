@@ -1,17 +1,20 @@
 package com.guli.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.guli.api.GuliCourseControllerApi;
+import com.guli.mapper.GuliClassifyMapper;
 import com.guli.mapper.GuliCourseMapper;
+import com.guli.message.response.CommonCode;
+import com.guli.pojo.GuliClassify;
 import com.guli.pojo.GuliCourse;
 import com.guli.response.ObjectResult;
 import com.guli.service.GuliCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -88,8 +91,19 @@ public class GuliCourseController implements GuliCourseControllerApi {
         return list2;
     }
 
+
     @Override
     public List<GuliCourse> findRatingCourse() {
+        return null;
+    }
+
+    /**
+     * 查询课程分类
+     * @return
+     */
+    @Override
+    public List<GuliCourse> findClassfiyCourse() {
+
         return null;
     }
 

@@ -1267,7 +1267,7 @@ category.all_category">
             console.log(rs.toString());
             $.each(rs.object,function(i,item){
                 console.log(item);
-                $("#fl").append("<li class='fl-1'><a class='nav-link' href='"+item.classifyId+"' >"+item.classifyName+"</a></li>")
+                $("#fl").append("<li class='fl-1'><a class='nav-link' href='"+item.classifyId+"' name='"+item.classifyId+"' >"+item.classifyName+"</a></li>")
             })
         });
         $("#fl").on("click",".fl-1",function(){

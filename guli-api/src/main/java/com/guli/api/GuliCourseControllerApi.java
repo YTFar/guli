@@ -28,5 +28,8 @@ public interface GuliCourseControllerApi {
     @ApiIgnore
     public List<GuliCourse> findRatingCourse();
 
+    @ApiOperation("查询课程分类")
+    @ApiIgnore
+    public List<GuliCourse> findClassfiyCourse();
 
 }

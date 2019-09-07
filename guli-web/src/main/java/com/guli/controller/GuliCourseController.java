@@ -49,4 +49,6 @@ public class GuliCourseController {
         List<GuliCourse> newCourse = guliCourseService.findNewCourse();
         return new ObjectResult(CommonCode.SUCCESS,newCourse);
     }
+
+
 }
