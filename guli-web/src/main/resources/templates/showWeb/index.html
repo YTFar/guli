@@ -1693,12 +1693,12 @@
     </style>
     <!-- Java开发 -->
     <section class="i-course-list-section ">
-        <div class="container">
-            <div class="i-course-label">
-                <span>Java</span>
+        <div class="container"  >
+            <div class="i-course-label" id="course-label">
+                <!--<span>Java</span>
                 <i class="line">|</i>
                 <a class="i-course-nav" href="path/java.html" target="_blank">学习路线图</a>
-                <a href="course/explore/java.html" target="_blank" class="i-course-more">查看全部&nbsp;<spanclass="icon-more"></span></a>
+                <a href="course/explore/java.html" target="_blank" class="i-course-more">查看全部&nbsp;<spanclass="icon-more"></span></a>-->
             </div>
             <div class="i-course-l">
                 <div class="i-course-img">
@@ -4250,16 +4250,29 @@
             })
         })
         $.getJSON("guliClassify/findAllClassify",function(rs){
+            alert("123456789");
             console.log(rs.toString());
             $.each(rs.object,function(i,item){
                 console.log(item);
-                var classdiy="<span>"+item.classifyName+"</span>\n" +
+                var classdiy= "                <span>"+item.classifyName+"</span>\n" +
+                        "<input type='hidden' value='"+item.classifyId+"'name='id'>\n"+
                     "                <i class=\"line\">|</i>\n" +
                     "                <a class=\"i-course-nav\" href=\"path/java.html\" target=\"_blank\">学习路线图</a>\n" +
-                    "                <a href=\"course/explore/java.html\" target=\"_blank\" class=\"i-course-more\">查看全部&nbsp;<spanclass=\"icon-more\"></span></a>";
+                    "                <a href=\"course/explore/java.html\" target=\"_blank\" class=\"i-course-more\">查看全部&nbsp;<spanclass=\"icon-more\"></span></a>"
+
+
+                // var classdiy="<span></span>\n" +
+                //     "                <i class=\"line\">|</i>\n" +
+                //     "                <a class=\"i-course-nav\" href=\"path/java.html\" target=\"_blank\">学习路线图</a>\n" +
+                //     "                <a href=\"course/explore/java.html\" target=\"_blank\" class=\"i-course-more\">查看全部&nbsp;<spanclass=\"icon-more\"></span></a>";
                 // $(".i_course_lable").append("<li class='fl-1'><a class='nav-link' href='"+item.classifyId+"' name='"+item.classifyId+"' >"+item.classifyName+"</a></li>")
-                    $(".i_course_lable").append(classdiy);
+                    $("#course-label").append(classdiy);
             })
+        })
+        $.getJSON("guliCourse/findCourse",function (date) {
+            alert("111111111111");
+            alert(date.object);
+
         })
 
     })

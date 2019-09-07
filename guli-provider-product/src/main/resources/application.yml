@@ -40,12 +40,6 @@ spring:
       max-file-size: 1MB
       # 最大支持请求大小
       max-request-size: 30MB
-xuecheng:
-  fastdfs:
-    connect_timeout_in_seconds: 500
-    network_timeout_in_seconds: 3000
-    charset: UTF-8
-    tracker_servers: 39.106.18.84:22122 #多个 trackerServer中间以逗号分隔
 
 #整合mybatisplus
 mybatis-plus:
