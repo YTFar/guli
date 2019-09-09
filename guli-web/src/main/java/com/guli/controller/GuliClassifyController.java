@@ -6,10 +6,7 @@ import com.guli.pojo.GuliClassify;
 import com.guli.response.ObjectResult;
 import com.guli.service.GuliClassifyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,18 +18,8 @@ public class GuliClassifyController {
     GuliClassifyService guliClassifyService;
 
     @RequestMapping(value = "/findAllClassify")
-    public ObjectResult findAllClassify() {
-        List<GuliClassify> list = guliClassifyService.findAllClassify();
-        return new ObjectResult(CommonCode.SUCCESS,list);
-    }
-
-    /**
-     * 查询二级课程分类
-     * @return
-     */
-    @GetMapping("/findTwoClassify")
-    public ObjectResult findTwoClassify(@RequestParam("id") int id) {
-        List<GuliClassify> list = guliClassifyService.findTwoClassify(id);
+    public ObjectResult findAllClassify(@RequestParam("id") int id) {
+        List<GuliClassify> list = guliClassifyService.findAllClassify(id);
         return new ObjectResult(CommonCode.SUCCESS,list);
     }
 

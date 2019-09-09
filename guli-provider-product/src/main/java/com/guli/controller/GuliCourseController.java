@@ -40,8 +40,6 @@ public class GuliCourseController implements GuliCourseControllerApi {
     @Resource
     private GuliCourseMapper guliCourseMapper;
 
-    @Resource
-    private GuliClassifyMapper guliClassifyMapper;
 
     @Override
     @GetMapping("/findAll")
@@ -102,13 +100,23 @@ public class GuliCourseController implements GuliCourseControllerApi {
      * @param id
      * @return
      */
-
     @Override
     @GetMapping("/findCourse")
-    @ResponseBody
     public List<GuliCourse> findCourse(@RequestParam("id") int id) {
-        //List<GuliClassify> id1 = guliClassifyMapper.selectList(new QueryWrapper<GuliClassify>().eq("classify_id",id));
         List<GuliCourse> list = guliCourseMapper.selectList(new QueryWrapper<GuliCourse>().eq("classify_id",id));
+        System.out.println("课程信息："+list.toString());
+        return list;
+    }
+
+    /**
+     * 根据一级分类查课程信息
+     * @param id
+     * @return
+     */
+    @GetMapping("/findOneCourse")
+    @Override
+    public List<GuliCourse> findOneCourse(@RequestParam("id") int id) {
+       List<GuliCourse> list = guliCourseMapper.findOneCourse(id);
         System.out.println("课程信息："+list.toString());
         return list;
     }

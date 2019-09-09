@@ -17,14 +17,11 @@ import java.util.List;
 @FeignClient("GULI-PROVIDER-PRODUCT")
 public interface GuliClassifyService {
 
-    @GetMapping(value = "/guliClassify/findAllClassify")
-    List<GuliClassify> findAllClassify();
-
     /**
-     * 查询二级课程分类
+     * 查询课程分类
      * @return
      */
-    @GetMapping("/findAllClassify")
-    public List<GuliClassify> findTwoClassify(@RequestParam("id") int id);
+    @GetMapping(value = "/guliClassify/findAllClassify")
+    List<GuliClassify> findAllClassify(@RequestParam("id") int id);
 
 }

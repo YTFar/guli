@@ -40,4 +40,10 @@ public interface GuliCourseControllerApi {
     @ApiOperation("根据二级分类id查询课程信息")
     @ApiIgnore
     public List<GuliCourse> findCourse(int id);
+
+    @ApiOperation("根据一级分类id查询课程信息，首页显示")
+    @ApiIgnore
+    public List<GuliCourse> findOneCourse(int id);
+
+
 }

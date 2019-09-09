@@ -33,6 +33,10 @@ public interface GuliCourseService {
      * @param id
      * @return
      */
-    @GetMapping("/findCourse")
+    @GetMapping("/guliCourse/findCourse")
     public List<GuliCourse> findCourse(@RequestParam("id") int id);
+
+    @GetMapping(value = "/guliCourse/findOneCourse")
+    List<GuliCourse> findOneCourse(@RequestParam("id") int id);
+
 }

@@ -75,6 +75,15 @@ public class GuliCourseController {
 //        return new ObjectResult(CommonCode.SUCCESS,classfiyCourse2);
 //    }
 
-
+    /**
+     * 根据一级分类id查课程
+     * @param id
+     * @return
+     */
+    @GetMapping("/findOneCourse")
+    public ObjectResult findOneCourse(@RequestParam("id") int id){
+        List<GuliCourse> list = guliCourseService.findCourse(id);
+        return new ObjectResult(CommonCode.SUCCESS,list);
+    }
 
 }
