@@ -1,6 +1,7 @@
 package com.guli.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.guli.pojo.GuliCourse;
 import com.guli.response.ObjectResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,20 @@ public interface GuliCourseService {
 
     @GetMapping(value = "/guliCourse/findOneCourse")
     List<GuliCourse> findOneCourse(@RequestParam("id") int id);
+
+    /**
+     * 根据星评查询推荐课程
+     * @return
+     */
+    @GetMapping(value = "/guliCourse/findRecommendCourse")
+    List<GuliCourse> findRecommendCourse();
+
+    /**
+     * 查询全部分页
+     * @return
+     */
+    @GetMapping(value = "/guliCourse/findPageAllCourse")
+    IPage<GuliCourse> findPageAllCourse();
+
 
 }

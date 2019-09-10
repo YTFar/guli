@@ -2,15 +2,11 @@ package com.guli.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guli.api.GuliCourseControllerApi;
-import com.guli.mapper.GuliClassifyMapper;
 import com.guli.mapper.GuliCourseMapper;
-import com.guli.message.response.CommonCode;
-import com.guli.pojo.GuliClassify;
 import com.guli.pojo.GuliCourse;
-import com.guli.response.ObjectResult;
 import com.guli.service.GuliCourseService;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -104,7 +100,6 @@ public class GuliCourseController implements GuliCourseControllerApi {
     @GetMapping("/findCourse")
     public List<GuliCourse> findCourse(@RequestParam("id") int id) {
         List<GuliCourse> list = guliCourseMapper.selectList(new QueryWrapper<GuliCourse>().eq("classify_id",id));
-        System.out.println("课程信息："+list.toString());
         return list;
     }
 
@@ -117,21 +112,25 @@ public class GuliCourseController implements GuliCourseControllerApi {
     @Override
     public List<GuliCourse> findOneCourse(@RequestParam("id") int id) {
        List<GuliCourse> list = guliCourseMapper.findOneCourse(id);
-        System.out.println("课程信息："+list.toString());
         return list;
     }
 
+    /**
+     * 根据星评查询推荐信息
+     * @return
+     */
+    @GetMapping("/findRecommendCourse")
+    @Override
+    public List<GuliCourse>findRecommendCourse(){
+        List<GuliCourse> list = guliCourseMapper.findRecommendCourse();
+        System.out.println("推荐课程："+list.toString());
+        return list;
+    }
 
-//    /**
-//     * 查询课程子分类
-//     * @return
-//     */
-//    @Override
-//    @GetMapping("/findClassfiyCourse2")
-//    public List<GuliCourse> findClassfiyCourse2(@RequestParam("parentId") int parentId) {
-//        List<GuliCourse> list = guliCourseMapper.selectList(new QueryWrapper<GuliCourse>().eq("classifyId",parentId));
-//        System.out.println("输出："+list.toString());
-//        return list;
-//    }
+    @GetMapping("/findPageAllCourse")
+    public IPage<GuliCourse> findPageAllCourse(){
+        IPage<GuliCourse> page = guliCourseMapper.selectPage(new Page<GuliCourse>(1, 20), null);
+        return page;
+    }
 
 }

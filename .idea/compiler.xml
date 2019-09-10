@@ -11,10 +11,10 @@
         <outputRelativeToContentRoot value="true" />
         <module name="guli-web" />
         <module name="guli-eureka" />
-        <module name="guli-model" />
         <module name="guli-provider-product" />
-        <module name="test-mybatis" />
         <module name="guli-utils" />
+        <module name="test-mybatis" />
+        <module name="guli-model" />
         <module name="test-session1" />
         <module name="guli-provider-user" />
         <module name="guli-common" />

@@ -1,5 +1,7 @@
 package com.guli.api;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guli.pojo.GuliClassify;
 import com.guli.pojo.GuliCourse;
 import com.guli.response.ObjectResult;
@@ -29,14 +31,6 @@ public interface GuliCourseControllerApi {
     @ApiIgnore
     public List<GuliCourse> findRatingCourse();
 
-//    @ApiOperation("查询课程分类")
-//    @ApiIgnore
-//    public List<GuliCourse> findClassfiyCourse();
-
-//    @ApiOperation("查询二级id")
-//    @ApiIgnore
-//    public List<GuliClassify> findClassfiyId(int parentId);
-
     @ApiOperation("根据二级分类id查询课程信息")
     @ApiIgnore
     public List<GuliCourse> findCourse(int id);
@@ -45,5 +39,11 @@ public interface GuliCourseControllerApi {
     @ApiIgnore
     public List<GuliCourse> findOneCourse(int id);
 
+    @ApiOperation("根据星评查询推荐课程信息，课程页显示")
+    @ApiIgnore
+    public List<GuliCourse> findRecommendCourse();
 
+    @ApiOperation("查询所有课程分页，课程页显示")
+    @ApiIgnore
+    public IPage<GuliCourse> findPageAllCourse();
 }

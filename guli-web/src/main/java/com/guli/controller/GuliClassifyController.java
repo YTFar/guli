@@ -17,7 +17,7 @@ public class GuliClassifyController {
     @Autowired
     GuliClassifyService guliClassifyService;
 
-    @RequestMapping(value = "/findAllClassify")
+    @GetMapping(value = "/findAllClassify")
     public ObjectResult findAllClassify(@RequestParam("id") int id) {
         List<GuliClassify> list = guliClassifyService.findAllClassify(id);
         return new ObjectResult(CommonCode.SUCCESS,list);

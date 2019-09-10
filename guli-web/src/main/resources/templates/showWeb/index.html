@@ -4258,47 +4258,12 @@
         $.getJSON("guliClassify/findAllClassify?id=0", function (rs) {
 
             $.each(rs.object, function (i, item) {
-                // classdiy = "                <span>" + item.classifyName + "</span>\n" +
-                //     "                <i class=\"line\">|</i>\n" +
-                //     "                <a class=\"i-course-nav\" href=\"path/java.html\" target=\"_blank\">学习路线图</a>\n" +
-                //     "                <a href=\"course/explore/java.html\" target=\"_blank\" class=\"i-course-more\">查看全部&nbsp;<spanclass=\"icon-more\"></span></a>"+"\n";
-                //
-                //
-                //
-                // sesion="<section class=\"i-course-list-section \" >\n" +
-                //     "                           <div class=\"container\" >\n" +
-                //     "                                <div class=\"i-course-label\" id=\"course-label\">\n" +
-                //                                       classdiy +"\n"+
-                //     "                                </div>\n" +
-                //     "<div class='i-course-r'>"+
-                //
-                // "<div class='row' id='info1'>"+
-                //
-                //
-                //
-                //     "                           </div>\n"+
-                //     "                      </div>\n"+
-                //     "         </div>\n"+
-                //     "     </section>";
-                //
-                // $("#zhong").after(sesion);  //添加sesion板块以及里面的两个小板块
-                //
-                // info1="<div class=\"i-course-l\" >\n" +
-                //     "                <div class=\"i-course-img\">\n" +
-                //     "                    <a href=\"course/48.html\" target=\"_blank\">\n" +
-                //     "                        <img src='themes/june/res/java-8.3.2.jpg' alt='2341234'>\n" +
-                //     "                    </a>\n" +
-                //     "                </div>\n" +
-                //     "            </div>\n";
-                // $("#course-label").after(info1)
-
                 $.getJSON("/guliCourse/findOneCourse?id="+item.classifyId,function (date1) {
-                    alert("111111111111111");
+
                     classdiy = "                <span>" + item.classifyName + "</span>\n" +
                         "                <i class=\"line\">|</i>\n" +
                         "                <a class=\"i-course-nav\" href=\"path/java.html\" target=\"_blank\">学习路线图</a>\n" +
                         "                <a href=\"course/explore/java.html\" target=\"_blank\" class=\"i-course-more\">查看全部&nbsp;<spanclass=\"icon-more\"></span></a>"+"\n";
-
 
 
                     sesion="<section class=\"i-course-list-section \" >\n" +
@@ -4307,11 +4272,7 @@
                         classdiy +"\n"+
                         "                                </div>\n" +
                         "<div class='i-course-r'>"+
-
                         "<div class='row' id='info1'>"+
-
-
-
                         "                           </div>\n"+
                         "                      </div>\n"+
                         "         </div>\n"+
@@ -4356,75 +4317,6 @@
                         $("#info1").append(info2);
                     })
                 })
-
-                // //根据父分类查询二级分类
-                // $.getJSON("/guliClassify/findTwoClassify?id=" + item.classifyId, function (date) {
-                //     $.each(date.object, function (j, items) {
-                //         //根据二级分类查询课程
-                //         $.getJSON("/guliCourse/findCourse?id=" + items.classifyId, function (date2) {
-                //             info1 = "<div class=\"i-course-l\">\n" +
-                //                 "                <div class=\"i-course-img\">\n" +
-                //                 "                    <a href=\"course/48.html\" target=\"_blank\">\n" +
-                //                 "                        <img src='themes/june/res/java-8.3.2.jpg' alt='2341234'>\n" +
-                //                 "                    </a>\n" +
-                //                 "                </div>\n" +
-                //                 "            </div>\n";
-                //             $.each(date2.object, function (k, item2) {
-                //                 // console.log(item2);
-                //                 var price = item2.coursePrice == 0 ? "<span class='txt over_span168'><span class='course-price-widget'><span class='free'> 免费</span></span></span><span class='txt orgprice'><s>￥" + item2.coursePrice + ".00</s></span>" : "<span class='txt over_span168'><span class='course-price-widget'><span class='price'> " + item2.coursePrice + "元</span></span></span><span class='txt orgprice'><s>￥" + item2.coursePrice + ".00</s></span>";
-                //                 // console.log(price);
-                //                 // console.log("1231231");
-                //                 alert("1");
-                //
-                //                 info = "<div class=\"col-lg-3 col-md-3 col-xs-6\">\n" +
-                //                     "            <div class=\"i-course-item\">\n" +
-                //                     "              <a href=\"/course/274\" target=\"_blank\">\n" +
-                //                     "                <div class=\"i-course-img\">\n" +
-                //                     "                  <span class=\"tags\">\n" +
-                //                     "                    <span class=\"tag-serialing\"></span>\n" +
-                //                     "                  </span>\n" +
-                //                     "                    <img src=\"/files/course/2018/09-18/09245249a7b9265936.jpg\" alt=\"\" class=\"img-responsive\">\n" +
-                //                     "                </div>\n" +
-                //                     "                <div class=\"i-course-info\">\n" +
-                //                     "                  <div class=\"i-course-title\">\n" +
-                //                     "                    <span>"+item2.courseName+"</span></div>\n" +
-                //                     "                  <div class=\"i-course-time\">\n" +
-                //                     "                    <span class=\"txt over_span168\">\n" +
-                //                     "                      \n" +
-                //                     "<span class=\"course-price-widget\"><span class=\"free\">"+price+"</span></span></span>\n" +
-                //                     "         </div>\n" +
-                //                     "                  <div class=\"i-course-metas\">\n" +
-                //                     "                    <span>\n" +
-                //                     "                      <i class=\"es-icon es-icon-playcircleoutline\"></i>&nbsp;&nbsp;"+item.courseWatched+"</span>\n" +
-                //                     "                  </div>\n" +
-                //                     "                </div>\n" +
-                //                     "              </a>\n" +
-                //                     "            </div>\n" +
-                //                     "          </div>";
-                //                 $(".info1").append(info);
-                //             })
-                //
-                //             //一整个分类模块信息
-                //             div = "<section class=\"i-course-list-section \"><div class=\"container\"  >\n" +
-                //                 "            <div class=\"i-course-label\" id=\"course-label\">\n" +
-                //                 classdiy +
-                //                 "            </div>\n" +
-                //                 ""+info1+"\n" +
-                //                 "            <div class=\"i-course-r\">\n" +
-                //                 "                <!-- 右侧 开始 -->\n" +
-                //                 "                <div class='row info1'>\n" +
-                //                 "                "+info+"\n" +
-                //                 "                </div>\n" +
-                //                 "                <!-- 右侧 结束--></div>\n" +
-                //                 "        </div>";
-                //             // console.log(div);
-                //             $("#zhong").after(div);
-                //         })
-                //     })
-                //
-                // });
-
-
             });
         })
 
