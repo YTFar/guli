@@ -30,6 +30,11 @@ public class GuliCourseServiceImpl extends ServiceImpl<GuliCourseMapper, GuliCou
     @Autowired
     GuliItemMapper guliItemMapper;
 
+    /**
+     * 添加课程
+     * @param guliCourse
+     * @return
+     */
     @Override
     public GuliCourse addCourse(GuliCourse guliCourse) {
         //填写项的值
@@ -50,7 +55,7 @@ public class GuliCourseServiceImpl extends ServiceImpl<GuliCourseMapper, GuliCou
         Long insert1 = Long.valueOf(guliCourse.getCourseId());
         GuliItem guliItem1 = guliItemMapper.selectOne(new QueryWrapper<GuliItem>().eq("item_id",insert));
         guliItem1.setCourseId(insert1);
-        System.out.println(guliItem1);
+//        System.out.println(guliItem1);
         int i = guliItemMapper.updateById(guliItem1);
 //        System.out.println(guliItem1);
         if(i < 1){
