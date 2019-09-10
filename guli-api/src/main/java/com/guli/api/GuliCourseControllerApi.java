@@ -46,4 +46,13 @@ public interface GuliCourseControllerApi {
     @ApiOperation("查询所有课程分页，课程页显示")
     @ApiIgnore
     public IPage<GuliCourse> findPageAllCourse();
+
+    @ApiOperation("查询课程名称是否存在")
+    public boolean isCourseName(String courseName);
+
+    @ApiOperation("添加课程")
+    public GuliCourse addCourse(GuliCourse guliCourse);
+
+    @ApiOperation("按id与课程名称的模糊查询分页信息")
+    public List<GuliCourse> findAllCourse(int pageNo,int pageSize,String CourseId);
 }

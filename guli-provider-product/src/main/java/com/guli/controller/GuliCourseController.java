@@ -133,4 +133,26 @@ public class GuliCourseController implements GuliCourseControllerApi {
         return page;
     }
 
+    @Override
+    @GetMapping("/isCourseName")
+    public boolean isCourseName(@RequestParam("courseName") String courseName) {
+        Integer count = guliCourseMapper.selectCount(new QueryWrapper<GuliCourse>().eq("course_name", courseName));
+        System.out.println(count);
+        return count <= 0 ? true : false;
+    }
+
+    //添加课程
+    @Override
+    @PostMapping("/addCourse")
+    public GuliCourse addCourse(@RequestBody GuliCourse guliCourse) {
+        GuliCourse course = guliCourseService.addCourse(guliCourse);
+        return course;
+    }
+
+    @Override
+    public List<GuliCourse> findAllCourse(int pageNo, int pageSize, String CourseId) {
+
+        return null;
+    }
+
 }

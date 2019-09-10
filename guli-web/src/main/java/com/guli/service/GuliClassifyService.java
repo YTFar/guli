@@ -24,4 +24,5 @@ public interface GuliClassifyService {
     @GetMapping(value = "/guliClassify/findAllClassify")
     List<GuliClassify> findAllClassify(@RequestParam("id") int id);
 
+
 }

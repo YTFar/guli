@@ -39,30 +39,29 @@
                 一级分类
             </th>
             <td>
-                <div class="layui-inline">
+                <div class="layui-inline" id="layui-inline-stair">
                     <div class="layui-input-inline">
-                        <select name="stair" id="stair" lay-verify="required" lay-reqtext="请选择课程的一级分类!" lay-search="">
-                            <option value="">直接选择或搜索选择</option>
-                            <option value="1">layer</option>
-                            <option value="2">form</option>
-                            <option value="3">layim</option>
-                            <option value="4">element</option>
-                            <option value="5">laytpl</option>
-                            <option value="6">upload</option>
-                            <option value="7">laydate</option>
-                            <option value="8">laypage</option>
-                            <option value="9">flow</option>
-                            <option value="10">util</option>
-                            <option value="11">code</option>
-                            <option value="12">tree</option>
-                            <option value="13">layedit</option>
-                            <option value="14">nav</option>
-                            <option value="15">tab</option>
-                            <option value="16">table</option>
-                            <option value="17">select</option>
-                            <option value="18">checkbox</option>
-                            <option value="19">switch</option>
-                            <option value="20">radio</option>
+                        <select name="stair" id="stair" lay-filter="stair" lay-verify="required" lay-reqtext="请选择课程的一级分类!" lay-search="">
+                            <option value="">请选择课程的一级分类</option>
+<!--                            <option value="2">form</option>-->
+<!--                            <option value="3">layim</option>-->
+<!--                            <option value="4">element</option>-->
+<!--                            <option value="5">laytpl</option>-->
+<!--                            <option value="6">upload</option>-->
+<!--                            <option value="7">laydate</option>-->
+<!--                            <option value="8">laypage</option>-->
+<!--                            <option value="9">flow</option>-->
+<!--                            <option value="10">util</option>-->
+<!--                            <option value="11">code</option>-->
+<!--                            <option value="12">tree</option>-->
+<!--                            <option value="13">layedit</option>-->
+<!--                            <option value="14">nav</option>-->
+<!--                            <option value="15">tab</option>-->
+<!--                            <option value="16">table</option>-->
+<!--                            <option value="17">select</option>-->
+<!--                            <option value="18">checkbox</option>-->
+<!--                            <option value="19">switch</option>-->
+<!--                            <option value="20">radio</option>-->
                         </select>
                     </div>
                 </div>
@@ -75,32 +74,44 @@
             </th>
             <td>
                 <div class="layui-inline">
-                    <div class="layui-input-inline">
-                        <select name="modules" id="second-level" lay-verify="required" lay-reqtext="请选择课程的二级分类!" lay-search="">
-                            <option value="">直接选择或搜索选择</option>
-                            <option value="1">layer</option>
-                            <option value="2">form</option>
-                            <option value="3">layim</option>
-                            <option value="4">element</option>
-                            <option value="5">laytpl</option>
-                            <option value="6">upload</option>
-                            <option value="7">laydate</option>
-                            <option value="8">laypage</option>
-                            <option value="9">flow</option>
-                            <option value="10">util</option>
-                            <option value="11">code</option>
-                            <option value="12">tree</option>
-                            <option value="13">layedit</option>
-                            <option value="14">nav</option>
-                            <option value="15">tab</option>
-                            <option value="16">table</option>
-                            <option value="17">select</option>
-                            <option value="18">checkbox</option>
-                            <option value="19">switch</option>
-                            <option value="20">radio</option>
+                    <div class="layui-input-inline" id="layui-inline-modules">
+                        <select name="classifyId" id="modules" lay-verify="required" lay-reqtext="请选择课程的二级分类!" lay-search="">
+                            <option value="">请选择课程的一级分类</option>
+<!--                            <option value="1">layer</option>-->
+<!--                            <option value="2">form</option>-->
+<!--                            <option value="3">layim</option>-->
+<!--                            <option value="4">element</option>-->
+<!--                            <option value="5">laytpl</option>-->
+<!--                            <option value="6">upload</option>-->
+<!--                            <option value="7">laydate</option>-->
+<!--                            <option value="8">laypage</option>-->
+<!--                            <option value="9">flow</option>-->
+<!--                            <option value="10">util</option>-->
+<!--                            <option value="11">code</option>-->
+<!--                            <option value="12">tree</option>-->
+<!--                            <option value="13">layedit</option>-->
+<!--                            <option value="14">nav</option>-->
+<!--                            <option value="15">tab</option>-->
+<!--                            <option value="16">table</option>-->
+<!--                            <option value="17">select</option>-->
+<!--                            <option value="18">checkbox</option>-->
+<!--                            <option value="19">switch</option>-->
+<!--                            <option value="20">radio</option>-->
                         </select>
                     </div>
                 </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>课程名称</th>
+            <td>
+                <!--表单元素必须包含此div,才可实现表单验证-->
+                <div class="layui-form-item">
+                    <div style="width: 30%;">
+                        <input type="text" name="courseName" id="courseName" lay-verify="required|name" lay-reqtext="课程名称不能为空？"
+                               placeholder="请输入此课程课程名称" autocomplete="off" class="layui-input">
+                    </div>
                 </div>
             </td>
         </tr>
@@ -110,7 +121,7 @@
                 <!--表单元素必须包含此div,才可实现表单验证-->
                 <div class="layui-form-item">
                     <div style="width: 30%;">
-                        <input type="text" name="price" lay-verify="required|price" lay-reqtext="价格不能为空？"
+                        <input type="text" name="coursePrice" lay-verify="required|price" lay-reqtext="价格不能为空？"
                                placeholder="请输入课程价格,输入0免费" autocomplete="off" class="layui-input">
                     </div>
                 </div>
@@ -119,7 +130,7 @@
         <tr>
             <th width="100"><span class="red">*</span>商品图片</th>
             <td>
-                <input type="hidden" class="layui-upload-hide" lay-verify="required|upload" lay-reqtext="图片不能不传？"
+                <input name="courseImage" type="hidden" class="layui-upload-hide" lay-verify="required|upload" lay-reqtext="图片不能不传？"
                        autocomplete="off">
                 <div class="layui-upload">
                     <button type="button" class="layui-btn" id="test1">选择图片</button>
@@ -137,7 +148,7 @@
                 <!--表单元素必须包含此div,才可实现表单验证-->
                 <div class="layui-form-item">
                     <div style="width: 30%;">
-                        <input type="text" name="refund_date" lay-verify="required|refund_date" lay-reqtext="有限期不能为空？"
+                        <input type="text" name="courseValidity" lay-verify="required|refund_date" lay-reqtext="有限期不能为空？"
                                placeholder="请输入课程退款有效期,输入0为永远可退" autocomplete="off" class="layui-input">
                     </div>
                 </div>
@@ -146,7 +157,7 @@
         <tr>
             <th><span class="red">*</span>课程简介</th>
             <td>
-                <textarea name="introduce" placeholder="请输入课程简介" style="width:400px;" class="layui-textarea"></textarea>
+                <textarea name="courseBrief" placeholder="请输入课程简介" style="width:400px;" class="layui-textarea"></textarea>
             </td>
         </tr>
         </tbody>
@@ -166,31 +177,40 @@
 <script type="text/javascript">
     $(function () {
         // alert(1);
-        // $.ajax({
-        //     //请求方式
-        //     type:'POST',
-        //     //发送请求的地址
-        //     url:'fzz.php',
-        //     //服务器返回的数据类型
-        //     dataType:'json',
-        //     //发送到服务器的数据，对象必须为key/value的格式，jquery会自动转换为字符串格式
-        //     // data:{name:xxx,age:xxx},
-        //     success:function(data){
-        //         //请求成功函数内容
-        //     },
-        //     error:function(jqXHR){
-        //         //请求失败函数内容
-        //         console.log(jqXHR);
-        //     }
-        // });
-        // $("#stair").change(function () {
-        //     if ($(this).val()==""){
-        //         // $("#second-level").attr("disabled","disabled");
-        //         $("#area").find("option").remove();
-        //         $("#area").append("<option value=\"\">直接选择或搜索选择</option>")
-        //     } else{
-        //
-        //     }
+        $.ajax({
+            //请求方式
+            type:'GET',
+            //发送请求的地址
+            url:'/guliClassify/findAllClassify?id='+0,
+            //服务器返回的数据类型
+            dataType:'json',
+            //发送到服务器的数据，对象必须为key/value的格式，jquery会自动转换为字符串格式
+            // data:{name:xxx,age:xxx},
+            success:function(data){
+                // //请求成功函数内容
+                // console.log(data);
+                // console.log($("#stair"));
+                // $("#stair").find("option").not(":first").remove();
+                // $("#layui-inline-stair").find("dd").not(":first").remove();
+                for(var i = 0;i < data.object.length;i++){
+                    var course = data.object[i];
+                    var option = " <option value=\""+course.classifyId+"\">"+course.classifyName+"</option>";
+                    var dd = "<dd lay-value='"+course.classifyId+"' class=''>"+course.classifyName+"</dd>";
+                    $("#layui-inline-stair .layui-anim-upbit").append(dd)
+                    $("#stair").append(option);
+                }
+                layui.form.render("select");//重新渲染 固定写法
+                // console.log($("#layui-inline-stair .layui-anim-upbit dd"));
+            },
+            error:function(jqXHR){
+                //请求失败函数内容
+                console.log(jqXHR);
+            }
+        });
+        // $(document).on("blur", "#courseName", function() {
+        //     var courseName = $("#courseName").val();
+        //     var isName = isCourseName(courseName);
+        //     alert(isName);
         // });
     });
     layui.use(['jquery', 'form', 'upload', 'layer', 'layedit', 'laydate'], function () {
@@ -213,11 +233,6 @@
                 /^[\S]{6,12}$/
                 , '密码必须6到12位，且不能出现空格'
             ]
-            // , upload: function (value) {
-            //     if (value.length < 1) {
-            //         return '图片不能为空';
-            //     }
-            // }
             ,refund_date:[
                 /^([0-9]*)$/
                 ,'日期只能为整数'
@@ -289,13 +304,115 @@
         });
         //监听提交
         form.on('submit(demo1)', function (data) {
-            layer.alert(JSON.stringify(data.field), {
-                title: '最终的提交信息'
-            })
+            // layer.alert(JSON.stringify(data.field), {
+            //     title: '最终的提交信息'
+            // });
+            // var param = $("input:text,input:hidden,select,textarea").serialize();
+            // alert(param);
+            $.ajax({
+                //请求方式
+                type:'POST',
+                //发送请求的地址
+                url:'/guliCourse/addCourse',
+                //服务器返回的数据类型
+                dataType:'json',
+                //发送到服务器的数据，对象必须为key/value的格式，jquery会自动转换为字符串格式
+                data:JSON.stringify(data.field),
+                contentType: "application/json",
+                success:function(data){
+                    console.log(data);
+                    if(data.success==false){
+                        layer.open({
+                            type:0
+                            ,area:['30%', '30%']
+                            ,title:"上传信息"
+                            ,content: data.message
+                        });
+                    }else{
+                        layer.close(layer.index);
+                        window.parent.location.reload();
+                    }
+                },
+                error:function(jqXHR){
+                    //请求失败函数内容
+                    console.log(jqXHR);
+                }
+            });
+            // var obj2 = JSON.parse(param);
+            // console.log(obj2);
+            // $.post("/guliCourse/addCourse",obj2,function (json) {
+            //     console.log(json);
+            // },'json')
             return false;
         });
 
+        layui.form.on('select()', function (data) {
+            // console.log(data.elem); //得到select原始DOM对象
+            // console.log(data.value); //得到被选中的值
+            // console.log(data.othis); //得到美化后的DOM对象
+            if(data.value!=""){
+                // alert(1);
+                $.ajax({
+                    //请求方式
+                    type:'GET',
+                    //发送请求的地址
+                    url:'/guliClassify/findAllClassify?id='+data.value,
+                    //服务器返回的数据类型
+                    dataType:'json',
+                    //发送到服务器的数据，对象必须为key/value的格式，jquery会自动转换为字符串格式
+                    success:function(data){
+                        for(var i = 0;i < data.object.length;i++){
+                            var course = data.object[i];
+                            var option = " <option value=\""+course.classifyId+"\">"+course.classifyName+"</option>";
+                            var dd = "<dd lay-value='"+course.classifyId+"' class=''>"+course.classifyName+"</dd>";
+                            $("#layui-inline-modules .layui-anim-upbit").append(dd)
+                            $("#modules").append(option);
+                        }
+                        form.render("select");//重新渲染 固定写法
+                    },
+                    error:function(jqXHR){
+                        //请求失败函数内容
+                        console.log(jqXHR);
+                    }
+                });
+            }
+        });
+
     });
+
+    // function toJSON(stringName){
+    //     var arr=new Array();
+    //     arr=stringName.split('&');
+    //     alert(arr.length);
+    //     for (var i = 0;i < arr.length;i++){
+    //
+    //     }
+    // }
+
+    // function isCourseName(name) {
+    //    if(name != ""){
+    //        $.ajax({
+    //            //请求方式
+    //            type:'GET',
+    //            //发送请求的地址
+    //            url:'/guliCourse/isCourseName?courseName='+name,
+    //            //服务器返回的数据类型
+    //            dataType:'json',
+    //            async:false, 			// 特别注意，同步请求将锁住浏览器，用户其它操作必须等待请求完成才可以执行。
+    //            //发送到服务器的数据，对象必须为key/value的格式，jquery会自动转换为字符串格式
+    //            success:function(data){
+    //                console.log(data);
+    //                return true;
+    //            },
+    //            error:function(jqXHR){
+    //                //请求失败函数内容
+    //                console.log(jqXHR);
+    //            }
+    //        });
+    //    }else{
+    //        return true;
+    //    }
+    // }
 </script>
 </body>
 </html>

@@ -1,15 +1,19 @@
 package com.guli.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.guli.mapper.GuliItemMapper;
 import com.guli.message.response.CommonCode;
 import com.guli.pojo.GuliCourse;
 import com.guli.mapper.GuliCourseMapper;
+import com.guli.pojo.GuliItem;
 import com.guli.response.ObjectResult;
 import com.guli.service.GuliCourseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -23,4 +27,35 @@ import java.util.List;
 @Service
 public class GuliCourseServiceImpl extends ServiceImpl<GuliCourseMapper, GuliCourse> implements GuliCourseService {
 
+    @Autowired
+    GuliItemMapper guliItemMapper;
+
+    @Override
+    public GuliCourse addCourse(GuliCourse guliCourse) {
+        //填写项的值
+        GuliItem guliItem = new GuliItem();
+        guliItem.setUserId(1l);
+        guliItem.setCourseId(0l);
+        guliItem.setCourseAffiliate(0);
+        guliItem.setCourseCollect(0);
+        //将项存入数据库并获取值
+        guliItemMapper.insert(guliItem);
+        Long insert = Long.valueOf(guliItem.getItemId());
+        guliCourse.setItemId(insert);
+        LocalDateTime localDateTime3 = LocalDateTime.now();
+//        String format = localDateTime3.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        guliCourse.setCourseCreateTime(localDateTime3);
+        guliCourse.setCourseWatched(0l);
+        this.baseMapper.insert(guliCourse);
+        Long insert1 = Long.valueOf(guliCourse.getCourseId());
+        GuliItem guliItem1 = guliItemMapper.selectOne(new QueryWrapper<GuliItem>().eq("item_id",insert));
+        guliItem1.setCourseId(insert1);
+        System.out.println(guliItem1);
+        int i = guliItemMapper.updateById(guliItem1);
+//        System.out.println(guliItem1);
+        if(i < 1){
+            return null;
+        }
+        return guliCourse;
+    }
 }

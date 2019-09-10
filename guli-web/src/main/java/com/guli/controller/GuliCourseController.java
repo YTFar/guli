@@ -95,4 +95,31 @@ public class GuliCourseController {
         IPage<GuliCourse> page = guliCourseService.findPageAllCourse();
         return page;
     }
+
+    /**
+     * 查询课程名是否存在
+     * @param courseName
+     * @return
+     */
+    @GetMapping("/isCourseName")
+    public ObjectResult isCourseName(@RequestParam("courseName") String courseName){
+        boolean b = guliCourseService.isCourseName(courseName);
+//        System.out.println(b);
+        return new ObjectResult(CommonCode.SUCCESS,b);
+    }
+
+    /**
+     * 添加课程
+     * @param guliCourse
+     * @return
+     */
+    @PostMapping("/addCourse")
+    public ObjectResult addCourse(@RequestBody GuliCourse guliCourse) {
+//        System.out.println(guliCourse);
+        boolean courseName = guliCourseService.isCourseName(guliCourse.getCourseName());
+        if(courseName == false){
+            return new ObjectResult(CommonCode.FAIL,null);
+        }
+        return new ObjectResult(CommonCode.SUCCESS,guliCourseService.addCourse(guliCourse));
+    }
 }
