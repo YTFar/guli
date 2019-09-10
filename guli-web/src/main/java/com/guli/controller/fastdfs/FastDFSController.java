@@ -22,6 +22,16 @@ public class FastDFSController implements FastDFSControllerApi {
     @Autowired
     FastDFSService fastDFSService;
 
+    /**
+     * 添加图片
+     * 1.获取从页面提交图片
+     * 2.初始化FastDFS文件系统的配置信息
+     * 3.得到storeStorage服务器
+     * 4.创建storageClient来上传文件
+     * 5.把图片上传至FastDFS系统
+     * @param multipartFile
+     * @return 文件上传地址
+     */
     @PostMapping(value = "/uploadPictures")
     public Map upload(@RequestPart(value = "multipartFile") MultipartFile multipartFile){
         Map<String,Object> map = new HashMap<>();
