@@ -19,10 +19,5 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/guliCatalogue")
-public class GuliCatalogueController implements GuliClassifyControllerApi{
-
-    @Override
-    public List<GuliClassify> findAllClassify() {
-        return null;
-    }
+public class GuliCatalogueController{
 }
