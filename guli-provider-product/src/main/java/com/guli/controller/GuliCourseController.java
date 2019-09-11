@@ -127,10 +127,48 @@ public class GuliCourseController implements GuliCourseControllerApi {
         return list;
     }
 
+    /**
+     * 查询全部课程,可按......进行判断并进行分页
+     * @return
+     */
     @GetMapping("/findPageAllCourse")
     public IPage<GuliCourse> findPageAllCourse(){
         IPage<GuliCourse> page = guliCourseMapper.selectPage(new Page<GuliCourse>(1, 20), null);
         return page;
+    }
+
+    /**
+     * 判断课程名是否存在
+     * @param courseName
+     * @return true = 不存在, false = 存在
+     */
+    @Override
+    @GetMapping("/isCourseName")
+    public boolean isCourseName(@RequestParam("courseName") String courseName) {
+        Integer count = guliCourseMapper.selectCount(new QueryWrapper<GuliCourse>().eq("course_name", courseName));
+//        System.out.println(count);
+        return count <= 0 ? true : false;
+    }
+
+    /**
+     * 课程添加
+     * 1.添加项表把老师id保存其中,并返回自己项id
+     * 2.添加课程信息(包括图片地址、项id等),返回课程id
+     * 3.跟新项表,把课程id跟新从0跟新成刚添加的课程id
+     * @param guliCourse
+     * @return 失败返回null,成功返回自己的对象信息
+     */
+    @Override
+    @PostMapping("/addCourse")
+    public GuliCourse addCourse(@RequestBody GuliCourse guliCourse) {
+        GuliCourse course = guliCourseService.addCourse(guliCourse);
+        return course;
+    }
+
+    @Override
+    public List<GuliCourse> findAllCourse(int pageNo, int pageSize, String CourseId) {
+
+        return null;
     }
 
 }

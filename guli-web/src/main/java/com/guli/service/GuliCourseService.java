@@ -6,10 +6,7 @@ import com.guli.pojo.GuliCourse;
 import com.guli.response.ObjectResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,13 +26,6 @@ public interface GuliCourseService {
     @GetMapping(value = "/guliCourse/findClassfiyCourse2")
     List<GuliCourse> findClassfiyCourse2(@RequestParam("parentId") int parentId);
 
-    /**
-     * 根据二级分类id查询课程信息"
-     * @param id
-     * @return
-     */
-    @GetMapping("/guliCourse/findCourse")
-    public List<GuliCourse> findCourse(@RequestParam("id") int id);
 
     @GetMapping(value = "/guliCourse/findOneCourse")
     List<GuliCourse> findOneCourse(@RequestParam("id") int id);
@@ -54,5 +44,23 @@ public interface GuliCourseService {
     @GetMapping(value = "/guliCourse/findPageAllCourse")
     IPage<GuliCourse> findPageAllCourse();
 
+    /**
+     * 根据二级分类id查询课程信息"
+     * @param id
+     * @return
+     */
+    @GetMapping("/findCourse")
+    public List<GuliCourse> findCourse(@RequestParam("id") int id);
+
+    /**
+     * 判断课程名称是否存在
+     * @param courseName
+     * @return
+     */
+    @GetMapping("/guliCourse/isCourseName")
+    public boolean isCourseName(@RequestParam("courseName") String courseName);
+
+    @PostMapping("/guliCourse/addCourse")
+    public GuliCourse addCourse(@RequestBody GuliCourse guliCourse);
 
 }

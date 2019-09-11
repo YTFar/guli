@@ -14,4 +14,5 @@ import com.guli.response.ObjectResult;
  */
 public interface GuliCourseService extends IService<GuliCourse> {
 
+    GuliCourse addCourse(GuliCourse guliCourse);
 }
