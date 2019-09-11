@@ -15,4 +15,8 @@ public interface GuliClassifyControllerApi {
     @ApiIgnore
     public List<GuliClassify> findAllClassify(int id);
 
+    @ApiOperation("查询课程二级分类")
+    @ApiIgnore
+    public List<GuliClassify> findTwoClassify(int id);
+
 }
