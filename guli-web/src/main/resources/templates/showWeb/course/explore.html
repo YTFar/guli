@@ -246,21 +246,22 @@ category.all_category">
             <div class="tabs-mark-group plm ptm clearfix">
                 <div class="title">所有分类：</div>
 
-                <ul class="content list-unstyled list-inline">
-                    <li class="classify">
-                    </li>
+                <ul class="content list-unstyled list-inline" id="preanttitle">
+<!--                    <li class="classify">-->
+<!--                        <a href="/course/explore?orderBy=latest">Java<i class="es-icon es-icon-chevronright"></i></a>-->
+<!--                    </li>-->
 
-                    <li class="classify">
-                    </li>
+<!--                    <li class="classify">-->
+<!--                    </li>-->
 
-                    <li class="classify">
-                    </li>
+<!--                    <li class="classify">-->
+<!--                    </li>-->
 
                 </ul>
 
             </div>
 
-            <div class="tabs-group">
+            <div class="tabs-group" id="onetitle">
                 <div class="title">分类:</div>
                 <ul class="content clearfix" id="fl">
                     <!--默认查全部-->
@@ -269,6 +270,15 @@ category.all_category">
                 </ul>
             </div>
 
+
+
+            <div class="tabs-group">
+                <div class="title"></div>
+                <ul class="content clearfix">
+                    <li class="active" id="li1"><a class="nav-link" href="/course/explore/java?orderBy=latest">全部</a></li>
+<!--                    <li class=""><a class="nav-link" href="/course/explore/java?subCategory=SVN&amp;orderBy=latest">SVN视频</a></li>-->
+                </ul>
+            </div>
 
         </div>
 
@@ -1326,11 +1336,35 @@ category.all_category">
             console.log(rs.toString());
             $.each(rs.object, function (i, item) {
                 console.log(item);
-                $("#fl").append("<li class='fl-1'><a class='nav-link' href='" + item.classifyId + "' name='" + item.classifyId + "' >" + item.classifyName + "</a></li>")
+                // $("#fl").append("<li class='fl-1'><a class='nav-link' href='" + item.classifyId + "' name='" + item.classifyId + "' id='title'>" + item.classifyName + "</a></li>")
+                $("#fl").append("<li><a class='nav-link' style='cursor:pointer' name='"+item.classifyId+"'>" + item.classifyName + "</a></li>")
             })
-        });
-        $("#fl").on("click", ".fl-1", function () {
-            $(this).css("background-color", "pink");
+
+
+            $("#fl").on("click", ".nav-link", function () {
+
+                $(this).parent().attr("class", "active").siblings().attr("class", "");
+                var id = $(this).attr("name");
+
+                $(".classify").remove();
+                var classifyName = $(this).text();
+                $("#preanttitle").append("<li class='classify'>\n" +
+                    "                        <a href='/course/explore?orderBy=latest'>"+classifyName+"<i class='es-icon es-icon-chevronright'></i></a>\n" +
+                    "                    </li>")
+
+                //查询二级分类
+                $.getJSON("/guliClassify/findTwoClassify?id=" + id, function (date2) {
+                    //alert("111");
+                    console.log(date2);
+                    $("#li1").nextAll().remove();
+                    $.each(date2.object, function (i, item2) {
+                        $("#li1").after("<li class='active'><a class='nav-link' href='#'>" + item2.classifyName + "</a></li>");
+
+                    })
+                })
+            })
+
+
         });
 
         /**
@@ -1401,6 +1435,7 @@ category.all_category">
                             "         </div>";
                         $("#boxs").append(div);
                     })
+
                 })
 
             })

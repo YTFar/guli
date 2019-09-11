@@ -24,5 +24,11 @@ public interface GuliClassifyService {
     @GetMapping(value = "/guliClassify/findAllClassify")
     List<GuliClassify> findAllClassify(@RequestParam("id") int id);
 
-
+    /**
+     * 查询课程二级分类
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "/guliClassify/findTwoClassify")
+    List<GuliClassify> findTwoClassify(@RequestParam("id") int id);
 }

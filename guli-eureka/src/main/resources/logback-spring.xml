@@ -22,10 +22,10 @@
     </appender>-->
     <!-- 按天和大小显示 -->
     <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
-<!--        <file>guli-provider-product/product/mylog.txt</file>-->
+<!--        <file>guli-eureka/eureka/mylog.txt</file>-->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- rollover daily -->
-            <fileNamePattern>guli-provider-product/product/mylog-%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
+            <fileNamePattern>guli-eureka/eureka/mylog-%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
             <!-- each file should be at most 100KB, keep 60 days worth of history, but at most 20GB -->
             <maxFileSize>10240KB</maxFileSize>
             <maxHistory>60</maxHistory>

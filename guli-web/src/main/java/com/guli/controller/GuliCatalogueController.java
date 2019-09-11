@@ -19,6 +19,5 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/guliCatalogue")
-public class GuliCatalogueController {
-
+public class GuliCatalogueController{
 }

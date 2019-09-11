@@ -44,4 +44,17 @@ public class GuliClassifyController implements GuliClassifyControllerApi {
         System.out.println("数据："+list.toString());
         return list;
     }
+
+    /**
+     * 查询课程二级分类
+     * @param id
+     * @return
+     */
+    @GetMapping("/findTwoClassify")
+    @Override
+    public List<GuliClassify>findTwoClassify(@RequestParam("id") int id){
+        List<GuliClassify> list = guliClassifyMapper.findTwoClassify(id);
+        System.out.println("数据："+list.toString());
+        return list;
+    }
 }
