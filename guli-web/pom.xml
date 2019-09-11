@@ -66,6 +66,12 @@
             <version>3.2.2</version>
         </dependency>
 
+        <!--   文件上传     -->
+        <dependency>
+            <groupId>net.oschina.zcx7878</groupId>
+            <artifactId>fastdfs-client-java</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.guli</groupId>
             <artifactId>guli-model</artifactId>

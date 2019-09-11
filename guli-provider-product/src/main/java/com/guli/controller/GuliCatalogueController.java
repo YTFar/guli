@@ -20,14 +20,12 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/guliCatalogue")
-public class GuliCatalogueController implements GuliClassifyControllerApi{
+public class GuliCatalogueController{
 
-    @Override
-    public List<GuliClassify> findAllClassify() {
+    List<GuliClassify> findAllClassify() {
         return null;
     }
 
-    @Override
     public List<GuliClassify> findTwoClassify(int id) {
         return null;
     }

@@ -30,6 +30,8 @@ package com.guli.pojo;
 
     private Integer orderStatus;
 
+    private String orderStatusStr;
+
     private BigDecimal orderDiscount;
 
     private LocalDateTime orderCreateTime;
@@ -78,14 +80,23 @@ package com.guli.pojo;
         this.orderPrice = orderPrice;
         }
         public Integer getOrderStatus() {
-        return orderStatus;
+            return orderStatus;
         }
 
-            public void setOrderStatus(Integer orderStatus) {
+        public void setOrderStatus(Integer orderStatus) {
         this.orderStatus = orderStatus;
         }
         public BigDecimal getOrderDiscount() {
         return orderDiscount;
+        }
+
+        public String getOrderStatusStr() {
+            this.orderStatusStr = orderStatus == 0 ? "未付款" : orderStatus == 1 ? "已付款":orderStatus==2 ? "交易关闭":" 退款";
+            return orderStatusStr;
+        }
+
+        public void setOrderStatusStr(String orderStatusStr) {
+            this.orderStatusStr = orderStatusStr;
         }
 
             public void setOrderDiscount(BigDecimal orderDiscount) {

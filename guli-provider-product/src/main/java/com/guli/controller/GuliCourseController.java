@@ -2,15 +2,11 @@ package com.guli.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guli.api.GuliCourseControllerApi;
-import com.guli.mapper.GuliClassifyMapper;
 import com.guli.mapper.GuliCourseMapper;
-import com.guli.message.response.CommonCode;
-import com.guli.pojo.GuliClassify;
 import com.guli.pojo.GuliCourse;
-import com.guli.response.ObjectResult;
 import com.guli.service.GuliCourseService;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -40,8 +36,6 @@ public class GuliCourseController implements GuliCourseControllerApi {
     @Resource
     private GuliCourseMapper guliCourseMapper;
 
-    @Resource
-    private GuliClassifyMapper guliClassifyMapper;
 
     @Override
     @GetMapping("/findAll")
@@ -102,28 +96,79 @@ public class GuliCourseController implements GuliCourseControllerApi {
      * @param id
      * @return
      */
-
     @Override
     @GetMapping("/findCourse")
-    @ResponseBody
     public List<GuliCourse> findCourse(@RequestParam("id") int id) {
-        //List<GuliClassify> id1 = guliClassifyMapper.selectList(new QueryWrapper<GuliClassify>().eq("classify_id",id));
         List<GuliCourse> list = guliCourseMapper.selectList(new QueryWrapper<GuliCourse>().eq("classify_id",id));
-        System.out.println("课程信息："+list.toString());
         return list;
     }
 
+    /**
+     * 根据一级分类查课程信息
+     * @param id
+     * @return
+     */
+    @GetMapping("/findOneCourse")
+    @Override
+    public List<GuliCourse> findOneCourse(@RequestParam("id") int id) {
+       List<GuliCourse> list = guliCourseMapper.findOneCourse(id);
+        return list;
+    }
 
-//    /**
-//     * 查询课程子分类
-//     * @return
-//     */
-//    @Override
-//    @GetMapping("/findClassfiyCourse2")
-//    public List<GuliCourse> findClassfiyCourse2(@RequestParam("parentId") int parentId) {
-//        List<GuliCourse> list = guliCourseMapper.selectList(new QueryWrapper<GuliCourse>().eq("classifyId",parentId));
-//        System.out.println("输出："+list.toString());
-//        return list;
-//    }
+    /**
+     * 根据星评查询推荐信息
+     * @return
+     */
+    @GetMapping("/findRecommendCourse")
+    @Override
+    public List<GuliCourse>findRecommendCourse(){
+        List<GuliCourse> list = guliCourseMapper.findRecommendCourse();
+        System.out.println("推荐课程："+list.toString());
+        return list;
+    }
+
+    /**
+     * 查询全部课程,可按......进行判断并进行分页
+     * @return
+     */
+    @GetMapping("/findPageAllCourse")
+    public IPage<GuliCourse> findPageAllCourse(){
+        IPage<GuliCourse> page = guliCourseMapper.selectPage(new Page<GuliCourse>(1, 20), null);
+        return page;
+    }
+
+    /**
+     * 判断课程名是否存在
+     * @param courseName
+     * @return true = 不存在, false = 存在
+     */
+    @Override
+    @GetMapping("/isCourseName")
+    public boolean isCourseName(@RequestParam("courseName") String courseName) {
+        Integer count = guliCourseMapper.selectCount(new QueryWrapper<GuliCourse>().eq("course_name", courseName));
+//        System.out.println(count);
+        return count <= 0 ? true : false;
+    }
+
+    /**
+     * 课程添加
+     * 1.添加项表把老师id保存其中,并返回自己项id
+     * 2.添加课程信息(包括图片地址、项id等),返回课程id
+     * 3.跟新项表,把课程id跟新从0跟新成刚添加的课程id
+     * @param guliCourse
+     * @return 失败返回null,成功返回自己的对象信息
+     */
+    @Override
+    @PostMapping("/addCourse")
+    public GuliCourse addCourse(@RequestBody GuliCourse guliCourse) {
+        GuliCourse course = guliCourseService.addCourse(guliCourse);
+        return course;
+    }
+
+    @Override
+    public List<GuliCourse> findAllCourse(int pageNo, int pageSize, String CourseId) {
+
+        return null;
+    }
 
 }

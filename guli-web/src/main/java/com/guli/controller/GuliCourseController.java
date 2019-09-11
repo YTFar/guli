@@ -2,6 +2,7 @@ package com.guli.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.guli.message.response.CommonCode;
 import com.guli.pojo.GuliCourse;
 import com.guli.response.ObjectResult;
@@ -64,17 +65,61 @@ public class GuliCourseController {
         return new ObjectResult(CommonCode.SUCCESS,list);
     }
 
+    /**
+     * 根据一级分类id查课程
+     * @param id
+     * @return
+     */
+    @GetMapping("/findOneCourse")
+    public ObjectResult findOneCourse(@RequestParam("id") int id){
+        List<GuliCourse> list = guliCourseService.findCourse(id);
+        return new ObjectResult(CommonCode.SUCCESS,list);
+    }
 
-//    /**
-//     * 查询课程子分类
-//     * @return
-//     */
-//    @GetMapping("/guliCourse")
-//    public ObjectResult findClassfiyCourse2(@RequestParam("parentId") int parentId){
-//        List<GuliCourse> classfiyCourse2 = guliCourseService.findClassfiyCourse2(parentId);
-//        return new ObjectResult(CommonCode.SUCCESS,classfiyCourse2);
-//    }
+    /**
+     * 根据星评查询推荐课程
+     * @return
+     */
+    @GetMapping("/findRecommendCourse")
+    public ObjectResult findRecommendCourse(){
+        List<GuliCourse> list = guliCourseService.findRecommendCourse();
+        return  new ObjectResult(CommonCode.SUCCESS,list);
+    }
 
+    /**
+     * 查询全部课程进行分页
+     * @return
+     */
+    @GetMapping("/findPageAllCourse")
+    public IPage<GuliCourse> findPageAllCourse(){
+        IPage<GuliCourse> page = guliCourseService.findPageAllCourse();
+        return page;
+    }
 
+    /**
+     * 查询课程名是否存在
+     * @param courseName
+     * @return
+     */
+    @GetMapping("/isCourseName")
+    public ObjectResult isCourseName(@RequestParam("courseName") String courseName){
+        boolean b = guliCourseService.isCourseName(courseName);
+//        System.out.println(b);
+        return new ObjectResult(CommonCode.SUCCESS,b);
+    }
 
+    /**
+     * 添加课程
+     * @param guliCourse
+     * @return
+     */
+    @PostMapping("/addCourse")
+    public ObjectResult addCourse(@RequestBody GuliCourse guliCourse) {
+//        System.out.println(guliCourse);
+        boolean courseName = guliCourseService.isCourseName(guliCourse.getCourseName());
+        if(courseName == false){
+            return new ObjectResult(CommonCode.FAIL,null);
+        }
+        return new ObjectResult(CommonCode.SUCCESS,guliCourseService.addCourse(guliCourse));
+    }
 }
