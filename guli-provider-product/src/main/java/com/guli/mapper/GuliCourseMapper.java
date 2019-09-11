@@ -1,7 +1,11 @@
 package com.guli.mapper;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guli.pojo.GuliCourse;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.guli.pojo.request.PageCourse;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -35,4 +39,12 @@ public interface GuliCourseMapper extends BaseMapper<GuliCourse> {
     List<GuliCourse> findRecommendCourse();
 
 
+    @Select({"<script>",
+            "SELECT * FROM guli_course",
+            "WHERE course_id in (select course_id from guli_item where user_id = #{pageCourse.userId})",
+            "<when test='pageCourse.courseName!=null'>",
+            "AND and course_name like concat('%',#{pageCourse.courseName},'%')",
+            "</when>",
+            "</script>"})
+    IPage<GuliCourse> findAllPageCourse(Page<GuliCourse> guliCoursePage, @Param("pageCourse") PageCourse pageCourse);
 }

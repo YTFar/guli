@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.guli.message.response.CommonCode;
 import com.guli.pojo.GuliCourse;
+import com.guli.pojo.request.PageCourse;
+import com.guli.pojo.response.AllTypePage;
 import com.guli.response.ObjectResult;
 import com.guli.service.GuliCourseService;
 import io.swagger.models.auth.In;
@@ -121,5 +123,23 @@ public class GuliCourseController {
             return new ObjectResult(CommonCode.FAIL,null);
         }
         return new ObjectResult(CommonCode.SUCCESS,guliCourseService.addCourse(guliCourse));
+    }
+
+    /**
+     *  按老师id与课程名称的模糊查询分页信息
+     * @param pageNo 第几页
+     * @param pageSize 数据量
+     * @param userId 教师id
+     * @param courseName 课程名称
+     * @return 返回分页课程信息
+     */
+    @GetMapping("/findAllPageCourse")
+    public ObjectResult findAllPageCourse(@RequestParam("pageNo") int pageNo,@RequestParam("pageSize")  int pageSize,@RequestParam("userId")  int userId,@RequestParam("courseName")  String courseName){
+        if(courseName == null|| courseName.equals("")){
+            courseName = "*";
+        }
+        AllTypePage<GuliCourse> page = guliCourseService.findAllPageCourse(pageNo,pageSize,userId,courseName);
+        System.out.println(page);
+        return new ObjectResult(CommonCode.SUCCESS,page);
     }
 }

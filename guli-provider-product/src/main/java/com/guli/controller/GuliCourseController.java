@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guli.api.GuliCourseControllerApi;
 import com.guli.mapper.GuliCourseMapper;
 import com.guli.pojo.GuliCourse;
+import com.guli.pojo.request.PageCourse;
+import com.guli.pojo.response.AllTypePage;
 import com.guli.service.GuliCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -165,10 +167,33 @@ public class GuliCourseController implements GuliCourseControllerApi {
         return course;
     }
 
+    /**
+     *  按老师id与课程名称的模糊查询分页信息
+     * @param pageNo 第几页
+     * @param pageSize 数据量
+     * @param userId 教师id
+     * @param courseName 课程名称
+     * @return 返回分页课程信息
+     * */
     @Override
-    public List<GuliCourse> findAllCourse(int pageNo, int pageSize, String CourseId) {
-
-        return null;
+    @GetMapping("/findAllPageCourse")
+    public AllTypePage<GuliCourse> findAllPageCourse(@RequestParam("pageNo") int pageNo,@RequestParam("pageSize")  int pageSize,@RequestParam("userId")  int userId,@RequestParam("courseName")  String courseName) {
+        if(courseName.equals("*")){
+            courseName = "";
+        }
+        IPage<GuliCourse> guliCourseIPage = guliCourseMapper.selectPage(new Page<GuliCourse>(pageNo,pageSize), new QueryWrapper<GuliCourse>().inSql("course_id", "select course_id from guli_item where user_id = " + userId).like("course_name",courseName));
+//        IPage<GuliCourse> guliCourseIPage = guliCourseService.findAllPageCourse(new Page<GuliCourse>(pageCourse.getPageNo(),pageCourse.getPageSize()),pageCourse);
+        AllTypePage<GuliCourse> allTypePage = new AllTypePage<>();
+        //写自己传入的页码
+        allTypePage.setPageNo(pageNo);
+        //写入自己的显示数据量
+        allTypePage.setPageSize(pageSize);
+        //调用查询出分页对象的总页数
+        allTypePage.setPageTotal((int)guliCourseIPage.getTotal());
+        //调用查询出分页对象当前显示数据
+        allTypePage.setPageList(guliCourseIPage.getRecords());
+        return allTypePage;
     }
+
 
 }

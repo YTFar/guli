@@ -1,7 +1,10 @@
 package com.guli.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guli.pojo.GuliCourse;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.guli.pojo.request.PageCourse;
 import com.guli.response.ObjectResult;
 
 /**
@@ -15,4 +18,6 @@ import com.guli.response.ObjectResult;
 public interface GuliCourseService extends IService<GuliCourse> {
 
     GuliCourse addCourse(GuliCourse guliCourse);
+
+    IPage<GuliCourse> findAllPageCourse(Page<GuliCourse> guliCoursePage, PageCourse pageCourse);
 }

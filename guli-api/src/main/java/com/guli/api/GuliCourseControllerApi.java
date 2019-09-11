@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guli.pojo.GuliClassify;
 import com.guli.pojo.GuliCourse;
+import com.guli.pojo.request.PageCourse;
+import com.guli.pojo.response.AllTypePage;
 import com.guli.response.ObjectResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -53,6 +55,7 @@ public interface GuliCourseControllerApi {
     @ApiOperation("添加课程")
     public GuliCourse addCourse(GuliCourse guliCourse);
 
-    @ApiOperation("按id与课程名称的模糊查询分页信息")
-    public List<GuliCourse> findAllCourse(int pageNo,int pageSize,String CourseId);
+    @ApiOperation("按老师id与课程名称的模糊查询分页信息")
+    public AllTypePage<GuliCourse> findAllPageCourse(int pageNo,int pageSize,int userId,String courseName);
+
 }

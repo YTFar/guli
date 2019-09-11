@@ -1,11 +1,14 @@
 package com.guli.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guli.mapper.GuliItemMapper;
 import com.guli.message.response.CommonCode;
 import com.guli.pojo.GuliCourse;
 import com.guli.mapper.GuliCourseMapper;
 import com.guli.pojo.GuliItem;
+import com.guli.pojo.request.PageCourse;
 import com.guli.response.ObjectResult;
 import com.guli.service.GuliCourseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -62,5 +65,10 @@ public class GuliCourseServiceImpl extends ServiceImpl<GuliCourseMapper, GuliCou
             return null;
         }
         return guliCourse;
+    }
+
+    @Override
+    public IPage<GuliCourse> findAllPageCourse(Page<GuliCourse> guliCoursePage, PageCourse pageCourse) {
+        return this.baseMapper.findAllPageCourse(guliCoursePage,pageCourse);
     }
 }
