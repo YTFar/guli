@@ -3,6 +3,7 @@ package com.guli.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.guli.pojo.GuliCourse;
+import com.guli.pojo.coursevo.CourseAndClassify;
 import com.guli.pojo.request.PageCourse;
 import com.guli.pojo.response.AllTypePage;
 import com.guli.response.ObjectResult;
@@ -75,5 +76,29 @@ public interface GuliCourseService {
      */
     @GetMapping("/guliCourse/findAllPageCourse")
     public AllTypePage<GuliCourse> findAllPageCourse(@RequestParam("pageNo") int pageNo,@RequestParam("pageSize")  int pageSize,@RequestParam("userId")  int userId,@RequestParam("courseName")  String courseName);
+
+    /**
+     * 按课程id查询指定课程信息
+     * @param id 课程id
+     * @return 一个课程信息
+     */
+    @GetMapping("/guliCourse/findCourseIdOneCourse")
+    public CourseAndClassify findCourseIdOneCourse(@RequestParam("id") int id);
+
+    /**
+     *  按id修改指定课程信息
+     * @param guliCourse
+     * @return 是否成功
+     */
+    @PutMapping("/guliCourse/pudateCourseIdOneCourse")
+    public int pudateCourseIdOneCourse(@RequestBody GuliCourse guliCourse);
+
+    /**
+     * 查询图片存储地址
+     * @param courseId
+     * @return 图片储存地址
+     */
+    @GetMapping("/guliCourse/findCourseImg")
+    public String findCourseImg(@RequestParam("courseId") Long courseId);
 
 }

@@ -5,10 +5,12 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.guli.message.response.CommonCode;
 import com.guli.pojo.GuliCourse;
+import com.guli.pojo.coursevo.CourseAndClassify;
 import com.guli.pojo.request.PageCourse;
 import com.guli.pojo.response.AllTypePage;
 import com.guli.response.ObjectResult;
 import com.guli.service.GuliCourseService;
+import com.guli.service.fastdfs.FastDFSService;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,9 @@ public class GuliCourseController {
 
     @Autowired
     GuliCourseService guliCourseService;
+
+    @Autowired
+    FastDFSService fastDFSService;
 
     @GetMapping("/findAll")
     public ObjectResult findAllCourse() {
@@ -139,7 +144,57 @@ public class GuliCourseController {
             courseName = "*";
         }
         AllTypePage<GuliCourse> page = guliCourseService.findAllPageCourse(pageNo,pageSize,userId,courseName);
-        System.out.println(page);
+        if(page == null){
+            return new ObjectResult(CommonCode.FAIL,null);
+        }
         return new ObjectResult(CommonCode.SUCCESS,page);
+    }
+
+    /**
+     * 按课程id查询指定课程信息
+     * @param id 课程id
+     * @return 一个课程信息
+     */
+    @GetMapping("/findCourseIdOneCourse")
+    public ObjectResult findCourseIdOneCourse(@RequestParam("id") int id){
+        CourseAndClassify courseAndClassify = guliCourseService.findCourseIdOneCourse(id);
+        if(courseAndClassify == null){
+            return new ObjectResult(CommonCode.FAIL,null);
+        }
+        return new ObjectResult(CommonCode.SUCCESS,courseAndClassify);
+    }
+
+    /**
+     * 按id修改指定课程信息
+     * 1.查询图片信息
+     * 2.判断数据库与传入地址是否一致
+     * 3.不一致删除文件系统中的图片,一致继续向下执行
+     * 4.跟新数据库的课程信息
+     * 5.判断是否跟新
+     * @param guliCourse
+     * @return 提示信息
+     */
+    @PutMapping("/pudateCourseIdOneCourse")
+    public ObjectResult pudateCourseIdOneCourse(@RequestBody GuliCourse guliCourse){
+        //1.查询图片信息
+        String courseImg = guliCourseService.findCourseImg(guliCourse.getCourseId());
+        //2.判断数据库与传入地址是否一致
+        if(!courseImg.equals(guliCourse.getCourseImage())){
+            //3.不一致删除文件系统中的图片,一致继续向下执行
+            Integer integer = fastDFSService.delete_file(courseImg);
+            if (integer < 0){
+                System.out.println("删除失败");
+                new ObjectResult(CommonCode.FAIL,"删除图片失败!");
+            }else{
+                System.out.println("删除成功");
+            }
+        }
+        //4.跟新数据库的课程信息
+        int count = guliCourseService.pudateCourseIdOneCourse(guliCourse);
+        //5.判断是否跟新
+        if(count < 1){
+            new ObjectResult(CommonCode.FAIL,"修改失败!");
+        }
+        return new ObjectResult(CommonCode.SUCCESS,"修改成功!");
     }
 }

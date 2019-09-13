@@ -1,9 +1,12 @@
 package com.guli.service.fastdfs;
 
+import org.csource.common.MyException;
 import org.csource.fastdfs.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 /**
  * @author 齐天大圣
@@ -30,16 +33,8 @@ public class FastDFSService {
         if(multipartFile == null){
             System.out.println("照片为空!");
         }
-        //初始化fastDFS的环境
-        initFdfsConfig();
-        TrackerClient trackerClient = new TrackerClient();
+        StorageClient1 storageClient1 = storageClient1();
         try {
-            TrackerServer trackerServer = trackerClient.getConnection();
-            //得到storeStorage服务器
-            StorageServer storeStorage = trackerClient.getStoreStorage(trackerServer);
-
-            //创建storageClient来上传文件
-            StorageClient1 storageClient1 = new StorageClient1(trackerServer,storeStorage);
             //上传文件
             //得到文件字节
             byte[] bytes = multipartFile.getBytes();
@@ -55,6 +50,51 @@ public class FastDFSService {
         }
         return null;
     }
+
+    /**
+     * 删除图片(或文件文件)
+     * @param storagePath 文件储存地址
+     * @return -1失败,0成功
+     */
+    public Integer delete_file(String storagePath){
+        if(storagePath == null){
+            System.out.println("地址为空!");
+        }
+        StorageClient1 storageClient1 = storageClient1();
+        int result=-1;
+        try {
+            result = storageClient1.delete_file1(storagePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (MyException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * 初始化fastDFS环境并创建storageClient
+     * @return
+     */
+    private StorageClient1 storageClient1(){
+        try {
+            //初始化fastDFS的环境
+            initFdfsConfig();
+            TrackerClient trackerClient = new TrackerClient();
+            TrackerServer trackerServer = trackerClient.getConnection();
+            //得到storeStorage服务器
+            StorageServer storeStorage = trackerClient.getStoreStorage(trackerServer);
+
+            //创建storageClient来上传文件
+            StorageClient1 storageClient1 = new StorageClient1(trackerServer,storeStorage);
+            return storageClient1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 
     //初始化fastDFS环境
     private void initFdfsConfig(){

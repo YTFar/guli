@@ -50,7 +50,7 @@ public class ExceptionCatch {
             return new ResponseResult(resultCode);
         }else{
             //返回99999异常
-            return new ResponseResult(CommonCode.INVALID_PARAM);
+            return new ResponseResult(CommonCode.SERVER_ERROR);
         }
     }
 

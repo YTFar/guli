@@ -1,11 +1,13 @@
 package com.guli.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guli.api.GuliCourseControllerApi;
 import com.guli.mapper.GuliCourseMapper;
 import com.guli.pojo.GuliCourse;
+import com.guli.pojo.coursevo.CourseAndClassify;
 import com.guli.pojo.request.PageCourse;
 import com.guli.pojo.response.AllTypePage;
 import com.guli.service.GuliCourseService;
@@ -193,6 +195,41 @@ public class GuliCourseController implements GuliCourseControllerApi {
         //调用查询出分页对象当前显示数据
         allTypePage.setPageList(guliCourseIPage.getRecords());
         return allTypePage;
+    }
+
+    /**
+     * 按课程id查询指定课程信息
+     * @param id 课程id
+     * @return 一个课程信息
+     */
+    @Override
+    @GetMapping("/findCourseIdOneCourse")
+    public CourseAndClassify findCourseIdOneCourse(@RequestParam("id") int id) {
+        CourseAndClassify courseAndClassify = guliCourseMapper.findCourseIdOneCourse(id);
+//        return  guliCourseMapper.selectOne(new QueryWrapper<GuliCourse>().eq("course_id", id));
+        return courseAndClassify;
+    }
+
+    /**
+     * 按id修改指定课程信息
+     * @param guliCourse
+     * @return
+     */
+    @Override
+    @PutMapping("/pudateCourseIdOneCourse")
+    public int pudateCourseIdOneCourse(@RequestBody GuliCourse guliCourse) {
+       return guliCourseService.updateCourseIdCourse(guliCourse);
+    }
+
+    /**
+     * 查询图片存储地址
+     * @param courseId
+     * @return 图片储存地址
+     */
+    @Override
+    @GetMapping("/findCourseImg")
+    public String findCourseImg(@RequestParam("courseId") Long courseId) {
+        return guliCourseMapper.selectOne(new QueryWrapper<GuliCourse>().eq("course_id",courseId)).getCourseImage();
     }
 
 

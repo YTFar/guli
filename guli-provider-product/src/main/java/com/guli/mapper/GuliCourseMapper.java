@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guli.pojo.GuliCourse;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.guli.pojo.coursevo.CourseAndClassify;
 import com.guli.pojo.request.PageCourse;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -47,4 +48,7 @@ public interface GuliCourseMapper extends BaseMapper<GuliCourse> {
             "</when>",
             "</script>"})
     IPage<GuliCourse> findAllPageCourse(Page<GuliCourse> guliCoursePage, @Param("pageCourse") PageCourse pageCourse);
+
+    @Select("SELECT a.*,b.parent_id FROM guli_course a INNER JOIN guli_classify b ON a.classify_id = b.classify_id WHERE a.course_id = #{id}")
+    CourseAndClassify findCourseIdOneCourse(int id);
 }

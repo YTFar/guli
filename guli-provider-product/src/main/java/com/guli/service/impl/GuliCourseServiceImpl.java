@@ -1,6 +1,7 @@
 package com.guli.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guli.mapper.GuliItemMapper;
@@ -14,6 +15,7 @@ import com.guli.service.GuliCourseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
@@ -28,6 +30,7 @@ import java.util.List;
  * @since 2019-09-03
  */
 @Service
+@Transactional
 public class GuliCourseServiceImpl extends ServiceImpl<GuliCourseMapper, GuliCourse> implements GuliCourseService {
 
     @Autowired
@@ -39,6 +42,7 @@ public class GuliCourseServiceImpl extends ServiceImpl<GuliCourseMapper, GuliCou
      * @return
      */
     @Override
+    @Transactional
     public GuliCourse addCourse(GuliCourse guliCourse) {
         //填写项的值
         GuliItem guliItem = new GuliItem();
@@ -70,5 +74,21 @@ public class GuliCourseServiceImpl extends ServiceImpl<GuliCourseMapper, GuliCou
     @Override
     public IPage<GuliCourse> findAllPageCourse(Page<GuliCourse> guliCoursePage, PageCourse pageCourse) {
         return this.baseMapper.findAllPageCourse(guliCoursePage,pageCourse);
+    }
+
+    @Override
+    public int pudeteCourseIdOneCourse(GuliCourse guliCourse) {
+        return 0;
+    }
+
+    @Override
+    @Transactional
+    public int updateCourseIdCourse(GuliCourse guliCourse) {
+        GuliCourse course = this.baseMapper.selectOne(new QueryWrapper<GuliCourse>().eq("course_id", guliCourse.getCourseId()));
+        int update = this.baseMapper.update(course, new UpdateWrapper<GuliCourse>().set("course_name", guliCourse.getCourseName())
+                .set("course_brief", guliCourse.getCourseBrief()).set("classify_id", guliCourse.getClassifyId()).set("course_image", guliCourse.getCourseImage())
+                .set("course_price", guliCourse.getCoursePrice()).set("course_validity", guliCourse.getCourseValidity())
+                .eq("course_id", guliCourse.getCourseId()));
+        return update;
     }
 }

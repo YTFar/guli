@@ -87,16 +87,62 @@
 				});
 			});
 
-            // 添加课程
-            $(document).on("click", ".details", function() {
-                layer.open({
+            // 修改课程
+            $(document).on("click", ".update", function() {
+            	// console.log($(this).);
+            	// var courseId = $("button.update").siblings().find(".courseId").val();//find搜索所有段落中的后代括号总的元素
+				var courseId = $(this).siblings("input").val();
+				// alert(courseId);
+                var index = layer.open({
                     type:2
                     ,area:['80%', '80%']
-                    ,title:"添加轮播图"
-                    ,content: '添加轮播图.html'
+                    ,title:"修改课程信息"
+                    ,content: '修改课程.html'
+					,success:function (layero, index){
+						var iframe = window['layui-layer-iframe'+index];
+						//调用子页面的全局函数
+						iframe.child(courseId);
+					}
                 });
             });
 
+			// 课程详情
+			$(document).on("click", ".details", function() {
+				// console.log($(this).);
+				// var courseId = $("button.update").siblings().find(".courseId").val();//find搜索所有段落中的后代括号总的元素
+				var courseId = $(this).siblings("input").val();
+				// alert(courseId);
+				var index = layer.open({
+					type:2
+					,area:['80%', '80%']
+					,title:"修改课程信息"
+					,content: '修改课程.html'
+					,success:function (layero, index){
+						var iframe = window['layui-layer-iframe'+index];
+						//调用子页面的全局函数
+						iframe.child(courseId);
+					}
+				});
+			});
+
+			//添加活动
+			$(document).on("click", ".details", function() {
+				// console.log($(this).);
+				// var courseId = $("button.update").siblings().find(".courseId").val();//find搜索所有段落中的后代括号总的元素
+				var courseId = $(this).siblings("input").val();
+				// alert(courseId);
+				var index = layer.open({
+					type:2
+					,area:['80%', '80%']
+					,title:"添加活动信息"
+					,content: '修改课程.html'
+					,success:function (layero, index){
+						var iframe = window['layui-layer-iframe'+index];
+						//调用子页面的全局函数
+						iframe.child(courseId);
+					}
+				});
+			});
 
 			// 删除操作
 		    $(document).on("click", ".a4", function() {
@@ -126,6 +172,19 @@
 				//服务器返回的数据类型
 				dataType:'json',
 				success:function(data){
+					console.log(data.object);
+					console.log(data.object.pageList);
+					if(data.object.pageList.length==0){
+						layui.use('layer', function(){
+							var layer = layui.layer;
+							layer.open({
+								area:['60%', '60%'],
+								type:0,
+								title: '数据信息提示'
+								,content: '你的显示数据为空!'
+							});
+						});
+					}else{
 					$('tbody').empty();
 					// console.log(data);
 					for (var i = 0;i < data.object.pageList.length;i++){
@@ -144,7 +203,7 @@
 								"<button class=\"layui-btn layui-btn-normal layui-btn-small details\">详情</button>\n" +
 								"<button class=\"layui-btn layui-btn-danger layui-btn-small a4\">删除</button>"+
 								"<button class=\"layui-btn layui-btn-normal layui-btn-small activity\" "+disabled+">添加活动</button>\n"+
-								"<input name='id' value='"+course.courseId+"' type='hidden'>" +
+								"<input class='courseId' value='"+course.courseId+"' type='hidden'>" +
 								"</td>\n" +
 								"</tr>";
 						$("#layui-id").append(tr);
@@ -173,6 +232,7 @@
 							}
 						});
 					});
+					}
 				},
 				error:function(jqXHR){
 					//请求失败函数内容

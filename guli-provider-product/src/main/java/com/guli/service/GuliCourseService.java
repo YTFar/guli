@@ -20,4 +20,8 @@ public interface GuliCourseService extends IService<GuliCourse> {
     GuliCourse addCourse(GuliCourse guliCourse);
 
     IPage<GuliCourse> findAllPageCourse(Page<GuliCourse> guliCoursePage, PageCourse pageCourse);
+
+    int pudeteCourseIdOneCourse(GuliCourse guliCourse);
+
+    int updateCourseIdCourse(GuliCourse guliCourse);
 }
