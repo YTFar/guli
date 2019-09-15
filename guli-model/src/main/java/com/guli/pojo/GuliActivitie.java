@@ -29,7 +29,17 @@ package com.guli.pojo;
 
     private String activitieEndTime;
 
-        public Long getActivitieId() {
+    private Integer activitieState;
+
+    public Integer getActivitieState() {
+        return activitieState;
+    }
+
+    public void setActivitieState(Integer activitieState) {
+        this.activitieState = activitieState;
+    }
+
+    public Long getActivitieId() {
         return activitieId;
         }
 

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guli.pojo.GuliCourse;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.guli.pojo.coursevo.CourseAndClassify;
+import com.guli.pojo.coursevo.CourseAndClassifyAndUser;
 import com.guli.pojo.request.PageCourse;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -51,4 +52,16 @@ public interface GuliCourseMapper extends BaseMapper<GuliCourse> {
 
     @Select("SELECT a.*,b.parent_id FROM guli_course a INNER JOIN guli_classify b ON a.classify_id = b.classify_id WHERE a.course_id = #{id}")
     CourseAndClassify findCourseIdOneCourse(int id);
+
+    @Select({"<script>",
+            "SELECT",
+            "a.*,c.user_id,c.user_name,d.classify_name,d.parent_id,e.classify_name as parentName",
+            "FROM guli_course a",
+            "INNER JOIN guli_item b ON a.item_id = b.item_id",
+            "INNER JOIN guli_user c ON b.user_id = c.user_id",
+            "INNER JOIN guli_classify d ON a.classify_id = d.classify_id",
+            "INNER JOIN guli_classify e ON d.parent_id = e.classify_id",
+            "where a.course_id = #{courseId}",
+            "</script>"})
+    CourseAndClassifyAndUser findByCourseId(int courseId);
 }

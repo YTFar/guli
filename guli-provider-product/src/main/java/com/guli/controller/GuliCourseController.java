@@ -8,6 +8,7 @@ import com.guli.api.GuliCourseControllerApi;
 import com.guli.mapper.GuliCourseMapper;
 import com.guli.pojo.GuliCourse;
 import com.guli.pojo.coursevo.CourseAndClassify;
+import com.guli.pojo.coursevo.CourseAndClassifyAndUser;
 import com.guli.pojo.request.PageCourse;
 import com.guli.pojo.response.AllTypePage;
 import com.guli.service.GuliCourseService;
@@ -183,7 +184,7 @@ public class GuliCourseController implements GuliCourseControllerApi {
         if(courseName.equals("*")){
             courseName = "";
         }
-        IPage<GuliCourse> guliCourseIPage = guliCourseMapper.selectPage(new Page<GuliCourse>(pageNo,pageSize), new QueryWrapper<GuliCourse>().inSql("course_id", "select course_id from guli_item where user_id = " + userId).like("course_name",courseName));
+        IPage<GuliCourse> guliCourseIPage = guliCourseMapper.selectPage(new Page<GuliCourse>(pageNo,pageSize), new QueryWrapper<GuliCourse>().inSql("course_id", "select course_id from guli_item where user_id = " + userId).like("course_name",courseName).orderByDesc("course_create_time"));
 //        IPage<GuliCourse> guliCourseIPage = guliCourseService.findAllPageCourse(new Page<GuliCourse>(pageCourse.getPageNo(),pageCourse.getPageSize()),pageCourse);
         AllTypePage<GuliCourse> allTypePage = new AllTypePage<>();
         //写自己传入的页码
@@ -230,6 +231,17 @@ public class GuliCourseController implements GuliCourseControllerApi {
     @GetMapping("/findCourseImg")
     public String findCourseImg(@RequestParam("courseId") Long courseId) {
         return guliCourseMapper.selectOne(new QueryWrapper<GuliCourse>().eq("course_id",courseId)).getCourseImage();
+    }
+
+    /**
+     * 按id查询课程详情
+     * @param courseId
+     * @return 课程详情
+     */
+    @Override
+    @GetMapping("/findByCourseId")
+    public CourseAndClassifyAndUser findByCourseId(@RequestParam("courseId") int courseId) {
+        return guliCourseService.findByCourseId(courseId);
     }
 
 

@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface GuliActivitieService extends IService<GuliActivitie> {
 
+    int addActivitie(GuliActivitie guliActivitie);
 }

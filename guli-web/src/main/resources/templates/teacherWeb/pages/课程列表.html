@@ -115,8 +115,8 @@
 				var index = layer.open({
 					type:2
 					,area:['80%', '80%']
-					,title:"修改课程信息"
-					,content: '修改课程.html'
+					,title:"课程详情"
+					,content: '课程详情.html'
 					,success:function (layero, index){
 						var iframe = window['layui-layer-iframe'+index];
 						//调用子页面的全局函数
@@ -126,7 +126,7 @@
 			});
 
 			//添加活动
-			$(document).on("click", ".details", function() {
+			$(document).on("click", ".activity", function() {
 				// console.log($(this).);
 				// var courseId = $("button.update").siblings().find(".courseId").val();//find搜索所有段落中的后代括号总的元素
 				var courseId = $(this).siblings("input").val();
@@ -135,7 +135,7 @@
 					type:2
 					,area:['80%', '80%']
 					,title:"添加活动信息"
-					,content: '修改课程.html'
+					,content: '添加活动.html'
 					,success:function (layero, index){
 						var iframe = window['layui-layer-iframe'+index];
 						//调用子页面的全局函数
@@ -172,8 +172,8 @@
 				//服务器返回的数据类型
 				dataType:'json',
 				success:function(data){
-					console.log(data.object);
-					console.log(data.object.pageList);
+					// console.log(data.object);
+					// console.log(data.object.pageList);
 					if(data.object.pageList.length==0){
 						layui.use('layer', function(){
 							var layer = layui.layer;

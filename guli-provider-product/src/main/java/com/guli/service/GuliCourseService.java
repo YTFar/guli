@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guli.pojo.GuliCourse;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.guli.pojo.coursevo.CourseAndClassifyAndUser;
 import com.guli.pojo.request.PageCourse;
 import com.guli.response.ObjectResult;
 
@@ -24,4 +25,6 @@ public interface GuliCourseService extends IService<GuliCourse> {
     int pudeteCourseIdOneCourse(GuliCourse guliCourse);
 
     int updateCourseIdCourse(GuliCourse guliCourse);
+
+    CourseAndClassifyAndUser findByCourseId(int courseId);
 }

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <title>后台管理系统</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css"/>
+    <link rel="stylesheet" href="../../css/admin.css"/>
+	<link rel="stylesheet" href="../../layui_files_upload/css/layui.css"/>
+</head>
+<body>
+	    <table class="layui-table layui-table-add" lay-skin="nob">
+		  <tbody>
+		  	<tr>
+		      <th class="pad" width="100">订单id</th>
+		      <td id="id">1</td>
+		    </tr>
+		    <tr>
+		      <th class="pad">一级分类名称</th>
+		      <td id="stair">张三</td>
+		    </tr>
+			<tr>
+				<th class="pad">二级分类名称</th>
+				<td id="secondLevel">张三</td>
+			</tr>
+		    <tr>
+		      <th class="pad">课程发布人</th>
+		      <td id="name">13688888888</td>
+		    </tr>
+			<tr>
+				<th class="pad" width="100">课程名称</th>
+				<td id="courseName">java基础</td>
+			</tr>
+			<tr>
+				<th class="pad">课程图片</th>
+				<td><img id="courseImage" src="../../img/6.jpg"> </td>
+			</tr>
+			<tr>
+				<th class="pad">课程价格</th>
+				<td><span id="coursePrice" class="price">25000</span></td>
+			</tr>
+			<tr>
+				<th class="pad">创建时间</th>
+				<td id="courseCreateTime">2017-05-05 12:00:00</td>
+			</tr>
+			<tr>
+				<th class="pad">退款有效期(天)</th>
+				<td id="courseValidity">7天</td>
+			</tr>
+			<tr>
+				<th class="pad">课程介绍</th>
+				<td id="courseBrief">java你好,我叫呵呵,是一个小白.java你好,我叫呵呵,是一个小白.java你好,我叫呵呵,是一个小白.java你好,我叫呵呵,是一个小白.java你好,我叫呵呵,是一个小白.java你好,我叫呵呵,是一个小白.
+					java你好,我叫呵呵,是一个小白.java你好,我叫呵呵,是一个小白.java你好,我叫呵呵,是一个小白.java你好,我叫呵呵,是一个小白.java你好,我叫呵呵,是一个小白.java你好,我叫呵呵,是一个小白.
+				</td>
+			</tr>
+		  </tbody>
+		</table>
+
+
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script type="text/javascript" src="../../layui_files_upload/layui.js"></script>
+	<script type="text/javascript" src="../../js/jquery-1.8.3.min.js"></script>
+	<script>
+		function child(courseId) {
+			$(function(){
+				$.get("/guliCourse/findByCourseId?courseId="+courseId,function (json) {
+					console.log(json);
+					$("#id").text(json.object.courseId);
+					$("#stair").text(json.object.parentName);
+					$("#secondLevel").text(json.object.classifyName);
+					$("#name").text(json.object.userName+"(老师)");
+					$("#courseName").text(json.object.courseName);
+					$("#courseImage").attr("src","http://39.106.18.84/"+json.object.courseImage);
+					$("#coursePrice").text(json.object.coursePrice);
+					$("#courseCreateTime").text(json.object.courseCreateTimeStr);
+					$("#courseValidity").text(json.object.courseValidityStr);
+					$("#courseBrief").text(json.object.courseBrief);
+				});
+			});
+			layui.use(['jquery', 'form'], function () {
+				var $ = layui.jquery;
+			});
+		}
+	</script>
+
+</body>
+</html>

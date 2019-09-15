@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.guli.message.response.CommonCode;
 import com.guli.pojo.GuliCourse;
 import com.guli.pojo.coursevo.CourseAndClassify;
+import com.guli.pojo.coursevo.CourseAndClassifyAndUser;
 import com.guli.pojo.request.PageCourse;
 import com.guli.pojo.response.AllTypePage;
 import com.guli.response.ObjectResult;
@@ -196,5 +197,16 @@ public class GuliCourseController {
             new ObjectResult(CommonCode.FAIL,"修改失败!");
         }
         return new ObjectResult(CommonCode.SUCCESS,"修改成功!");
+    }
+
+
+    /**
+     * 按id查询课程详情
+     * @param courseId
+     * @return 课程详情
+     */
+    @GetMapping("/findByCourseId")
+    public ObjectResult findByCourseId(@RequestParam("courseId") int courseId){
+        return new ObjectResult(CommonCode.SUCCESS,guliCourseService.findByCourseId(courseId));
     }
 }

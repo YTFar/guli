@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.guli.pojo.GuliCourse;
 import com.guli.pojo.coursevo.CourseAndClassify;
+import com.guli.pojo.coursevo.CourseAndClassifyAndUser;
 import com.guli.pojo.request.PageCourse;
 import com.guli.pojo.response.AllTypePage;
 import com.guli.response.ObjectResult;
@@ -101,4 +102,11 @@ public interface GuliCourseService {
     @GetMapping("/guliCourse/findCourseImg")
     public String findCourseImg(@RequestParam("courseId") Long courseId);
 
+    /**
+     * 按id查询课程详情
+     * @param courseId
+     * @return 课程详情
+     */
+    @GetMapping("/guliCourse/findByCourseId")
+    public CourseAndClassifyAndUser findByCourseId(@RequestParam("courseId") int courseId);
 }

@@ -9,6 +9,7 @@ import com.guli.message.response.CommonCode;
 import com.guli.pojo.GuliCourse;
 import com.guli.mapper.GuliCourseMapper;
 import com.guli.pojo.GuliItem;
+import com.guli.pojo.coursevo.CourseAndClassifyAndUser;
 import com.guli.pojo.request.PageCourse;
 import com.guli.response.ObjectResult;
 import com.guli.service.GuliCourseService;
@@ -90,5 +91,10 @@ public class GuliCourseServiceImpl extends ServiceImpl<GuliCourseMapper, GuliCou
                 .set("course_price", guliCourse.getCoursePrice()).set("course_validity", guliCourse.getCourseValidity())
                 .eq("course_id", guliCourse.getCourseId()));
         return update;
+    }
+
+    @Override
+    public CourseAndClassifyAndUser findByCourseId(int courseId) {
+        return this.baseMapper.findByCourseId(courseId);
     }
 }

@@ -41,7 +41,7 @@
             <td>
                 <div class="layui-inline" id="layui-inline-stair">
                     <div class="layui-input-inline">
-                        <select name="stair" id="stair" lay-filter="stair" lay-verify="required" lay-reqtext="请选择课程的一级分类!" lay-search="">
+                        <select name="stair" lay-filter="stair" id="stair" lay-filter="stair" lay-verify="required" lay-reqtext="请选择课程的一级分类!" lay-search="">
                             <option value="">请选择课程的一级分类</option>
 <!--                            <option value="2">form</option>-->
 <!--                            <option value="3">layim</option>-->
@@ -177,7 +177,7 @@
 <script type="text/javascript" src="../../js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
     function child(courseId) {
-        console.log(courseId);
+        // console.log(courseId);
         $(function () {
             // alert(1);
             $.ajax({
@@ -204,7 +204,7 @@
                 }
             });
             $.getJSON("/guliCourse/findCourseIdOneCourse","id="+courseId,function(json){
-                console.log(json);
+                // console.log(json);
                 var course = json.object;
                 layui.use(['jquery', 'form', 'layer', 'layedit', 'laydate'], function () {
                     var form = layui.form
@@ -366,11 +366,18 @@
             return false;
         });
 
-        layui.form.on('select()', function (data) {
+        layui.form.on('select(stair)', function (data) {
             // console.log(data.elem); //得到select原始DOM对象
             // console.log(data.value); //得到被选中的值
             // console.log(data.othis); //得到美化后的DOM对象
-            selectShow(data.value);
+            // alert(data.value);
+            $("#modules").remove();
+            $("#layui-inline-modules .layui-form-select").remove();
+            var select = " <select name=\"classifyId\" id=\"modules\" lay-verify=\"required\" lay-reqtext=\"请选择课程的二级分类!\" lay-search=\"\">\n" +
+            "                            <option value=\"\">请选择课程的一级分类</option>" +
+            "</select>"
+            $("#layui-inline-modules").append(select);
+            selectShow(data.value,null);
         });
 
     });
@@ -385,8 +392,9 @@
     // }
 
     function selectShow(data,is){
-        if(data.value!=""){
-            // alert(1);
+        // alert(data+"id")
+        if(data!=""){
+            alert(data);
             $.ajax({
                 //请求方式
                 type:'GET',
@@ -396,6 +404,12 @@
                 dataType:'json',
                 //发送到服务器的数据，对象必须为key/value的格式，jquery会自动转换为字符串格式
                 success:function(data){
+                    // layui.form.render("select");//重新渲染 固定写法
+                    // $('#layui-inline-modules .layui-anim-upbit').empty();
+                    // $('#modules').empty();
+                    // $("#layui-inline-modules .layui-anim-upbit").append("<dd lay-value='' class=\"layui-select-tips\">请选择课程的二级分类</dd>")
+                    // $("#modules").append("<option value=\"\">请选择课程的二级分类</option>");
+                    // console.log(data);
                     for(var i = 0;i < data.object.length;i++){
                         var course = data.object[i];
                         var option = " <option value=\""+course.classifyId+"\">"+course.classifyName+"</option>";
