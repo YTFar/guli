@@ -81,7 +81,7 @@ public class GuliCourseController {
      */
     @GetMapping("/findOneCourse")
     public ObjectResult findOneCourse(@RequestParam("id") int id){
-        List<GuliCourse> list = guliCourseService.findCourse(id);
+        List<GuliCourse> list = guliCourseService.findOneCourse(id);
         return new ObjectResult(CommonCode.SUCCESS,list);
     }
 
@@ -100,9 +100,33 @@ public class GuliCourseController {
      * @return
      */
     @GetMapping("/findPageAllCourse")
-    public IPage<GuliCourse> findPageAllCourse(){
-        IPage<GuliCourse> page = guliCourseService.findPageAllCourse();
-        return page;
+    public ObjectResult findPageAllCourse(@RequestParam("pageNo")int pageNo,@RequestParam("pageSize")int pageSize){
+        AllTypePage<GuliCourse> page = guliCourseService.findPageAllCourse(pageNo,pageSize);
+        return new ObjectResult(CommonCode.SUCCESS,page);
+    }
+
+    /**
+     * 根据二级分类id查询课程分页
+     * @param id
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    @GetMapping("/findPageAllCourseById")
+    public ObjectResult findPageAllCourseById(@RequestParam("id")int id,@RequestParam("pageNo")int pageNo,@RequestParam("pageSize")int pageSize){
+        AllTypePage<GuliCourse> page = guliCourseService.findPageAllCourseById(id, pageNo, pageSize);
+        return  new ObjectResult(CommonCode.SUCCESS,page);
+    }
+
+    /**
+     * 根据 二级分类id查询下面单个课程
+     * @param id
+     * @return
+     */
+    @GetMapping("/findCourseById")
+    public ObjectResult findCourseById(@RequestParam("id") int id){
+        List<GuliCourse> list = guliCourseService.findCourseById(id);
+        return new ObjectResult(CommonCode.SUCCESS,list);
     }
 
     /**

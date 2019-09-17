@@ -133,14 +133,62 @@ public class GuliCourseController implements GuliCourseControllerApi {
         return list;
     }
 
+//    @Override
+//    public IPage<GuliCourse> findPageAllCourse() {
+//        return null;
+//    }
+
     /**
-     * 查询全部课程,可按......进行判断并进行分页
+     * 查询全部课程,并进行分页
      * @return
      */
     @GetMapping("/findPageAllCourse")
-    public IPage<GuliCourse> findPageAllCourse(){
-        IPage<GuliCourse> page = guliCourseMapper.selectPage(new Page<GuliCourse>(1, 20), null);
-        return page;
+    public AllTypePage<GuliCourse> findPageAllCourse(@RequestParam("pageNo")int pageNo,@RequestParam("pageSize")int pageSize){
+        IPage<GuliCourse> guliCourseIPage = guliCourseMapper.selectPage(new Page<GuliCourse>(pageNo, pageSize), null);
+        AllTypePage<GuliCourse> allTypePage = new AllTypePage<>();
+        //写自己传入的页码
+        allTypePage.setPageNo(pageNo);
+        //写入自己的显示数据量
+        allTypePage.setPageSize(pageSize);
+        //调用查询出分页对象的总页数
+        allTypePage.setPageTotal((int)guliCourseIPage.getTotal());
+        //调用查询出分页对象当前显示数据
+        allTypePage.setPageList(guliCourseIPage.getRecords());
+        return allTypePage;
+    }
+
+    /**
+     * 根据二级分类id查询下面的课程
+     * @param id
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    @Override
+    @GetMapping("/findPageAllCourseById")
+    public AllTypePage<GuliCourse> findPageAllCourseById(@RequestParam("id") int id,@RequestParam("pageNo") int pageNo, @RequestParam("pageSize") int pageSize) {
+        IPage<GuliCourse> guliCourseIPage = guliCourseMapper.selectPage(new Page<GuliCourse>(pageNo, pageSize),new QueryWrapper<GuliCourse>().inSql("classify_id","SELECT classify_id FROM guli_classify WHERE parent_id = "+id ));
+        AllTypePage<GuliCourse> allTypePage = new AllTypePage<>();
+        //写自己传入的页码
+        allTypePage.setPageNo(pageNo);
+        //写入自己的显示数据量
+        allTypePage.setPageSize(pageSize);
+        //调用查询出分页对象的总页数
+        allTypePage.setPageTotal((int)guliCourseIPage.getTotal());
+        //调用查询出分页对象当前显示数据
+        allTypePage.setPageList(guliCourseIPage.getRecords());
+        return allTypePage;
+    }
+
+    /**
+     * 根据二级分类id查询下面的单个课程
+     * @param id
+     * @return
+     */
+    @GetMapping("/findCourseById")
+    public List<GuliCourse> findCourseById(@RequestParam("id") int id){
+        List<GuliCourse> list = guliCourseMapper.selectList(new QueryWrapper<GuliCourse>().eq("classify_id", id));
+        return list;
     }
 
     /**
@@ -185,7 +233,7 @@ public class GuliCourseController implements GuliCourseControllerApi {
         if(courseName.equals("*")){
             courseName = "";
         }
-        IPage<GuliCourse> guliCourseIPage = guliCourseMapper.selectPage(new Page<GuliCourse>(pageNo,pageSize), new QueryWrapper<GuliCourse>().inSql("course_id", "select course_id from guli_item where user_id = " + userId).like("course_name",courseName).orderByDesc("course_create_time"));
+        IPage<GuliCourse> guliCourseIPage = guliCourseMapper.selectPage(new Page<GuliCourse>(pageNo,pageSize), new QueryWrapper<GuliCourse>().inSql("course_id", "select course_id from guli_item where user_id = " + userId).like("course_name",courseName));
 //        IPage<GuliCourse> guliCourseIPage = guliCourseService.findAllPageCourse(new Page<GuliCourse>(pageCourse.getPageNo(),pageCourse.getPageSize()),pageCourse);
         AllTypePage<GuliCourse> allTypePage = new AllTypePage<>();
         //写自己传入的页码
@@ -266,5 +314,4 @@ public class GuliCourseController implements GuliCourseControllerApi {
     public String findByIdCourseName(int id) {
         return guliCourseMapper.selectById(id).getCourseName();
     }
-
 }

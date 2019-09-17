@@ -28,8 +28,8 @@ public interface GuliCourseMapper extends BaseMapper<GuliCourse> {
      * @param id
      * @return
      */
-    @Select("SELECT * FROM guli_course WHERE classify_id IN(SELECT classify_id FROM guli_classify WHERE classify_id = #{id}) LIMIT 8")
-    List<GuliCourse> findOneCourse(int id);
+    @Select("SELECT * FROM guli_course WHERE classify_id IN(SELECT classify_id FROM guli_classify WHERE parent_id = #{id}) LIMIT 8")
+    List<GuliCourse> findOneCourse(@Param("id") int id);
 
     /**
      * 根据星评查询推荐课程
@@ -53,6 +53,8 @@ public interface GuliCourseMapper extends BaseMapper<GuliCourse> {
 
     @Select("SELECT a.*,b.parent_id FROM guli_course a INNER JOIN guli_classify b ON a.classify_id = b.classify_id WHERE a.course_id = #{id}")
     CourseAndClassify findCourseIdOneCourse(int id);
+
+
 
     @Select({"<script>",
             "SELECT",

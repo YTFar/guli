@@ -12,7 +12,7 @@
 <html lang="zh_CN" class="">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../layui/css/layui.css" media="all">
+
 
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -44,10 +44,12 @@ category.all_category">
     <link href="../static-dist/app/css/main-8.3.2.css" rel="stylesheet">
     <link href="../static-dist/app/css/main-v2-8.3.2.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="../layui_files_upload/css/layui.css">
 
     <link rel="stylesheet" media="screen" href="../themes/june/css/sggn-8.3.2.css">
     <link rel="stylesheet" media="screen" href="../themes/june/css/june-blue-8.3.2.css">
     <link rel="stylesheet" media="screen" href="../themes/june/css/header1-8.3.2.css">
+
 </head>
 <body class="es-main-default es-nav-default course-list-page ">
 
@@ -275,7 +277,7 @@ category.all_category">
             <div class="tabs-group">
                 <div class="title"></div>
                 <ul class="content clearfix">
-                    <li class="active" id="li1"><a class="nav-link" href="/course/explore/java?orderBy=latest">全部</a></li>
+                    <li class="active" id="li1"><a class="nav-link" href="explore.html">全部</a></li>
 <!--                    <li class=""><a class="nav-link" href="/course/explore/java?subCategory=SVN&amp;orderBy=latest">SVN视频</a></li>-->
                 </ul>
             </div>
@@ -864,25 +866,7 @@ category.all_category">
       </nav>
     </nav>-->
         <!--分页序号-->
-        <div id="demo3">
-            <div class="layui-box layui-laypage layui-laypage-default" id="layui-laypage-6">
-                <a href="javascript:;" class="layui-laypage-prev layui-disabled" data-page="0">
-                    <em>←</em>
-                </a>
-                <span class="layui-laypage-curr">
-                    <em class="layui-laypage-em"></em>
-                    <em>1</em></span>
-                <a href="javascript:;" data-page="2">2</a>
-                <a href="javascript:;" data-page="3">3</a>
-                <a href="javascript:;" data-page="4">4</a>
-                <a href="javascript:;" data-page="5">5</a>
-                <span class="layui-laypage-spr">…</span>
-                <a href="javascript:;" class="layui-laypage-last" title="尾页" data-page="10">尾页</a>
-                <a href="javascript:;" class="layui-laypage-next" data-page="2">
-                    <em>→</em>
-                </a>
-            </div>
-        </div>
+        <div id="demo7" style="text-align: center"></div>
     </div>
 
 
@@ -934,8 +918,6 @@ category.all_category">
     <div class="sgg_botbotbg">
         <div class="sgg_botbot">
             <p>
-
-
                 ©2018课程版权均归<a href="../Index1.html">谷粒学院</a>所有&nbsp; <a href="javascript:;" target="_blank">京ICP备17055252号</a>
             </p>
         </div>
@@ -1282,35 +1264,35 @@ category.all_category">
 <div id="attachment-modal" class="modal"></div>
 
 
-<!--    <script>-->
-<!--  if (typeof app === 'undefined') {-->
-<!--      var app = {};-->
-<!--  }-->
-<!--  app.version = '8.3.2';-->
-<!--  app.httpHost = 'http://www.gulixueyuan.com';-->
-<!--  app.basePath = 'http://www.gulixueyuan.com';-->
-<!--  app.theme = 'june';-->
-
-<!--    -->
-<!--  var CLOUD_FILE_SERVER = ""; -->
-
-<!--  app.config = {"api":{"weibo":{"key":"101226163"},"qq":{"key":"101226163"},"douban":{"key":""},"renren":{"key":""}},"loading_img_path":"\/assets\/img\/default\/loading.gif?version=8.3.2"};-->
-
-<!--  app.arguments = {};-->
-<!--      -->
-<!--  app.scripts = null;-->
-
-<!--  app.fileSingleSizeLimit = 10;-->
-<!--  app.uploadUrl = '/file/upload';-->
-<!--  app.imgCropUrl = '/file/img/crop';-->
-<!--  app.lessonCopyEnabled = '1';-->
-<!--  app.cloudPlayerSdkUrl = '//service-cdn.qiqiuyun.net/js-sdk/sdk-v1.js?15662876';-->
-<!--  app.cloudPlayServer = '';-->
-<!--  app.cloudVideoPlayerSdkUrl = '//service-cdn.qiqiuyun.net/js-sdk/video-player/sdk-v1.js?15662876';-->
-<!--  app.cloudOldUploaderSdkUrl = '//service-cdn.qiqiuyun.net/js-sdk/uploader/sdk-v1.js?15662876';-->
-<!--  app.cloudOldDocumentSdkUrl = '//service-cdn.qiqiuyun.net/js-sdk/document-player/v7/viewer.html?15662876';-->
-<!--  app.lang = 'zh_CN';-->
-<!--</script>-->
+    <script>
+  // if (typeof app === 'undefined') {
+  //     var app = {};
+  // }
+  // app.version = '8.3.2';
+  // app.httpHost = 'http://www.gulixueyuan.com';
+  // app.basePath = 'http://www.gulixueyuan.com';
+  // app.theme = 'june';
+  //
+  //
+  // var CLOUD_FILE_SERVER = "";
+  //
+  // app.config = {"api":{"weibo":{"key":"101226163"},"qq":{"key":"101226163"},"douban":{"key":""},"renren":{"key":""}},"loading_img_path":"\/assets\/img\/default\/loading.gif?version=8.3.2"};
+  //
+  // app.arguments = {};
+  //
+  // app.scripts = null;
+  //
+  // app.fileSingleSizeLimit = 10;
+  // app.uploadUrl = '/file/upload';
+  // app.imgCropUrl = '/file/img/crop';
+  // app.lessonCopyEnabled = '1';
+  // app.cloudPlayerSdkUrl = '//service-cdn.qiqiuyun.net/js-sdk/sdk-v1.js?15662876';
+  // app.cloudPlayServer = '';
+  // app.cloudVideoPlayerSdkUrl = '//service-cdn.qiqiuyun.net/js-sdk/video-player/sdk-v1.js?15662876';
+  // app.cloudOldUploaderSdkUrl = '//service-cdn.qiqiuyun.net/js-sdk/uploader/sdk-v1.js?15662876';
+  // app.cloudOldDocumentSdkUrl = '//service-cdn.qiqiuyun.net/js-sdk/document-player/v7/viewer.html?15662876';
+  // app.lang = 'zh_CN';
+</script>
 
 <script src="../bundles/translations/translator.min-8.3.2.js"></script>
 
@@ -1328,7 +1310,13 @@ category.all_category">
     window.seajsBoot && window.seajsBoot();
 </script>
 <script type="text/javascript">
+
+
     $(function () {
+        /**
+         * 页面加载显示所有课程进行分页
+        showReocrd(1,12);
+
         /**
          * 查询父标题
          */
@@ -1336,11 +1324,10 @@ category.all_category">
             console.log(rs.toString());
             $.each(rs.object, function (i, item) {
                 console.log(item);
-                // $("#fl").append("<li class='fl-1'><a class='nav-link' href='" + item.classifyId + "' name='" + item.classifyId + "' id='title'>" + item.classifyName + "</a></li>")
-                $("#fl").append("<li><a class='nav-link' style='cursor:pointer' name='"+item.classifyId+"'>" + item.classifyName + "</a></li>")
+                 $("#fl").append("<li><a class='nav-link' style='cursor:pointer' name='"+item.classifyId+"'>" + item.classifyName + "</a></li>")
             })
 
-
+            //点击父标题   根据父级id查询二级分类标题
             $("#fl").on("click", ".nav-link", function () {
 
                 $(this).parent().attr("class", "active").siblings().attr("class", "");
@@ -1354,14 +1341,48 @@ category.all_category">
 
                 //查询二级分类
                 $.getJSON("/guliClassify/findTwoClassify?id=" + id, function (date2) {
-                    //alert("111");
+
                     console.log(date2);
                     $("#li1").nextAll().remove();
                     $.each(date2.object, function (i, item2) {
-                        $("#li1").after("<li class='active'><a class='nav-link' href='#'>" + item2.classifyName + "</a></li>");
+                        $("#li1").after("<li class='active'><a class='nav-link' href='#' name='"+item2.classifyId+"'>" + item2.classifyName + "</a></li>");
 
+                        })
+                    //点击二级分类标题   根据二级分类id查询下面的课程
+                    $(".nav-link").click(function(){
+                        var id2 = $(this).attr("name");
+                        $.getJSON("/guliCourse/findCourseById?id="+id2,function(date3){
+                            $("#boxs").children().remove();
+                            $.each(date3.object,function(k,item3){
+                                var price = item3.coursePrice == 0 ? "<span class='txt over_span168'><span class='course-price-widget'><span class='free'> 免费</span></span></span>" : "<span class='txt over_span168'><span class='course-price-widget'><span class='price'> " + item3.coursePrice + "元</span></span></span>";
+                                var div = "<div class=\"col-lg-3 col-md-4 col-xs-6\">\n" +
+                                    "            <div class=\"course-item\">\n" +
+                                    "              <div class=\"course-img\">\n" +
+                                    "                <a href=\"48.html\" target=\"_blank\">\n" +
+                                    "                   <img src=\"../../assets/img/default/lazyload_course-8.3.2.png\" alt=\"Java基础\" class=\"img-responsive\" data-echo=\"../files/default/2018/06-14/171024005260209051.jpg\">\n" +
+                                    "                </a>\n" +
+                                    "              </div>\n" +
+                                    "          <div class=\"course-info\">\n" +
+                                    "            <div class=\"title\">\n" +
+                                    "              <a class=\"link-dark\" href=\"48.html\" target=\"_blank\">\n" +
+                                    item3.courseName +
+                                    "              </a>\n" +
+                                    "            </div>\n" +
+                                    "            <div class=\"metas clearfix\">\n" +
+                                    "                <span class=\"comment\"><i class=\"es-icon es-icon-textsms\"></i>82</span>\n" +
+                                    price +
+                                    "            </div>\n" +
+                                    "          </div>\n" +
+                                    "            </div>\n" +
+                                    "         </div>";
+                                $("#boxs").append(div);
+                            })
+                        })
                     })
                 })
+
+                //点击父级标题  根据父级分类id查询二级分类下面的所有课程进行分页
+                showReocrd2(id,1,8)
             })
 
 
@@ -1373,6 +1394,7 @@ category.all_category">
         $("#findNew").click(
             function () {
                 $.getJSON("/guliCourse/findNew", function (date) {
+                    $("#demo7").remove();
                     $("#boxs").children().remove();
                     $.each(date.object, function (i, items) {
                         var price = items.coursePrice == 0 ? "<span class='txt over_span168'><span class='course-price-widget'><span class='free'> 免费</span></span></span>" : "<span class='txt over_span168'><span class='course-price-widget'><span class='price'> " + items.coursePrice + "元</span></span></span>";
@@ -1380,7 +1402,7 @@ category.all_category">
                             "            <div class=\"course-item\">\n" +
                             "              <div class=\"course-img\">\n" +
                             "                <a href=\"48.html\" target=\"_blank\">\n" +
-                            "                   <img src=\"../assets/img/default/lazyload_course-8.3.2.png\" alt=\"Java基础\" class=\"img-responsive\" data-echo=\"../files/default/2018/06-14/171024005260209051.jpg\">\n" +
+                            "                   <img src=\"../../assets/img/default/lazyload_course-8.3.2.png\" alt=\"Java基础\" class=\"img-responsive\" data-echo=\"../files/default/2018/06-14/171024005260209051.jpg\">\n" +
                             "                </a>\n" +
                             "              </div>\n" +
                             "          <div class=\"course-info\">\n" +
@@ -1410,6 +1432,7 @@ category.all_category">
         $("#findWatched").click(
             function () {
                 $.getJSON("/guliCourse/findWatched", function (date1) {
+                    $("#demo7").remove();
                     $("#boxs").children().remove();
                     $.each(date1.object, function (j, item1) {
                         var price = item1.coursePrice == 0 ? "<span class='txt over_span168'><span class='course-price-widget'><span class='free'> 免费</span></span></span>" : "<span class='txt over_span168'><span class='course-price-widget'><span class='price'> " + item1.coursePrice + "元</span></span></span>";
@@ -1417,7 +1440,7 @@ category.all_category">
                             "            <div class=\"course-item\">\n" +
                             "              <div class=\"course-img\">\n" +
                             "                <a href=\"48.html\" target=\"_blank\">\n" +
-                            "                   <img src=\"../assets/img/default/lazyload_course-8.3.2.png\" alt=\"Java基础\" class=\"img-responsive\" data-echo=\"../files/default/2018/06-14/171024005260209051.jpg\">\n" +
+                            "                   <img src=\"../../assets/img/default/lazyload_course-8.3.2.png\" alt=\"Java基础\" class=\"img-responsive\" data-echo=\"../files/default/2018/06-14/171024005260209051.jpg\">\n" +
                             "                </a>\n" +
                             "              </div>\n" +
                             "          <div class=\"course-info\">\n" +
@@ -1446,6 +1469,7 @@ category.all_category">
         $("#findRecommendCourse").click(
             function () {
                 $.getJSON("/guliCourse/findRecommendCourse", function (date2) {
+                    $("#demo7").remove();
                     $("#boxs").children().remove();
                     $.each(date2.object, function (j, item2) {
                         var price = item2.coursePrice == 0 ? "<span class='txt over_span168'><span class='course-price-widget'><span class='free'> 免费</span></span></span>" : "<span class='txt over_span168'><span class='course-price-widget'><span class='price'> " + item2.coursePrice + "元</span></span></span>";
@@ -1453,7 +1477,7 @@ category.all_category">
                             "            <div class=\"course-item\">\n" +
                             "              <div class=\"course-img\">\n" +
                             "                <a href=\"48.html\" target=\"_blank\">\n" +
-                            "                   <img src=\"../assets/img/default/lazyload_course-8.3.2.png\" alt=\"Java基础\" class=\"img-responsive\" data-echo=\"../files/default/2018/06-14/171024005260209051.jpg\">\n" +
+                            "                   <img src=\"../../assets/img/default/lazyload_course-8.3.2.png\" alt=\"Java基础\" class=\"img-responsive\" data-echo=\"../files/default/2018/06-14/171024005260209051.jpg\">\n" +
                             "                </a>\n" +
                             "              </div>\n" +
                             "          <div class=\"course-info\">\n" +
@@ -1471,10 +1495,140 @@ category.all_category">
                             "         </div>";
                         $("#boxs").append(div);
                     })
+
                 })
             }
         )
     })
+
+    /**
+     * 显示全部课程分页
+     * @param pageNo
+     * @param pageSize
+     */
+    function showReocrd(pageNo,pageSize){
+        $.getJSON("/guliCourse/findPageAllCourse?pageNo="+pageNo+"&pageSize="+pageSize,function(date){
+            // console.log(date);
+            $("#boxs").children().remove();
+
+            for (var i = 0;i < date.object.pageList.length;i++){
+                var item2 = date.object.pageList[i];
+                var price = item2.coursePrice == 0 ? "<span class='txt over_span168'><span class='course-price-widget'><span class='free'> 免费</span></span></span>" : "<span class='txt over_span168'><span class='course-price-widget'><span class='price'> " + item2.coursePrice + "元</span></span></span>";
+                var div = "<div class=\"col-lg-3 col-md-4 col-xs-6\">\n" +
+                    "            <div class=\"course-item\">\n" +
+                    "              <div class=\"course-img\">\n" +
+                    "                <a href=\"48.html\" target=\"_blank\">\n" +
+                    "                   <img src=\"../../assets/img/default/lazyload_course-8.3.2.png\" alt=\"Java基础\" class=\"img-responsive\" data-echo=\"../files/default/2018/06-14/171024005260209051.jpg\">\n" +
+                    "                </a>\n" +
+                    "              </div>\n" +
+                    "          <div class=\"course-info\">\n" +
+                    "            <div class=\"title\">\n" +
+                    "              <a class=\"link-dark\" href=\"48.html\" target=\"_blank\">\n" +
+                    item2.courseName +
+                    "              </a>\n" +
+                    "            </div>\n" +
+                    "            <div class=\"metas clearfix\">\n" +
+                    "                <span class=\"comment\"><i class=\"es-icon es-icon-textsms\"></i>82</span>\n" +
+                    price +
+                    "            </div>\n" +
+                    "          </div>\n" +
+                    "            </div>\n" +
+                    "         </div>";
+                $("#boxs").append(div);
+            }
+
+            layui.use(['jquery','form','layer','laypage','element'], function(){
+                var $ = layui.jquery,
+                    laydate = layui.laydate,
+                    layer = layui.layer,
+                    laypage = layui.laypage;
+                //完整功能
+                laypage.render({
+                    elem: 'demo7',
+                    count: date.object.pageTotal,//总条数
+                    curr: date.object.pageNo,//当前页
+                    limit: date.object.pageSize,//每页的条数
+                    limits:[4,8,12]//可选择每页数目
+                    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                    ,jump: function (obj, first) { //obj为当前页的属性和方法，第一次加载first为true
+                        //非首次加载 do something
+                        if (!first) {
+                            //清空以前加载的数据
+                            $('#boxs').empty();
+                            //调用加载函数加载数据
+                            showReocrd(obj.curr, obj.limit);
+                        }
+                    }
+                });
+            });
+        })
+    }
+
+    /**
+     * 显示二级分类下的课程分页
+     * @param id
+     * @param pageNo
+     * @param pageSize
+     */
+    function showReocrd2(id,pageNo,pageSize){
+        $.getJSON("/guliCourse/findPageAllCourseById?id="+id+"&pageNo="+pageNo+"&pageSize="+pageSize,function(date){
+            console.log(date);
+            $("#boxs").children().remove();
+
+            for (var i = 0;i < date.object.pageList.length;i++){
+                var item2 = date.object.pageList[i];
+                var price = item2.coursePrice == 0 ? "<span class='txt over_span168'><span class='course-price-widget'><span class='free'> 免费</span></span></span>" : "<span class='txt over_span168'><span class='course-price-widget'><span class='price'> " + item2.coursePrice + "元</span></span></span>";
+                var div = "<div class=\"col-lg-3 col-md-4 col-xs-6\">\n" +
+                    "            <div class=\"course-item\">\n" +
+                    "              <div class=\"course-img\">\n" +
+                    "                <a href=\"48.html\" target=\"_blank\">\n" +
+                    "                   <img src=\"../../assets/img/default/lazyload_course-8.3.2.png\" alt=\"Java基础\" class=\"img-responsive\" data-echo=\"../files/default/2018/06-14/171024005260209051.jpg\">\n" +
+                    "                </a>\n" +
+                    "              </div>\n" +
+                    "          <div class=\"course-info\">\n" +
+                    "            <div class=\"title\">\n" +
+                    "              <a class=\"link-dark\" href=\"48.html\" target=\"_blank\">\n" +
+                    item2.courseName +
+                    "              </a>\n" +
+                    "            </div>\n" +
+                    "            <div class=\"metas clearfix\">\n" +
+                    "                <span class=\"comment\"><i class=\"es-icon es-icon-textsms\"></i>82</span>\n" +
+                    price +
+                    "            </div>\n" +
+                    "          </div>\n" +
+                    "            </div>\n" +
+                    "         </div>";
+                $("#boxs").append(div);
+            }
+
+            layui.use(['jquery','form','layer','laypage','element'], function(){
+                var $ = layui.jquery,
+                    laydate = layui.laydate,
+                    layer = layui.layer,
+                    laypage = layui.laypage;
+                //完整功能
+                laypage.render({
+                    elem: 'demo7',
+                    count: date.object.pageTotal,//总条数
+                    curr: date.object.pageNo,//当前页
+                    limit: date.object.pageSize,//每页的条数
+                    limits:[1,2]//可选择每页数目
+                    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                    ,jump: function (obj, first) { //obj为当前页的属性和方法，第一次加载first为true
+                        //非首次加载 do something
+                        if (!first) {
+                            //清空以前加载的数据
+                            $('#boxs').empty();
+                            //调用加载函数加载数据
+
+                            console.log(obj.limit+"123");
+                            showReocrd2(id,obj.curr, obj.limit);
+                        }
+                    }
+                });
+            });
+        })
+    }
 </script>
 </body>
 </html>

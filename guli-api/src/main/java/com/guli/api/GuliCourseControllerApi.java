@@ -50,7 +50,15 @@ public interface GuliCourseControllerApi {
 
     @ApiOperation("查询所有课程分页，课程页显示")
     @ApiIgnore
-    public IPage<GuliCourse> findPageAllCourse();
+    public AllTypePage<GuliCourse> findPageAllCourse(int pageNo,int pageSize);
+
+    @ApiOperation("根据id查询二级分类下面的课程分页显示，课程页显示")
+    @ApiIgnore
+    public AllTypePage<GuliCourse> findPageAllCourseById(int id,int pageNo,int pageSize);
+
+    @ApiOperation("根据id查询二级分类下面的单个课程")
+    @ApiIgnore
+    public List<GuliCourse> findCourseById(int id);
 
     @ApiOperation("查询课程名称是否存在")
     public boolean isCourseName(String courseName);
