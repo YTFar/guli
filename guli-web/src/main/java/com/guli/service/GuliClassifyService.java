@@ -31,4 +31,19 @@ public interface GuliClassifyService {
      */
     @GetMapping(value = "/guliClassify/findTwoClassify")
     List<GuliClassify> findTwoClassify(@RequestParam("id") int id);
+
+    /**
+     * 根据课程id查询课程子分类
+     * @return
+     */
+    @GetMapping("/guliClassify/findCourseTowClassify")
+    GuliClassify findCourseTowClassify(@RequestParam("id") Long id);
+
+    /**
+     *  根据子分类id查询课程父分类
+     * @param id
+     * @return
+     */
+    @GetMapping("/guliClassify/findOneClassify")
+    GuliClassify findOneClassify(@RequestParam("id") Long id);
 }

@@ -12,6 +12,7 @@ import com.guli.pojo.response.AllTypePage;
 import com.guli.response.ObjectResult;
 import com.guli.service.GuliCourseService;
 import com.guli.service.fastdfs.FastDFSService;
+import com.guli.vo.CourseVO;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -208,5 +209,15 @@ public class GuliCourseController {
     @GetMapping("/findByCourseId")
     public ObjectResult findByCourseId(@RequestParam("courseId") int courseId){
         return new ObjectResult(CommonCode.SUCCESS,guliCourseService.findByCourseId(courseId));
+    }
+
+    /**
+     * 课程信息 + 打折
+     * 根据课程id查询课程
+     * @return
+     */
+    @GetMapping("/findByIdCourse")
+    public ObjectResult findByIdCourse(@RequestParam("id") int id){
+        return new ObjectResult(CommonCode.SUCCESS,guliCourseService.findByIdCourse(id));
     }
 }

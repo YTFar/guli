@@ -8,6 +8,7 @@ import com.guli.pojo.coursevo.CourseAndClassifyAndUser;
 import com.guli.pojo.request.PageCourse;
 import com.guli.pojo.response.AllTypePage;
 import com.guli.response.ObjectResult;
+import com.guli.vo.CourseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -109,4 +110,23 @@ public interface GuliCourseService {
      */
     @GetMapping("/guliCourse/findByCourseId")
     public CourseAndClassifyAndUser findByCourseId(@RequestParam("courseId") int courseId);
+
+    /**
+     * 根据课程id查询课程名称
+     * @param id
+     * @return
+     */
+    @GetMapping("/guliCourse/findByIdCourseName")
+    String findByIdCourseName(@RequestParam("id")int id);
+
+    /**
+     * 课程信息 + 打折
+     * 根据课程id查询课程
+     * @return
+     */
+    @GetMapping("/guliCourse/findByIdCourse")
+    public CourseVO findByIdCourse(@RequestParam("id") int id);
+
+
+
 }

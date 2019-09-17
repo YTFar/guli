@@ -22,7 +22,7 @@ package com.guli.pojo;
 
     private Long courseId;
 
-    private Long catalogueName;
+    private String catalogueName;
 
         public Long getCatalogueId() {
         return catalogueId;
@@ -38,11 +38,11 @@ package com.guli.pojo;
             public void setCourseId(Long courseId) {
         this.courseId = courseId;
         }
-        public Long getCatalogueName() {
+        public String getCatalogueName() {
         return catalogueName;
         }
 
-            public void setCatalogueName(Long catalogueName) {
+            public void setCatalogueName(String catalogueName) {
         this.catalogueName = catalogueName;
         }
 

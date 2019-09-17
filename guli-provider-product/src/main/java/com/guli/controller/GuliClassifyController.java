@@ -57,4 +57,34 @@ public class GuliClassifyController implements GuliClassifyControllerApi {
         System.out.println("数据："+list.toString());
         return list;
     }
+
+    /**
+     * 课程显示页面
+     * 根据课程id查询课程子分类
+     * @param id
+     * @return
+     */
+    @Override
+    @GetMapping("/findCourseTowClassify")
+    public GuliClassify findCourseTowClassify(@RequestParam("id") long id) {
+        GuliClassify guliClassify = guliClassifyMapper.selectOne(
+                new QueryWrapper<GuliClassify>().inSql("classify_id","SELECT classify_id FROM guli_course WHERE course_id ="+id)
+        );
+        return guliClassify;
+    }
+
+    /**
+     * 课程显示页面
+     * 根据子分类id查询课程父分类
+     * @param id
+     * @return
+     */
+    @Override
+    @GetMapping("/findOneClassify")
+    public GuliClassify findOneClassify(@RequestParam("id") Long id) {
+        GuliClassify guliClassify = guliClassifyMapper.selectOne(
+                new QueryWrapper<GuliClassify>().eq("classify_id",id)
+        );
+        return guliClassify;
+    }
 }

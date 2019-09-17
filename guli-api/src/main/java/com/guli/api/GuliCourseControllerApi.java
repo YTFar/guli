@@ -9,6 +9,7 @@ import com.guli.pojo.coursevo.CourseAndClassifyAndUser;
 import com.guli.pojo.request.PageCourse;
 import com.guli.pojo.response.AllTypePage;
 import com.guli.response.ObjectResult;
+import com.guli.vo.CourseVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,4 +72,15 @@ public interface GuliCourseControllerApi {
 
     @ApiOperation("按id查询指定课程所有信息")
     public CourseAndClassifyAndUser findByCourseId(int courseId);
+
+    @ApiOperation("根据课程id查询课程")
+    @ApiIgnore
+    public CourseVO findByIdCourse(int id);
+
+    @ApiOperation("根据课程id查询课程名称")
+    @ApiIgnore
+    public String findByIdCourseName(int id);
+
+
+
 }

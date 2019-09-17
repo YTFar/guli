@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.guli.pojo.coursevo.CourseAndClassify;
 import com.guli.pojo.coursevo.CourseAndClassifyAndUser;
 import com.guli.pojo.request.PageCourse;
+import com.guli.vo.CourseVO;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -64,4 +65,14 @@ public interface GuliCourseMapper extends BaseMapper<GuliCourse> {
             "where a.course_id = #{courseId}",
             "</script>"})
     CourseAndClassifyAndUser findByCourseId(int courseId);
+
+    /**
+     * 根据id查询课程信息
+     * @param id
+     * @return
+     */
+    @Select("select * from guli_course a\n" +
+            "INNER JOIN guli_activitie b ON b.course_id = a.course_id\n" +
+            "WHERE a.course_id = #{id}")
+    CourseVO findByIdCourse(@Param("id") int id);
 }
