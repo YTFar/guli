@@ -44,4 +44,56 @@ public interface GuliEvaluateMapper extends BaseMapper<GuliEvaluate> {
            "INNER JOIN guli_activitie a ON c.course_id = a.course_id\n"+
            "WHERE c.course_id = #{num}")
     CourseVO findByIdCourse(@Param("num") int num);
+
+
+    /**
+     * 根据课程id 查询下面 加入的学员 显示20个
+     * @param id
+     * @return
+     */
+    @Select("select * from guli_user u\n" +
+            "INNER JOIN guli_item i on i.user_id=u.user_id\n" +
+            "INNER JOIN guli_course c on i.course_id=c.course_id\n" +
+            "WHERE i.course_affiliate = 1 AND c.course_id = #{id}\n" +
+            "ORDER BY i.affiliate_time ASC\n" +
+            "LIMIT 20")
+    List<GuliEvaluateVO> findAllUsersById(@Param("id") int id);
+
+    /**
+     *根据用户id  查询收藏的课程
+     * @param id
+     * @return
+     */
+    @Select("select * from guli_course c\n" +
+            "INNER JOIN guli_item i\n" +
+            "on i.item_id = c.item_id\n" +
+            "where i.course_collect =1 and i.user_id=#{id}")
+    List<GuliEvaluateVO> findUserCollectCourseById(@Param("id") int id);
+
+    /**
+     * 根据用户id查询该用户在学的课程
+     * @param id
+     * @return
+     */
+    @Select("select * from guli_course c\n" +
+            "INNER JOIN guli_item i\n" +
+            "on c.course_id=i.course_id\n" +
+            "WHERE i.user_id=#{id}")
+    List<GuliEvaluateVO> findUserCourseById(@Param("id") int id);
+
+    /**
+     * 根据用户id查询粉丝详情
+     * @param id
+     * @return
+     */
+    @Select("select * from guli_user where user_id in(select fans_id from guli_concern where user_id= #{id})")
+    List<GuliEvaluateVO> findFansById(@Param("id") int id);
+
+    /**
+     * 根据用户id查询关注的用户
+     * @param id
+     * @return
+     */
+    @Select("SELECT * FROM guli_user u INNER JOIN  guli_concern c ON u.user_id = c.user_id WHERE c.fans_id = #{id}")
+    List<GuliEvaluateVO>findUserIdById(@Param("id") int id);
 }

@@ -84,4 +84,59 @@ public class GuliEvaluateController implements GuliEvaluateControllerApi {
     public CourseVO findByIdCourse(@RequestParam("id") int id) {
         return guliEvaluateMapper.findByIdCourse(id);
     }
+
+
+    /**
+     * 根据课程id 查询下面 加入的学员 显示20个
+     * @param id
+     * @return
+     */
+    @GetMapping("/findAllUsersById")
+    public List<GuliEvaluateVO> findAllUsersById(@RequestParam("id") int id){
+        return guliEvaluateMapper.findAllUsersById(id);
+    }
+
+    /**
+     * 根据用户id查询该用户在学的课程
+     * @param id
+     * @return
+     */
+    @Override
+    @GetMapping("/findUserCourseById")
+    public List<GuliEvaluateVO> findUserCourseById(@RequestParam("id") int id) {
+        return guliEvaluateMapper.findUserCourseById(id);
+    }
+
+    /**
+     * 根据用户id查询收藏的课程
+     * @param id
+     * @return
+     */
+    @Override
+    @GetMapping("/findUserCollectCourseById")
+    public List<GuliEvaluateVO> findUserCollectCourseById(@RequestParam("id") int id) {
+        return guliEvaluateMapper.findUserCollectCourseById(id);
+    }
+
+    /**
+     * 根据用户id查询粉丝详情
+     * @param id
+     * @return
+     */
+    @Override
+    @GetMapping("/findFansById")
+    public List<GuliEvaluateVO> findFansById(@RequestParam("id") int id) {
+        return guliEvaluateMapper.findFansById(id);
+    }
+
+
+    /**
+     * 根据用户id查询关注的用户
+     * @param id
+     * @return
+     */
+    @GetMapping("/findUserIdById")
+    public List<GuliEvaluateVO> findUserIdById(@RequestParam("id") int id){
+        return guliEvaluateMapper.findUserIdById(id);
+    }
 }

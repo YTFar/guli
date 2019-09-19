@@ -63,4 +63,56 @@ public class GuliEvaluateController {
         return objectResult;
     }
 
+    /**
+     * 根据课程id 查询下面 加入的学员 显示20个
+     * @param id
+     * @return
+     */
+    @GetMapping("/findAllUsersById")
+    public ObjectResult findAllUsersById(@RequestParam("id") int id){
+        List<GuliEvaluateVO> list = guliEvaluateService.findAllUsersById(id);
+        return new ObjectResult(CommonCode.SUCCESS,list);
+    }
+
+    /**
+     * 根据用户id查询该用户在学的课程
+     * @param id
+     * @return
+     */
+    @GetMapping("/findUserCourseById")
+    public ObjectResult findUserCourseById(@RequestParam("id") int id){
+        return new ObjectResult(CommonCode.SUCCESS,guliEvaluateService.findUserCourseById(id));
+    }
+
+    /**
+     * 根据用户id查询该用户的收藏课程
+     * @param id
+     * @return
+     */
+    @GetMapping("/findUserCollectCourseById")
+    public ObjectResult findUserCollectCourseById(@RequestParam("id") int id){
+        return new ObjectResult(CommonCode.SUCCESS,guliEvaluateService.findUserCollectCourseById(id));
+    }
+
+    /**
+     * 根据用户id查询粉丝详情
+     * @param id
+     * @return
+     */
+    @GetMapping("/findFansById")
+    public ObjectResult findFansById(@RequestParam("id") int id){
+        return new ObjectResult(CommonCode.SUCCESS,guliEvaluateService.findFansById(id));
+
+    }
+
+    /**
+     * 根据用户id查询关注的用户
+     * @param id
+     * @return
+     */
+    @GetMapping("/findUserIdById")
+    public ObjectResult findUserIdById(@RequestParam("id") int id){
+        return new ObjectResult(CommonCode.SUCCESS,guliEvaluateService.findUserIdById(id));
+    }
+
 }
