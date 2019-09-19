@@ -36,11 +36,11 @@ public class orderTest {
         pageCourse.setPageSize(3);
         pageCourse.setUserId(1);
         pageCourse.setCourseName(null);
-        IPage<GuliCourse> guliCourseIPage = guliCourseService.findAllPageCourse(new Page<GuliCourse>(1, 3), pageCourse);
-        System.out.println(guliCourseIPage);
-        for (int i = 0; i < guliCourseIPage.getRecords().size(); i++) {
-            System.out.println(guliCourseIPage.getRecords().get(i));
-        }
+//        IPage<GuliCourse> guliCourseIPage = guliCourseService.findAllPageCourse(new Page<GuliCourse>(1, 3), pageCourse);
+//        System.out.println(guliCourseIPage);
+//        for (int i = 0; i < guliCourseIPage.getRecords().size(); i++) {
+//            System.out.println(guliCourseIPage.getRecords().get(i));
+//        }
     }
 
 }

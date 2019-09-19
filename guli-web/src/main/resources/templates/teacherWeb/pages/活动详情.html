@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <title>后台管理系统</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css"/>
+    <link rel="stylesheet" href="../../css/admin.css"/>
+	<link rel="stylesheet" href="../../layui_files_upload/css/layui.css"/>
+</head>
+<body>
+	    <table class="layui-table layui-table-add" lay-skin="nob">
+		  <tbody>
+		  	<tr>
+		      <th class="pad" width="100">活动id</th>
+		      <td id="id">空</td>
+		    </tr>
+			<tr>
+				<th class="pad">活动类型</th>
+				<td id="activitieType">空</td>
+			</tr>
+		    <tr>
+		      <th class="pad">活动发布人</th>
+		      <td id="userName">空</td>
+		    </tr>
+			<tr>
+				<th class="pad" width="100">折扣</th>
+				<td id="activitieNumber">空</td>
+			</tr>
+			<tr>
+				<th class="pad">活动结束时间</th>
+				<td id="activitieEndTimeStr">空</td>
+			</tr>
+			<tr>
+				<th class="pad">课程名称</th>
+				<td id="courseName">空</td>
+			</tr>
+			<tr>
+				<th class="pad">活动状态</th>
+				<td id="activitieStateStr">空</td>
+			</tr>
+		  </tbody>
+		</table>
+
+
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script type="text/javascript" src="../../layui_files_upload/layui.js"></script>
+	<script type="text/javascript" src="../../js/jquery-1.8.3.min.js"></script>
+	<script>
+		function child(activitieId,index) {
+			$(function(){
+				$.get("/guliActivitie/findActivitieIdActivitie?activitieId="+activitieId,function (json) {
+					console.log(json);
+					$("#id").text(json.object.activitieId);
+					$("#activitieType").text(json.object.activitieType);
+					$("#userName").text(json.object.userName);
+					$("#activitieNumber").text(json.object.activitieNumber);
+					$("#activitieEndTimeStr").text(json.object.activitieEndTimeStr);
+					$("#courseName").text(json.object.courseName);
+					$("#activitieStateStr").text(json.object.activitieStateStr);
+				});
+			});
+			layui.use(['jquery', 'form','layer'], function () {
+				var $ = layui.jquery,
+                    layer = layui.layer;
+				// console.log(index);
+				// parent.layer.close(index);
+				// window.parent.location.reload();
+			});
+		}
+	</script>
+
+</body>
+</html>

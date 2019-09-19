@@ -3,6 +3,7 @@ package com.guli.controller;
 import com.guli.message.response.CommonCode;
 import com.guli.pojo.GuliClassify;
 import com.guli.pojo.GuliCourse;
+import com.guli.pojo.classifyvo.classifyNode;
 import com.guli.response.ObjectResult;
 import com.guli.service.GuliClassifyService;
 import com.guli.service.GuliCourseService;
@@ -44,22 +45,62 @@ public class GuliClassifyController {
         return  new ObjectResult(CommonCode.SUCCESS,list);
     }
 
+//    /**
+//     * 根据课程id查询课程分类
+//     * @return
+//     */
+//    @GetMapping("/findCourseTowClassify")
+//    public ObjectResult findCourseTowClassify(@RequestParam("id") int id) {
+//        GuliClassify b = guliClassifyService.findCourseTowClassify((long) id);
+//        GuliClassify a = guliClassifyService.findOneClassify(b.getParentId());
+//        ClassifyVO courseVO = new ClassifyVO();
+//        courseVO.setClassifyId(a.getClassifyId());
+//        courseVO.setClassifyTowId(id);
+//        courseVO.setClassifyName(a.getClassifyName());
+//        courseVO.setClassifyTowName(b.getClassifyName());
+//        String courseName = guliCourseService.findByIdCourseName(id);
+//        courseVO.setCourseName(courseName);
+//        return new ObjectResult(CommonCode.SUCCESS,courseVO);
+//    }
+
     /**
-     * 根据课程id查询课程分类
+     * 查询所有分类
+     * 1.查询出所有一级分类
+     * 2.根据一级分类查询所有二级分类并储存于children中
      * @return
      */
-    @GetMapping("/findCourseTowClassify")
-    public ObjectResult findCourseTowClassify(@RequestParam("id") int id) {
-        GuliClassify b = guliClassifyService.findCourseTowClassify((long) id);
-        GuliClassify a = guliClassifyService.findOneClassify(b.getParentId());
-        ClassifyVO courseVO = new ClassifyVO();
-        courseVO.setClassifyId(a.getClassifyId());
-        courseVO.setClassifyTowId(id);
-        courseVO.setClassifyName(a.getClassifyName());
-        courseVO.setClassifyTowName(b.getClassifyName());
-        String courseName = guliCourseService.findByIdCourseName(id);
-        courseVO.setCourseName(courseName);
-        return new ObjectResult(CommonCode.SUCCESS,courseVO);
+    @GetMapping("/findAllClassifyNode")
+    public ObjectResult findAllClassifyNode(){
+        return new ObjectResult(CommonCode.SUCCESS,guliClassifyService.findAllClassifyNode());
+    }
+
+
+    /**
+     * 添加分类
+     * @param guliClassify
+     * @return
+     */
+    @PostMapping("/addClassify")
+    public ObjectResult addClassify(@RequestBody GuliClassify guliClassify){
+        int i = guliClassifyService.addClassify(guliClassify);
+        if(i < 1){
+            return new ObjectResult(CommonCode.FAIL,"添加失败");
+        }
+        return new ObjectResult(CommonCode.SUCCESS,"添加成功");
+    }
+
+    /**
+     * 分类查询名称是否存在
+     * @param classifyName
+     * @return
+     */
+    @GetMapping("/findIsClassifyName")
+    public ObjectResult findIsClassifyName(@RequestParam("classifyName") String classifyName){
+        int isClassifyName = guliClassifyService.findIsClassifyName(classifyName);
+        if(isClassifyName > 0){
+            return new ObjectResult(CommonCode.FAIL,"此分类存在");
+        }
+        return new ObjectResult(CommonCode.SUCCESS,"分类不存在");
     }
 
 }

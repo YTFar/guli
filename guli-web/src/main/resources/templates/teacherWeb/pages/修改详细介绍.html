@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <title>众创数字资产综合运营管理平台</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css"/>
+    <link rel="stylesheet" href="../../css/admin.css"/>
+    <link rel="stylesheet" href="../../layui_files_upload/css/layui.css"/>
+    <style>
+        .layui-upload-img {
+            width: 100px;
+            height: 100px;
+            margin: 0 10px 10px 0;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form" action="">
+    <table class="layui-table layui-table-add" lay-skin="nob">
+        <tbody>
+            <tr>
+                <th>课程介绍</th>
+                <td>
+                    <textarea name="introduceName" id="introduceName" lay-verify="required" lay-reqtext="课程介绍不能为空？" placeholder="请输入课程介绍" style="width:400px;" class="layui-textarea"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>课程目标</th>
+                <td>
+                    <input name="introduceId" id="introduceId" type="hidden">
+                    <textarea name="introduceProgram" id="introduceProgram" placeholder="请输入课程目标(可为空)" style="width:400px;" class="layui-textarea"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>课程简介</th>
+                <td>
+                    <textarea name="introduceTarget" id="introduceTarget" placeholder="请输入目标人群(可为空)" style="width:400px;" class="layui-textarea"></textarea>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" id="dminprogram-btn" lay-filter="demo1">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<script type="text/javascript" src="../../layui_files_upload/layui.js"></script>
+<script type="text/javascript" src="../../js/jquery-1.8.3.min.js"></script>
+<script>
+    function child(introduceId,index,pageNo,pageSize,courseName) {
+        $(function () {
+            $("#introduceId").val(introduceId);
+            $.getJSON("/guliIntroduce/findOneIntroduce","introduceId="+introduceId,function (json) {
+                $("#introduceTarget").val(json.object.introduceTarget);
+                $("#introduceName").val(json.object.introduceName);
+                $("#introduceProgram").val(json.object.introduceProgram);
+            });
+        });
+    layui.use(['jquery', 'form', 'upload', 'layer', 'layedit', 'laydate'], function () {
+
+        var $ = layui.jquery
+            , upload = layui.upload;
+
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+        //监听提交
+        form.on('submit(demo1)', function (data) {
+            $.ajax({
+                //请求方式
+                type:'PUT',
+                //发送请求的地址
+                url:'/guliIntroduce/updateIntroduce',
+                //服务器返回的数据类型
+                dataType:'json',
+                //发送到服务器的数据，对象必须为key/value的格式，jquery会自动转换为字符串格式
+                data:JSON.stringify(data.field),
+                contentType: "application/json",
+                success:function(json){
+                    console.log(json);
+                    if(json.success==false){
+                        layer.open({
+                            type:0
+                            ,area:['60%', '60%']
+                            ,title:"修改详细介绍信息"
+                            ,content: json.object
+                        });
+                    }else{
+                        parent.pageShow(pageNo,pageSize,courseName);
+                        parent.layer.close(index);
+                    }
+                },
+                error:function(jqXHR){
+                    //请求失败函数内容
+                    console.log(jqXHR);
+                }
+            });
+            return false;
+        });
+    });
+    }
+</script>
+</body>
+</html>

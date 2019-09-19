@@ -19,26 +19,6 @@
 						<input id="courseName" name="courseName" placeholder="请输入课程名称" autocomplete="off" class="layui-input" type="text"/>
 					</div>
 				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">活动状态</label>
-					<div class="layui-input-inline">
-						<select id="activitieState" lay-filter="activitieState" name="activitieState" lay-verify="">
-						  <option value="-1">活动状态(全部)</option>
-						  <option value="0">已结束</option>
-						  <option value="1">进行中</option>
-						</select>
-					</div>
-				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">活动类型</label>
-					<div class="layui-input-inline">
-						<select id="activitieType" lay-filter="activitieType" name="activitieType" lay-verify="">
-							<option value="">活动类型(全部)</option>
-							<option value="限时打折">限时打折</option>
-							<option value="永久打折">永久打折</option>
-						</select>
-					</div>
-				</div>
 			</form>
 		</div>
 
@@ -67,42 +47,22 @@
 		// PageNo = 1;
 		// PageSize = 10;
 	$(function () {
-		pageShow(1,10,null,null,null);
-		// $("#layui-btn").click(function () {
-        //     pageShow(1,10,null,null,null);
-        // });
+		pageShow(1,10,null);
 		$("#courseName").change(function () {
 			// alert(1);
-			pageShow(1,10,null,null,null);
+			pageShow(1,10,null);
 		});
-		//
-		// $("#activitieState").change(function () {
-		// 	alert(2);
-		// 	// pageShow(1,10,null,null,null);
-		// });
-
-		// $("#activitieType").change(function () {
-		// 	alert(3);
-		// 	// pageShow(1,10,null,null,null);
-		// });
 
 	});
 
-	function pageShow(pageNo,pageSize,courseName,activitieState,activitieType) {
+	function pageShow(pageNo,pageSize,courseName) {
 		if (courseName == null)
 			courseName = $("#courseName").val();
 
-		if(activitieState == null)
-		activitieState = $("#activitieState").val();
-
-		if (activitieType == null)
-		activitieType = $("#activitieType").val();
-		var param = "pageNo="+pageNo+"&pageSize="+pageSize+"&userId="+1+"&activitieType="+activitieType+"&courseName="+courseName+"&activitieState="+activitieState;
+		// alert(courseName)
+		var param = "pageNo="+pageNo+"&pageSize="+pageSize+"&userId="+1+"&courseName="+courseName;
 		// alert(param)
-		$.getJSON("/guliActivitie/findPageActivitie",param,function (json) {
-			// console.log(json);
-			// PageNo = json.object.pageNo;
-			// PageSize = json.object.pageSize;
+		$.getJSON("/guliIntroduce/findAllPageIntroduce",param,function (json) {
             layui.use(['table','laypage','layer', 'form'], function(){
                 var table = layui.table,
                         layer = layui.layer,
@@ -122,35 +82,12 @@
                     ,title: '活动数据表'
                     ,cols: [[
                         {type: 'checkbox'}
-                        ,{field:'activitieId', title:'ID', minWidth:80}
+                        ,{field:'introduceId', title:'ID', minWidth:80}
                         ,{field:'courseName', title:'课程名称', minWidth:130}
-                        ,{field:'activitieType', title:'课程类型', minWidth:100}
-                        ,{field:'activitieNumber', title:'折率',minWidth:60}
-                        ,{field:'activitieStateStr', title:'活动状态', minWidth:90}
+                        ,{field:'userName', title:'发布人', minWidth:90}
                         ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
                     ]]
-					// ,page: true
-					// ,done: function(res) { //将原始数据解析成 table 组件所规定的数据
-                    // 	console.log(res);
-					// 	// console.log(res.object.pageList);
-					// 	return {
-					// 		"code": res.status, //解析接口状态
-					// 		"msg": res.message, //解析提示文本
-					// 		"count": res.object.pageTotal, //解析数据长度
-					// 		"data": res.object.pageList, //解析数据列表
-					// 		// "curr":res.object.pageNo,
-					// 		// "limit": res.object.pageSize
-					// 	};
-					// }
                     ,data: json.object.pageList
-                    // ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
-					// 	layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
-					// 	//,curr: 5 //设定初始在第 5 页
-					// 	,groups: 5 //只显示 1 个连续页码
-					// 	,limits: [5, 10, 15, 20, 25]
-					// 	,first: false //不显示首页
-					// 	,last: false //不显示尾页
-					// }
                 });
 
                 //头工具栏事件
@@ -167,7 +104,7 @@
 									console.log(data);
 									var id_str = "";
 									for (var i = 0; i < data.length; i++) {
-										id_str += data[i].activitieId + ',';
+										id_str += data[i].introduceId + ',';
 									}
 									id_str = id_str.substr(0, id_str.length - 1);
 									layer.alert(id_str);
@@ -191,48 +128,30 @@
                     var data = obj.data;
                     // console.log(data);
                     if(obj.event === 'detail'){
-                    	var activitieId = data.activitieId;
-						courseName = $("#courseName").val();
-						activitieState = $("#activitieState").val();
-						activitieType = $("#activitieType").val();
+                    	var introduceId = data.introduceId;
 						var index = layer.open({
 							type: 2
 							,title:"查看提示"
                             ,area:['80%', '80%']
-							,content:"活动详情.html"
+							,content:"详细介绍详情.html"
 							,success:function (layero, index){
 								var iframe = window['layui-layer-iframe'+index];
 								//调用子页面的全局函数
-								iframe.child(activitieId,index);
+								iframe.child(introduceId,index,json.object.pageNo,json.object.pageSize,courseName);
 							}
 						});
                     } else if(obj.event === 'edit'){
-						var activitieId = data.activitieId;
-						var courseId = data.courseId;
+						var introduceId = data.introduceId;
 						courseName = $("#courseName").val();
-						activitieState = $("#activitieState").val();
-						activitieType = $("#activitieType").val();
-						$.getJSON("/guliActivitie/findIsActivitieExcludeOneself","activitieId="+activitieId+"&courseId="+courseId,function (isActivitie) {
-							console.log(json);
-							if (isActivitie.success){
-								var index = layer.open({
-									type: 2
-									,title:"编辑提示"
-									,area:['75%', '75%']
-									,content:"修改活动.html"
-									,success:function (layero, index){
-										var iframe = window['layui-layer-iframe'+index];
-										//调用子页面的全局函数
-										iframe.child(activitieId,index,json.object.pageNo,json.object.pageSize,courseName,activitieState,activitieType);
-									}
-								});
-							} else{
-								layer.open({
-									type:0
-									,area:['60%', '60%']
-									,title: "编辑提示"
-									,content: json.object
-								});
+						var index = layer.open({
+							type: 2
+							,title:"编辑提示"
+							,area:['80%', '80%']
+							,content:"修改详细介绍.html"
+							,success:function (layero, index){
+								var iframe = window['layui-layer-iframe'+index];
+								//调用子页面的全局函数
+								iframe.child(introduceId,index,json.object.pageNo,json.object.pageSize,courseName);
 							}
 						});
                     }
@@ -243,7 +162,7 @@
 					count: json.object.pageTotal,//总条数
 					curr: json.object.pageNo,//当前页
 					limit: json.object.pageSize,//每页的条数
-					limits:[2,15,20,25,30,50]//可选择每页数目
+					limits:[10,15,20,25,30,50]//可选择每页数目
 					,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
 					,jump: function (obj, first) { //obj为当前页的属性和方法，第一次加载first为true
 						//非首次加载 do something
@@ -251,17 +170,9 @@
 							//清空以前加载的数据
 							$('tbody').empty();
 							//调用加载函数加载数据
-							pageShow(obj.curr, obj.limit,null,null,null);
+							pageShow(obj.curr, obj.limit,null);
 						}
 					}
-				});
-				form.on('select(activitieState)', function (data) {
-					// alert(123);
-					pageShow(1, 10,null,null,null);
-				});
-				form.on('select(activitieType)', function (data) {
-					// alert(456);
-					pageShow(1, 10,null,null,null);
 				});
             });
 		});

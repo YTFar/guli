@@ -2,6 +2,9 @@ package com.guli.service;
 
 import com.guli.pojo.GuliClassify;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.guli.pojo.classifyvo.classifyNode;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface GuliClassifyService extends IService<GuliClassify> {
 
+    List<classifyNode> findAllClassifyNode();
+
+    int addClassify(GuliClassify guliClassify);
 }

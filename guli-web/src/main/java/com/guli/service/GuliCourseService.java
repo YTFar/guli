@@ -58,13 +58,6 @@ public interface GuliCourseService {
     public List<GuliCourse> findCourse(@RequestParam("id") int id);
 
     /**
-     * 根据二级分类id查询下面的当个课程
-     * @param id
-     * @return
-     */
-    @GetMapping("/guliCourse/findCourseById")
-    public List<GuliCourse> findCourseById(@RequestParam("id") int id);
-    /**
      * 判断课程名称是否存在
      * @param courseName
      * @return
@@ -117,39 +110,4 @@ public interface GuliCourseService {
      */
     @GetMapping("/guliCourse/findByCourseId")
     public CourseAndClassifyAndUser findByCourseId(@RequestParam("courseId") int courseId);
-
-    /**
-     * 根据课程id查询课程名称
-     * @param id
-     * @return
-     */
-    @GetMapping("/guliCourse/findByIdCourseName")
-    String findByIdCourseName(@RequestParam("id")int id);
-
-    /**
-     * 课程信息 + 打折
-     * 根据课程id查询课程
-     * @return
-     */
-    @GetMapping("/guliCourse/findByIdCourse")
-    public CourseVO findByIdCourse(@RequestParam("id") int id);
-
-    /**
-     * 查询所有课程分页
-     * @param pageNo
-     * @param pageSize
-     * @return
-     */
-    @GetMapping("/guliCourse/findPageAllCourse")
-    public AllTypePage<GuliCourse> findPageAllCourse(@RequestParam("pageNo")int pageNo,@RequestParam("pageSize")int pageSize);
-
-    /**
-     * 根据二级分类id查询课程分页
-     * @param id
-     * @param pageNo
-     * @param pageSize
-     * @return
-     */
-    @GetMapping("/guliCourse/findPageAllCourseById")
-    public AllTypePage<GuliCourse> findPageAllCourseById(@RequestParam("id") int id,@RequestParam("pageNo") int pageNo, @RequestParam("pageSize") int pageSize);
 }

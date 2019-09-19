@@ -6,6 +6,7 @@ import com.guli.api.GuliClassifyControllerApi;
 import com.guli.mapper.GuliClassifyMapper;
 import com.guli.message.response.CommonCode;
 import com.guli.pojo.GuliClassify;
+import com.guli.pojo.classifyvo.classifyNode;
 import com.guli.response.ObjectResult;
 import com.guli.service.GuliClassifyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class GuliClassifyController implements GuliClassifyControllerApi {
 
     @Resource
     private GuliClassifyMapper guliClassifyMapper;
+
+    @Autowired
+    private GuliClassifyService guliClassifyService;
 
     /**
      * 显示课程分类
@@ -86,5 +90,39 @@ public class GuliClassifyController implements GuliClassifyControllerApi {
                 new QueryWrapper<GuliClassify>().eq("classify_id",id)
         );
         return guliClassify;
+    }
+
+    /**
+     * 查询所有分类
+     * 1.查询出所有一级分类
+     * 2.根据一级分类查询所有二级分类并储存于children中
+     * @return
+     */
+    @Override
+    @GetMapping("/findAllClassifyNode")
+    public List<classifyNode> findAllClassifyNode() {
+        return guliClassifyService.findAllClassifyNode();
+    }
+
+    /**
+     * 添加分类
+     * @param guliClassify
+     * @return
+     */
+    @Override
+    @PostMapping("/addClassify")
+    public int addClassify(@RequestBody GuliClassify guliClassify) {
+        return guliClassifyService.addClassify(guliClassify);
+    }
+
+    /**
+     * 分类查询名称是否存在
+     * @param classifyName
+     * @return
+     */
+    @Override
+    @GetMapping("/findIsClassifyName")
+    public int findIsClassifyName(@RequestParam("classifyName") String classifyName) {
+        return guliClassifyMapper.selectCount(new QueryWrapper<GuliClassify>().eq("classify_name",classifyName));
     }
 }

@@ -23,7 +23,6 @@
 								<input  autocomplete="off" id="layui-input-courseName" placeholder="请输入商品名称" class="layui-input" type="text"/>
 							</div>
 						</div>
-						<div class="layui-inline"><button class="layui-btn" id="layui-btn-courseName">查询</button></div>
 					</form>
 					<button class="layui-btn layui-btn-normal layui-btn-small add" style="float: right">+添加</button>
 				</div>
@@ -54,14 +53,16 @@
 	<script type="text/javascript" src="../../layui_files_upload/layui.js"></script>
 	<script type="text/javascript" src="../../js/jquery-1.8.3.min.js"></script>
     <script>
+		PageNo = 1;
+		PageSize = 3;
 		$(function(){
-			showReocrd(1,3);
+			showReocrd(1,3,null);
 			$("#layui-input-courseName").change(function(){
-					showReocrd(1,3);
+					showReocrd(1,3,null);
 			});
-			$("#layui-btn-courseName").click(function () {
-				showReocrd(1,3);
-			});
+			// $("#layui-btn-courseName").click(function () {
+			// 	showReocrd(1,3);
+			// });
 		});
 		layui.use(['jquery','form','layer','laypage','element'], function(){
 			var $ = layui.jquery,
@@ -92,6 +93,7 @@
             	// console.log($(this).);
             	// var courseId = $("button.update").siblings().find(".courseId").val();//find搜索所有段落中的后代括号总的元素
 				var courseId = $(this).siblings("input").val();
+				var courseName = $("#layui-input-courseName").val();
 				// alert(courseId);
                 var index = layer.open({
                     type:2
@@ -101,7 +103,7 @@
 					,success:function (layero, index){
 						var iframe = window['layui-layer-iframe'+index];
 						//调用子页面的全局函数
-						iframe.child(courseId);
+						iframe.child(courseId,index,PageNo,PageSize,courseName);
 					}
                 });
             });
@@ -130,19 +132,37 @@
 				// console.log($(this).);
 				// var courseId = $("button.update").siblings().find(".courseId").val();//find搜索所有段落中的后代括号总的元素
 				var courseId = $(this).siblings("input").val();
+				var courseName = $("#layui-input-courseName").val();
 				// alert(courseId);
 				var index = layer.open({
 					type:2
-					,area:['80%', '80%']
+					,area:['75%', '75%']
 					,title:"添加活动信息"
 					,content: '添加活动.html'
 					,success:function (layero, index){
 						var iframe = window['layui-layer-iframe'+index];
 						//调用子页面的全局函数
-						iframe.child(courseId);
+						iframe.child(courseId,index,PageNo,PageSize,courseName);
 					}
 				});
 			});
+
+            //添加详细介绍
+            $(document).on("click", ".introduce", function() {
+                var courseId = $(this).siblings("input").val();
+				var courseName = $("#layui-input-courseName").val();
+                var index = layer.open({
+                    type:2
+                    ,area:['80%', '80%']
+                    ,title:"添加详细介绍"
+                    ,content: '添加详细介绍.html'
+                    ,success:function (layero, index){
+                        var iframe = window['layui-layer-iframe'+index];
+                        //调用子页面的全局函数
+						iframe.child(courseId,index,PageNo,PageSize,courseName);
+                    }
+                });
+            });
 
 			// 删除操作
 		    $(document).on("click", ".a4", function() {
@@ -161,8 +181,9 @@
 		   
 			
 		});
-		function showReocrd(pageNo,pageSize){
-			var courseName = $("#layui-input-courseName").val();
+		function showReocrd(pageNo,pageSize,courseName){
+			if(courseName == null)
+			courseName = $("#layui-input-courseName").val();
 			var param = "pageNo="+pageNo+"&pageSize="+pageSize+"&userId="+1+"&courseName="+courseName;
 			$.ajax({
 				//请求方式
@@ -203,11 +224,14 @@
 								"<button class=\"layui-btn layui-btn-normal layui-btn-small details\">详情</button>\n" +
 								"<button class=\"layui-btn layui-btn-danger layui-btn-small a4\">删除</button>"+
 								"<button class=\"layui-btn layui-btn-normal layui-btn-small activity\" "+disabled+">添加活动</button>\n"+
+								"<button class=\"layui-btn layui-btn-normal layui-btn-small introduce\">添加详细介绍</button>\n"+
 								"<input class='courseId' value='"+course.courseId+"' type='hidden'>" +
 								"</td>\n" +
 								"</tr>";
 						$("#layui-id").append(tr);
 					}
+					PageNo = data.object.pageNo;
+					PageSize = data.object.pageSize;
 					layui.use(['jquery','form','layer','laypage','element'], function(){
 						var $ = layui.jquery,
 								laydate = layui.laydate,
@@ -227,7 +251,7 @@
 									//清空以前加载的数据
 									$('tbody').empty();
 									//调用加载函数加载数据
-									showReocrd(obj.curr, obj.limit);
+									showReocrd(obj.curr, obj.limit,null);
 								}
 							}
 						});

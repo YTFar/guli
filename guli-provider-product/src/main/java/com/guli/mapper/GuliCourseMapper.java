@@ -23,13 +23,14 @@ import java.util.List;
  */
 public interface GuliCourseMapper extends BaseMapper<GuliCourse> {
 
+
     /**
      * 查询课程信息分类
      * @param id
      * @return
      */
-    @Select("SELECT * FROM guli_course WHERE classify_id IN(SELECT classify_id FROM guli_classify WHERE parent_id = #{id}) LIMIT 8")
-    List<GuliCourse> findOneCourse(@Param("id") int id);
+    @Select("SELECT * FROM guli_course WHERE classify_id IN(SELECT classify_id FROM guli_classify WHERE classify_id = #{id}) LIMIT 8")
+    List<GuliCourse> findOneCourse(int id);
 
     /**
      * 根据星评查询推荐课程
@@ -44,17 +45,20 @@ public interface GuliCourseMapper extends BaseMapper<GuliCourse> {
 
     @Select({"<script>",
             "SELECT * FROM guli_course",
-            "WHERE course_id in (select course_id from guli_item where user_id = #{pageCourse.userId})",
-            "<when test='pageCourse.courseName!=null'>",
-            "AND and course_name like concat('%',#{pageCourse.courseName},'%')",
-            "</when>",
+            "<trim prefix=\"where\" prefixOverrides=\"and||or\">",
+            "<if test=\"userId != null and userId != -1\">",
+            "AND course_id in (select course_id from guli_item where user_id = #{userId})",
+            "</if>",
+            "<if test=\"courseName != null and courseName != ''\">",
+            "AND course_name like concat('%',#{courseName},'%')",
+            "</if>",
+            "</trim>",
+            "ORDER BY course_create_time DESC",
             "</script>"})
-    IPage<GuliCourse> findAllPageCourse(Page<GuliCourse> guliCoursePage, @Param("pageCourse") PageCourse pageCourse);
+    List<GuliCourse> findAllPageCourse(Page<GuliCourse> guliCoursePage, @Param("userId") int userId, @Param("courseName") String courseName);
 
     @Select("SELECT a.*,b.parent_id FROM guli_course a INNER JOIN guli_classify b ON a.classify_id = b.classify_id WHERE a.course_id = #{id}")
     CourseAndClassify findCourseIdOneCourse(int id);
-
-
 
     @Select({"<script>",
             "SELECT",
@@ -67,14 +71,4 @@ public interface GuliCourseMapper extends BaseMapper<GuliCourse> {
             "where a.course_id = #{courseId}",
             "</script>"})
     CourseAndClassifyAndUser findByCourseId(int courseId);
-
-    /**
-     * 根据id查询课程信息
-     * @param id
-     * @return
-     */
-    @Select("select * from guli_course a\n" +
-            "INNER JOIN guli_activitie b ON b.course_id = a.course_id\n" +
-            "WHERE a.course_id = #{id}")
-    CourseVO findByIdCourse(@Param("id") int id);
 }
