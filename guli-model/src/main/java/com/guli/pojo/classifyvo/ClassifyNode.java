@@ -13,7 +13,7 @@ import java.util.List;
  */
 @Data
 @ToString
-public class classifyNode extends GuliClassify {
+public class ClassifyNode extends GuliClassify {
     private String title;
-    List<GuliClassify> children;
+    List<ClassifyNode> children;
 }

@@ -4,15 +4,11 @@ package com.guli.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.guli.api.GuliClassifyControllerApi;
 import com.guli.mapper.GuliClassifyMapper;
-import com.guli.message.response.CommonCode;
 import com.guli.pojo.GuliClassify;
-import com.guli.pojo.classifyvo.classifyNode;
-import com.guli.response.ObjectResult;
+import com.guli.pojo.classifyvo.ClassifyNode;
 import com.guli.service.GuliClassifyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -100,7 +96,7 @@ public class GuliClassifyController implements GuliClassifyControllerApi {
      */
     @Override
     @GetMapping("/findAllClassifyNode")
-    public List<classifyNode> findAllClassifyNode() {
+    public List<ClassifyNode> findAllClassifyNode() {
         return guliClassifyService.findAllClassifyNode();
     }
 
@@ -124,5 +120,27 @@ public class GuliClassifyController implements GuliClassifyControllerApi {
     @GetMapping("/findIsClassifyName")
     public int findIsClassifyName(@RequestParam("classifyName") String classifyName) {
         return guliClassifyMapper.selectCount(new QueryWrapper<GuliClassify>().eq("classify_name",classifyName));
+    }
+
+    /**
+     * 按id修改分类信息
+     * @param guliClassify
+     * @return
+     */
+    @Override
+    @PutMapping("/updateClassify")
+    public int updateClassify(@RequestBody GuliClassify guliClassify) {
+        return guliClassifyService.updateClassify(guliClassify);
+    }
+
+    /**
+     * 按id查询指定分类信息
+     * @param classifyId
+     * @return
+     */
+    @Override
+    @GetMapping("/findClassifyId")
+    public GuliClassify findClassifyId(@RequestParam("classifyId")Long classifyId) {
+        return guliClassifyMapper.selectOne(new QueryWrapper<GuliClassify>().eq("classify_id",classifyId));
     }
 }

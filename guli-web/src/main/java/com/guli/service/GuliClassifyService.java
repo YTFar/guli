@@ -1,7 +1,7 @@
 package com.guli.service;
 
 import com.guli.pojo.GuliClassify;
-import com.guli.pojo.classifyvo.classifyNode;
+import com.guli.pojo.classifyvo.ClassifyNode;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,7 +55,7 @@ public interface GuliClassifyService {
      * @return
      */
     @GetMapping("/guliClassify/findAllClassifyNode")
-    public List<classifyNode> findAllClassifyNode();
+    public List<ClassifyNode> findAllClassifyNode();
 
     /**
      * 添加分类
@@ -72,4 +72,20 @@ public interface GuliClassifyService {
      */
     @GetMapping("/guliClassify/findIsClassifyName")
     public int findIsClassifyName(@RequestParam("classifyName") String classifyName);
+
+    /**
+     * 按id修改分类信息
+     * @param guliClassify
+     * @return
+     */
+    @PutMapping("/guliClassify/updateClassify")
+    public int updateClassify(@RequestBody GuliClassify guliClassify);
+
+    /**
+     * 按id查询指定分类信息
+     * @param classifyId
+     * @return
+     */
+    @GetMapping("/guliClassify/findClassifyId")
+    public GuliClassify findClassifyId(@RequestParam("classifyId")Long classifyId);
 }

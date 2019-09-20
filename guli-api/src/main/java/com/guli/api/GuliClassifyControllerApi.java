@@ -1,10 +1,9 @@
 package com.guli.api;
 
 import com.guli.pojo.GuliClassify;
-import com.guli.pojo.classifyvo.classifyNode;
+import com.guli.pojo.classifyvo.ClassifyNode;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.RequestParam;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
@@ -27,11 +26,17 @@ public interface GuliClassifyControllerApi {
     public GuliClassify findOneClassify(Long id);
 
     @ApiOperation("查询所有分类")
-    public List<classifyNode> findAllClassifyNode();
+    public List<ClassifyNode> findAllClassifyNode();
 
     @ApiOperation("添加分类")
     public int addClassify(GuliClassify guliClassify);
 
     @ApiOperation("分类查询名称是否存在")
     public int findIsClassifyName(String classifyName);
+
+    @ApiOperation("按id修改分类信息")
+    public int updateClassify(GuliClassify guliClassify);
+
+    @ApiOperation("按id查询指定分类信息")
+    public GuliClassify findClassifyId(Long classifyId);
 }

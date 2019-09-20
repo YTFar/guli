@@ -2,12 +2,9 @@ package com.guli.controller;
 
 import com.guli.message.response.CommonCode;
 import com.guli.pojo.GuliClassify;
-import com.guli.pojo.GuliCourse;
-import com.guli.pojo.classifyvo.classifyNode;
 import com.guli.response.ObjectResult;
 import com.guli.service.GuliClassifyService;
 import com.guli.service.GuliCourseService;
-import com.guli.vo.ClassifyVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -82,6 +79,10 @@ public class GuliClassifyController {
      */
     @PostMapping("/addClassify")
     public ObjectResult addClassify(@RequestBody GuliClassify guliClassify){
+        int isClassifyName = guliClassifyService.findIsClassifyName(guliClassify.getClassifyName());
+        if(isClassifyName > 0){
+            return new ObjectResult(CommonCode.FAIL,"此分类名称存在");
+        }
         int i = guliClassifyService.addClassify(guliClassify);
         if(i < 1){
             return new ObjectResult(CommonCode.FAIL,"添加失败");
@@ -101,6 +102,34 @@ public class GuliClassifyController {
             return new ObjectResult(CommonCode.FAIL,"此分类存在");
         }
         return new ObjectResult(CommonCode.SUCCESS,"分类不存在");
+    }
+
+    /**
+     * 按id修改分类信息
+     * @param guliClassify
+     * @return
+     */
+    @PutMapping("/updateClassify")
+    public ObjectResult updateClassify(@RequestBody GuliClassify guliClassify){
+        int isClassifyName = guliClassifyService.findIsClassifyName(guliClassify.getClassifyName());
+        if(isClassifyName > 0){
+            return new ObjectResult(CommonCode.FAIL,"此分类名称存在");
+        }
+        int i = guliClassifyService.updateClassify(guliClassify);
+        if(i < 1){
+            return new ObjectResult(CommonCode.FAIL,"修改失败");
+        }
+        return new ObjectResult(CommonCode.SUCCESS,"修改成功");
+    }
+
+    /**
+     * 按id查询指定分类信息
+     * @param classifyId
+     * @return
+     */
+    @GetMapping("/findClassifyId")
+    public ObjectResult findClassifyId(@RequestParam("classifyId") Long classifyId){
+        return new ObjectResult(CommonCode.SUCCESS,guliClassifyService.findClassifyId(classifyId));
     }
 
 }
