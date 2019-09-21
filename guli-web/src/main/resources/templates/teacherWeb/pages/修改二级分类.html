@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <title>众创数字资产综合运营管理平台</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css"/>
+    <link rel="stylesheet" href="../../css/admin.css"/>
+    <link rel="stylesheet" href="../../layui_files_upload/css/layui.css"/>
+    <style>
+        .layui-upload-img {
+            width: 100px;
+            height: 100px;
+            margin: 0 10px 10px 0;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form" action="">
+    <table class="layui-table layui-table-add" lay-skin="nob">
+        <tbody>
+        <tr>
+            <th style="width: 125px">一级分类名称</th>
+            <td>
+                <div class="layui-inline" id="layui-inline-stair">
+                    <div class="layui-input-inline">
+                        <select name="parentId" id="stair" lay-filter="stair" lay-verify="required"
+                                lay-reqtext="请选择一级分类!" lay-search="">
+                            <option value="">请选择一级分类</option>
+                        </select>
+                    </div>
+                </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th style="width: 125px">二级分类名称</th>
+            <td>
+                <input type="hidden" name="classifyId" id="classifyId">
+                <!--表单元素必须包含此div,才可实现表单验证-->
+                <div class="layui-form-item">
+                    <div style="width: 310px;">
+                        <input type="text" id="classifyName" name="classifyName" lay-verify="required"
+                               lay-reqtext="二级分类名称不能为空？"
+                               placeholder="请输入二级分类名称" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" id="dminprogram-btn" lay-filter="demo1">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<script type="text/javascript" src="../../layui_files_upload/layui.js"></script>
+<script type="text/javascript" src="../../js/jquery-1.8.3.min.js"></script>
+<script>
+    function child(classifyId) {
+        $(function () {
+            $("#classifyId").val(classifyId);
+            layui.use(['jquery', 'form', 'upload', 'layer', 'layedit', 'laydate'], function () {
+                var $ = layui.jquery
+                    , upload = layui.upload;
+
+                var form = layui.form
+                    , layer = layui.layer
+                    , layedit = layui.layedit
+                    , laydate = layui.laydate;
+
+                $.ajax({
+                    //请求方式
+                    type: 'GET',
+                    //发送请求的地址
+                    url: '/guliClassify/findAllClassify?id=' + 0,
+                    //服务器返回的数据类型
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data);
+                        for (var i = 0; i < data.object.length; i++) {
+                            var course = data.object[i];
+                            var option = " <option value=\"" + course.classifyId + "\">" + course.classifyName + "</option>";
+                            var dd = "<dd lay-value='" + course.classifyId + "' class=''>" + course.classifyName + "</dd>";
+                            $("#layui-inline-stair .layui-anim-upbit").append(dd);
+                            $("#stair").append(option);
+                        }
+                        layui.form.render("select");//重新渲染 固定写法
+                    },
+                    error: function (jqXHR) {
+                        //请求失败函数内容
+                        console.log(jqXHR);
+                    }
+                });
+
+                $.getJSON("/guliClassify/findClassifyId","classifyId="+classifyId,function (json) {
+                    var select = 'dd[lay-value=' + json.object.parentId + ']';
+                    $('#stair').siblings("div.layui-form-select").find('dl').find(select).click();
+                    $("#classifyName").val(json.object.classifyName);
+                });
+
+
+                //监听提交
+                form.on('submit(demo1)', function (data) {
+                    $.ajax({
+                        //请求方式
+                        type: 'PUT',
+                        //发送请求的地址
+                        url: '/guliClassify/updateClassify',
+                        //服务器返回的数据类型
+                        dataType: 'json',
+                        //发送到服务器的数据，对象必须为key/value的格式，jquery会自动转换为字符串格式
+                        data: JSON.stringify(data.field),
+                        contentType: "application/json",
+                        success: function (json) {
+                            console.log(json);
+                            if (json.success == false) {
+                                layer.open({
+                                    type: 0
+                                    , area: ['60%', '60%']
+                                    , title: "添加分类信息"
+                                    , content: json.object
+                                });
+                            } else {
+                                layer.close(layer.index);
+                                window.parent.location.reload();
+                            }
+                        },
+                        error: function (jqXHR) {
+                            //请求失败函数内容
+                            console.log(jqXHR);
+                        }
+                    });
+                    return false;
+                });
+            });
+        });
+
+    }
+</script>
+</body>
+</html>

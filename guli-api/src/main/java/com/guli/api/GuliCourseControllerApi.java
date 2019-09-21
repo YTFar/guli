@@ -21,6 +21,7 @@ import java.util.List;
 @Api(value="课程管理接口",description = "课程管理接口，提供课程的增、删、改、查")
 public interface GuliCourseControllerApi {
 
+
     @ApiOperation("查询全部课程")
     @ApiIgnore
     public List<GuliCourse> findAllCourse();
@@ -51,15 +52,7 @@ public interface GuliCourseControllerApi {
 
     @ApiOperation("查询所有课程分页，课程页显示")
     @ApiIgnore
-    public AllTypePage<GuliCourse> findPageAllCourse(int pageNo,int pageSize);
-
-    @ApiOperation("根据id查询二级分类下面的课程分页显示，课程页显示")
-    @ApiIgnore
-    public AllTypePage<GuliCourse> findPageAllCourseById(int id,int pageNo,int pageSize);
-
-    @ApiOperation("根据id查询二级分类下面的单个课程")
-    @ApiIgnore
-    public List<GuliCourse> findCourseById(int id);
+    public IPage<GuliCourse> findPageAllCourse();
 
     @ApiOperation("查询课程名称是否存在")
     public boolean isCourseName(String courseName);

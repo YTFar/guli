@@ -176,7 +176,7 @@
 <script type="text/javascript" src="../../layui_files_upload/layui.js"></script>
 <script type="text/javascript" src="../../js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
-    function child(courseId) {
+    function child(courseId,index,pageNo,pageSize,courseName) {
         // console.log(courseId);
         $(function () {
             // alert(1);
@@ -227,7 +227,7 @@
                 $("#demo1").attr("src","http://39.106.18.84/"+course.courseImage);
             });
         });
-    }
+
     layui.use(['jquery', 'form', 'upload', 'layer', 'layedit', 'laydate'], function () {
 
         var $ = layui.jquery
@@ -283,7 +283,7 @@
                 if (res.code > 0) {
                     layer.open({
                         type:0
-                        ,area:['30%', '30%']
+                        ,area:['60%', '60%']
                         ,title:"上传信息"
                         ,content: hint
                     });
@@ -293,7 +293,7 @@
                 //上传成功
                 layer.open({
                     type:0
-                    ,area:['30%', '30%']
+                    ,area:['60%', '60%']
                     ,title:"上传信息"
                     ,content: hint
                 });
@@ -340,17 +340,19 @@
                 data:JSON.stringify(data.field),
                 contentType: "application/json",
                 success:function(data){
-                    console.log(data);
-                    if(data.success==false){
+                    // console.log(data);
+                    if(data.success==false) {
                         layer.open({
-                            type:0
-                            ,area:['30%', '30%']
-                            ,title:"上传信息"
-                            ,content: data.message
+                            type: 0
+                            , area: ['60%', '60%']
+                            , title: "修改信息"
+                            , content: data.message
                         });
-                    }else{
-                        layer.close(layer.index);
-                        window.parent.location.reload();
+                     }else{
+                        parent.showReocrd(pageNo,pageSize,courseName);
+                        parent.layer.close(index);
+                        // layer.close(layer.index);
+                        // window.parent.location.reload();
                     }
                 },
                 error:function(jqXHR){
@@ -429,6 +431,7 @@
             });
         }
     }
+ }
 
     // function isCourseName(name) {
     //    if(name != ""){

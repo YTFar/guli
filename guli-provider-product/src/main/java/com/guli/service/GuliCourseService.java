@@ -8,6 +8,8 @@ import com.guli.pojo.coursevo.CourseAndClassifyAndUser;
 import com.guli.pojo.request.PageCourse;
 import com.guli.response.ObjectResult;
 
+import java.util.List;
+
 /**
  * <p>
  * ?γ̱ 服务类
@@ -18,13 +20,16 @@ import com.guli.response.ObjectResult;
  */
 public interface GuliCourseService extends IService<GuliCourse> {
 
+
     GuliCourse addCourse(GuliCourse guliCourse);
 
-    IPage<GuliCourse> findAllPageCourse(Page<GuliCourse> guliCoursePage, PageCourse pageCourse);
+//    IPage<GuliCourse> findAllPageCourse(Page<GuliCourse> guliCoursePage, PageCourse pageCourse);
 
     int pudeteCourseIdOneCourse(GuliCourse guliCourse);
 
     int updateCourseIdCourse(GuliCourse guliCourse);
 
     CourseAndClassifyAndUser findByCourseId(int courseId);
+
+    List<GuliCourse> findAllPageCourse(Page<GuliCourse> page, int userId, String courseName);
 }
