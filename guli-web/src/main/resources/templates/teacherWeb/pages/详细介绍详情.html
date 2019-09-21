@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <title>后台管理系统</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css"/>
+    <link rel="stylesheet" href="../../css/admin.css"/>
+	<link rel="stylesheet" href="../../layui_files_upload/css/layui.css"/>
+</head>
+<body>
+	    <table class="layui-table layui-table-add" lay-skin="nob">
+		  <tbody>
+		  	<tr>
+		      <th class="pad" width="100">详细介绍id</th>
+		      <td id="id">空</td>
+		    </tr>
+			<tr>
+				<th class="pad">课程名称</th>
+				<td id="courseName">空</td>
+			</tr>
+		    <tr>
+		      <th class="pad">详细介绍发布人</th>
+		      <td id="userName">空</td>
+		    </tr>
+			<tr>
+				<th class="pad" width="100">课程介绍</th>
+				<td id="introduceName">空</td>
+			</tr>
+			<tr>
+				<th class="pad">课程目标</th>
+				<td id="introduceProgramStr">空</td>
+			</tr>
+			<tr>
+				<th class="pad">目标人群</th>
+				<td id="introduceTargetStr">空</td>
+			</tr>
+		  </tbody>
+		</table>
+
+
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script type="text/javascript" src="../../layui_files_upload/layui.js"></script>
+	<script type="text/javascript" src="../../js/jquery-1.8.3.min.js"></script>
+	<script>
+		function child(introduceId,index) {
+			$(function(){
+				$.get("/guliIntroduce/findOneIntroduce?introduceId="+introduceId,function (json) {
+					console.log(json);
+					$("#id").text(json.object.introduceId);
+					$("#courseName").text(json.object.courseName);
+					$("#userName").text(json.object.userName);
+					$("#introduceName").text(json.object.introduceName);
+					$("#introduceProgramStr").text(json.object.introduceProgramStr);
+					$("#introduceTargetStr").text(json.object.introduceTargetStr);
+				});
+			});
+			layui.use(['jquery', 'form','layer'], function () {
+				var $ = layui.jquery,
+                    layer = layui.layer;
+				// console.log(index);
+				// parent.layer.close(index);
+				// window.parent.location.reload();
+			});
+		}
+	</script>
+
+</body>
+</html>

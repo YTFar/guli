@@ -5,12 +5,14 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.guli.message.response.CommonCode;
 import com.guli.pojo.GuliCourse;
+import com.guli.pojo.GuliPower;
 import com.guli.pojo.coursevo.CourseAndClassify;
 import com.guli.pojo.coursevo.CourseAndClassifyAndUser;
 import com.guli.pojo.request.PageCourse;
 import com.guli.pojo.response.AllTypePage;
 import com.guli.response.ObjectResult;
 import com.guli.service.GuliCourseService;
+import com.guli.service.GuliPowerService;
 import com.guli.service.fastdfs.FastDFSService;
 import com.guli.vo.CourseVO;
 import io.swagger.models.auth.In;
@@ -34,6 +36,9 @@ public class GuliCourseController {
 
     @Autowired
     GuliCourseService guliCourseService;
+
+    @Autowired
+    GuliPowerService guliPowerService;
 
     @Autowired
     FastDFSService fastDFSService;
@@ -100,33 +105,9 @@ public class GuliCourseController {
      * @return
      */
     @GetMapping("/findPageAllCourse")
-    public ObjectResult findPageAllCourse(@RequestParam("pageNo")int pageNo,@RequestParam("pageSize")int pageSize){
-        AllTypePage<GuliCourse> page = guliCourseService.findPageAllCourse(pageNo,pageSize);
-        return new ObjectResult(CommonCode.SUCCESS,page);
-    }
-
-    /**
-     * 根据二级分类id查询课程分页
-     * @param id
-     * @param pageNo
-     * @param pageSize
-     * @return
-     */
-    @GetMapping("/findPageAllCourseById")
-    public ObjectResult findPageAllCourseById(@RequestParam("id")int id,@RequestParam("pageNo")int pageNo,@RequestParam("pageSize")int pageSize){
-        AllTypePage<GuliCourse> page = guliCourseService.findPageAllCourseById(id, pageNo, pageSize);
-        return  new ObjectResult(CommonCode.SUCCESS,page);
-    }
-
-    /**
-     * 根据 二级分类id查询下面单个课程
-     * @param id
-     * @return
-     */
-    @GetMapping("/findCourseById")
-    public ObjectResult findCourseById(@RequestParam("id") int id){
-        List<GuliCourse> list = guliCourseService.findCourseById(id);
-        return new ObjectResult(CommonCode.SUCCESS,list);
+    public IPage<GuliCourse> findPageAllCourse(){
+        IPage<GuliCourse> page = guliCourseService.findPageAllCourse();
+        return page;
     }
 
     /**
@@ -166,6 +147,10 @@ public class GuliCourseController {
      */
     @GetMapping("/findAllPageCourse")
     public ObjectResult findAllPageCourse(@RequestParam("pageNo") int pageNo,@RequestParam("pageSize")  int pageSize,@RequestParam("userId")  int userId,@RequestParam("courseName")  String courseName){
+        GuliPower userIdPower = guliPowerService.findUserIdPower((long) userId);
+        if(userIdPower.getPowerName().equals("管理员")){
+            userId = -1;
+        }
         if(courseName == null|| courseName.equals("")){
             courseName = "*";
         }

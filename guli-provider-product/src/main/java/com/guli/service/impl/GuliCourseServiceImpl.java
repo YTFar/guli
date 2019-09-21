@@ -72,10 +72,10 @@ public class GuliCourseServiceImpl extends ServiceImpl<GuliCourseMapper, GuliCou
         return guliCourse;
     }
 
-    @Override
-    public IPage<GuliCourse> findAllPageCourse(Page<GuliCourse> guliCoursePage, PageCourse pageCourse) {
-        return this.baseMapper.findAllPageCourse(guliCoursePage,pageCourse);
-    }
+//    @Override
+//    public IPage<GuliCourse> findAllPageCourse(Page<GuliCourse> guliCoursePage, PageCourse pageCourse) {
+//        return this.baseMapper.findAllPageCourse(guliCoursePage,pageCourse);
+//    }
 
     @Override
     public int pudeteCourseIdOneCourse(GuliCourse guliCourse) {
@@ -96,5 +96,10 @@ public class GuliCourseServiceImpl extends ServiceImpl<GuliCourseMapper, GuliCou
     @Override
     public CourseAndClassifyAndUser findByCourseId(int courseId) {
         return this.baseMapper.findByCourseId(courseId);
+    }
+
+    @Override
+    public List<GuliCourse> findAllPageCourse(Page<GuliCourse> page, int userId, String courseName) {
+        return this.baseMapper.findAllPageCourse(page,userId,courseName);
     }
 }

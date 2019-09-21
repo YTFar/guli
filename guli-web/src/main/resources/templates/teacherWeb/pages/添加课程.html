@@ -157,7 +157,7 @@
         <tr>
             <th><span class="red">*</span>课程简介</th>
             <td>
-                <textarea name="courseBrief" placeholder="请输入课程简介" style="width:400px;" class="layui-textarea"></textarea>
+                <textarea name="courseBrief" placeholder="请输入课程简介(可为空)" style="width:400px;" class="layui-textarea"></textarea>
             </td>
         </tr>
         </tbody>
@@ -237,9 +237,6 @@
                 /^([0-9]*)$/
                 ,'日期只能为整数'
         ]
-            , content: function (value) {
-                layedit.sync(editIndex);
-            }
         });
 
         $("#test1").click(function () {
@@ -268,7 +265,7 @@
                 if (res.code > 0) {
                     layer.open({
                         type:0
-                        ,area:['30%', '30%']
+                        ,area:['60%', '60%']
                         ,title:"上传信息"
                         ,content: hint
                     });
@@ -278,7 +275,7 @@
                 //上传成功
                 layer.open({
                     type:0
-                    ,area:['30%', '30%']
+                    ,area:['60%', '60%']
                     ,title:"上传信息"
                     ,content: hint
                 });
@@ -329,7 +326,7 @@
                     if(data.success==false){
                         layer.open({
                             type:0
-                            ,area:['30%', '30%']
+                            ,area:['60%', '60%']
                             ,title:"上传信息"
                             ,content: data.message
                         });

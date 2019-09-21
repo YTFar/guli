@@ -1,6 +1,7 @@
 package com.guli.service;
 
 import com.guli.pojo.GuliClassify;
+import com.guli.pojo.classifyvo.ClassifyNode;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,4 +47,45 @@ public interface GuliClassifyService {
      */
     @GetMapping("/guliClassify/findOneClassify")
     GuliClassify findOneClassify(@RequestParam("id") Long id);
+
+    /**
+     * 查询所有分类
+     * 1.查询出所有一级分类
+     * 2.根据一级分类查询所有二级分类并储存于children中
+     * @return
+     */
+    @GetMapping("/guliClassify/findAllClassifyNode")
+    public List<ClassifyNode> findAllClassifyNode();
+
+    /**
+     * 添加分类
+     * @param guliClassify
+     * @return
+     */
+    @PostMapping("/guliClassify/addClassify")
+    public int addClassify(@RequestBody GuliClassify guliClassify);
+
+    /**
+     * 分类查询名称是否存在
+     * @param classifyName
+     * @return
+     */
+    @GetMapping("/guliClassify/findIsClassifyName")
+    public int findIsClassifyName(@RequestParam("classifyName") String classifyName);
+
+    /**
+     * 按id修改分类信息
+     * @param guliClassify
+     * @return
+     */
+    @PutMapping("/guliClassify/updateClassify")
+    public int updateClassify(@RequestBody GuliClassify guliClassify);
+
+    /**
+     * 按id查询指定分类信息
+     * @param classifyId
+     * @return
+     */
+    @GetMapping("/guliClassify/findClassifyId")
+    public GuliClassify findClassifyId(@RequestParam("classifyId")Long classifyId);
 }

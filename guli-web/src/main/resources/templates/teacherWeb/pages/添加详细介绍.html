@@ -20,53 +20,25 @@
 <form class="layui-form" action="">
     <table class="layui-table layui-table-add" lay-skin="nob">
         <tbody>
-
-        <!--<tr>-->
-        <!--<th>-->
-        <!--标题-->
-        <!--</th>-->
-        <!--<td>-->
-        <!--<div class="layui-form-item">-->
-        <!--<label class="layui-form-label">单行输入框</label>-->
-        <!--<div class="layui-input-block">-->
-        <!--<input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</td>-->
-        <!--</tr>-->
-        <tr>
-            <th style="width: 125px">折率</th>
-            <td>
-                <!--表单元素必须包含此div,才可实现表单验证-->
-                <div class="layui-form-item">
-                    <div style="width: 310px;">
-                        <input type="text" name="activitieNumber" lay-verify="required|discountRate" lay-reqtext="折率不能为空？"
-                               placeholder="请输入1-9活动折率" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-            </td>
-        </tr>
-       <tr>
-           <th style="width: 125px">
-               活动到期时间
-           </th>
-           <td>
-               <div class="layui-form-item">
-                   <input name="courseId" type="hidden" id="courseId">
-<!--                   <div class="layui-inline">-->
-<!--                       <div class="layui-input-inline">-->
-<!--                           <input type="text" class="layui-input" id="test11" placeholder="yyyy年MM月dd日">-->
-<!--                       </div>-->
-<!--                   </div>-->
-                   <div class="layui-inline">
-<!--                       <label class="layui-form-label">日期时间选择器</label>-->
-                       <div class="layui-input-inline" style="width: 310px;">
-                           <input type="text" name="activitieEndTime" lay-verify="time" class="layui-input" id="test5" placeholder="yyyy-MM-dd HH:mm:ss(为空为永久时间)">
-                       </div>
-                   </div>
-               </div>
-           </td>
-       </tr>
+            <tr>
+                <th>课程介绍</th>
+                <td>
+                    <textarea name="introduceName" lay-verify="required" lay-reqtext="课程介绍不能为空？" placeholder="请输入课程介绍" style="width:400px;" class="layui-textarea"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>课程目标</th>
+                <td>
+                    <input name="courseId" id="courseId" type="hidden">
+                    <textarea name="introduceProgram" placeholder="请输入课程目标(可为空)" style="width:400px;" class="layui-textarea"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>课程简介</th>
+                <td>
+                    <textarea name="introduceTarget" placeholder="请输入目标人群(可为空)" style="width:400px;" class="layui-textarea"></textarea>
+                </td>
+            </tr>
         </tbody>
     </table>
     <div class="layui-form-item">
@@ -96,31 +68,13 @@
             , layedit = layui.layedit
             , laydate = layui.laydate;
 
-        //日期时间选择器
-        laydate.render({
-            elem: '#test5'
-            ,type: 'datetime'
-            ,trigger: 'click'
-        });
-
-        //自定义验证规则
-        form.verify({
-            discountRate: function (value) {
-                if(!/(^[1-9]\d*(\.\d{1,2})?$)|(^0(\.\d{1,2})?$)/.test(value)){
-                    return "折率只能为数字与小数"
-                }
-                if(value <= 0 || value >= 10){
-                    return "折率只能一到九";
-                }
-            }
-        });
         //监听提交
         form.on('submit(demo1)', function (data) {
             $.ajax({
                 //请求方式
                 type:'POST',
                 //发送请求的地址
-                url:'/guliActivitie/addActivitie',
+                url:'/guliIntroduce/addIntroduce',
                 //服务器返回的数据类型
                 dataType:'json',
                 //发送到服务器的数据，对象必须为key/value的格式，jquery会自动转换为字符串格式
@@ -132,14 +86,12 @@
                         layer.open({
                             type:0
                             ,area:['60%', '60%']
-                            ,title:"添加活动信息"
+                            ,title:"添加详细介绍信息"
                             ,content: json.object
                         });
                     }else{
                         parent.showReocrd(pageNo,pageSize,courseName);
                         parent.layer.close(index);
-                        // layer.close(layer.index);
-                        // window.parent.location.reload();
                     }
                 },
                 error:function(jqXHR){
@@ -150,7 +102,7 @@
             return false;
         });
     });
-    }
+}
 </script>
 </body>
 </html>

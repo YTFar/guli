@@ -59,13 +59,6 @@ public interface GuliCourseService {
     public List<GuliCourse> findCourse(@RequestParam("id") int id);
 
     /**
-     * 根据二级分类id查询下面的当个课程
-     * @param id
-     * @return
-     */
-    @GetMapping("/guliCourse/findCourseById")
-    public List<GuliCourse> findCourseById(@RequestParam("id") int id);
-    /**
      * 判断课程名称是否存在
      * @param courseName
      * @return
