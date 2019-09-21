@@ -8,6 +8,7 @@ import com.guli.pojo.coursevo.CourseAndClassify;
 import com.guli.pojo.coursevo.CourseAndClassifyAndUser;
 import com.guli.pojo.request.PageCourse;
 import com.guli.vo.CourseVO;
+import com.guli.vo.GuliEvaluateVO;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -77,4 +78,33 @@ public interface GuliCourseMapper extends BaseMapper<GuliCourse> {
             "INNER JOIN guli_activitie b ON b.course_id = a.course_id\n" +
             "WHERE a.course_id = #{id}")
     CourseVO findByIdCourse(@Param("id") int id);
+
+    /**
+     * 根据用户查询学习中的课程个数
+     * @param id
+     * @return
+     */
+    @Select("SELECT a.* FROM guli_course a\n" +
+            "INNER JOIN guli_item b on a.course_id = b.course_id\n" +
+            "WHERE b.course_affiliate = 1 and b.user_id = #{id}")
+    List<GuliCourse> findCountCourseById(@Param("id") int id);
+
+    /**
+     * 根据课程id查询该课程下面的目录个数
+     * @param id
+     * @return
+     */
+    @Select("SELECT COUNT(0) FROM guli_subdirectory a WHERE a.catalogue_id IN (SELECT b.catalogue_id FROM guli_catalogue b WHERE b.course_id = #{id} ) AND a.subdirectory_type = 0")
+    int findCountById(@Param("id") int id);
+
+    /**
+     * 根据用户id和课程id查询该课程下完成了多少个目录
+     * @param uid
+     * @param id
+     * @return
+     */
+    @Select("SELECT COUNT(0) FROM guli_complete a\n" +
+            "inner join guli_item b on a.item_id = b.item_id\n" +
+            "WHERE b.user_id = #{uid} AND a.complete_status = 2 AND b.course_id = #{id}")
+    int findCourseCount(@Param("uid") int uid, @Param("id") int id);
 }

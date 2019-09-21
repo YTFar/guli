@@ -13,6 +13,7 @@ import com.guli.pojo.request.PageCourse;
 import com.guli.pojo.response.AllTypePage;
 import com.guli.service.GuliCourseService;
 import com.guli.vo.CourseVO;
+import com.guli.vo.GuliEvaluateVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -313,5 +314,31 @@ public class GuliCourseController implements GuliCourseControllerApi {
     @GetMapping("/findByIdCourseName")
     public String findByIdCourseName(int id) {
         return guliCourseMapper.selectById(id).getCourseName();
+    }
+
+    /**
+     * 根据用户id查询学习中的个数
+     * @param id
+     * @return
+     */
+    @Override
+    @GetMapping("/findCountCourseById")
+    public List<GuliCourse> findCountCourseById(int id) {
+        return guliCourseMapper.findCountCourseById(id);
+    }
+
+    /**
+     * 根据课程id查询该课程下面的目录个数
+     * @param id
+     * @return
+     */
+    @GetMapping("/findCountById")
+    public int findCountById(@RequestParam("id") int id){
+        return guliCourseMapper.findCountById(id);
+    }
+
+    @GetMapping("/findCourseCount")
+    public int findCourseCount(@RequestParam("uid") int uid,@RequestParam("id") int id){
+        return guliCourseMapper.findCourseCount(uid,id);
     }
 }

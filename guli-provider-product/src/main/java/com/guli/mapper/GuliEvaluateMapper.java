@@ -96,4 +96,5 @@ public interface GuliEvaluateMapper extends BaseMapper<GuliEvaluate> {
      */
     @Select("SELECT * FROM guli_user u INNER JOIN  guli_concern c ON u.user_id = c.user_id WHERE c.fans_id = #{id}")
     List<GuliEvaluateVO>findUserIdById(@Param("id") int id);
+
 }
