@@ -244,4 +244,35 @@ public class GuliCourseController {
     public ObjectResult findByIdCourse(@RequestParam("id") int id){
         return new ObjectResult(CommonCode.SUCCESS,guliCourseService.findByIdCourse(id));
     }
+
+    /**
+     * 根据用户查询学习中的课程个数
+     * @param id
+     * @return
+     */
+    @GetMapping("/findCountCourseById")
+    public ObjectResult findCountCourseById(@RequestParam("id") int id){
+        return new ObjectResult(CommonCode.SUCCESS,guliCourseService.findCountCourseById(id));
+    }
+
+    /**
+     * 根据课程id查询该课程下的目录个数
+     * @param id
+     * @return
+     */
+    @GetMapping("/findCountById")
+    public ObjectResult findCountById(@RequestParam("id") int id){
+        return new ObjectResult(CommonCode.SUCCESS,guliCourseService.findCountById(id));
+    }
+
+    /**
+     * 根据用户id和课程id查询该课程下完成了多少个目录
+     * @param uid
+     * @param id
+     * @return
+     */
+    @GetMapping("/findCourseCount")
+    public ObjectResult findCourseCount(@RequestParam("uid") int uid,@RequestParam("id") int id){
+        return new ObjectResult(CommonCode.SUCCESS,guliCourseService.findCourseCount(uid,id));
+    }
 }

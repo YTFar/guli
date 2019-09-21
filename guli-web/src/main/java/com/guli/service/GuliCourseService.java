@@ -9,6 +9,7 @@ import com.guli.pojo.request.PageCourse;
 import com.guli.pojo.response.AllTypePage;
 import com.guli.response.ObjectResult;
 import com.guli.vo.CourseVO;
+import com.guli.vo.GuliEvaluateVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -152,4 +153,29 @@ public interface GuliCourseService {
      */
     @GetMapping("/guliCourse/findPageAllCourseById")
     public AllTypePage<GuliCourse> findPageAllCourseById(@RequestParam("id") int id,@RequestParam("pageNo") int pageNo, @RequestParam("pageSize") int pageSize);
+
+    /**
+     * 根据用户id查询学习中的课程个数
+     * @param id
+     * @return
+     */
+    @GetMapping("/guliCourse/findCountCourseById")
+    public List<GuliCourse> findCountCourseById(@RequestParam("id") int id);
+
+    /**
+     * 根据课程id查询该课程下面的目录个数
+     * @param id
+     * @return
+     */
+    @GetMapping("/guliCourse/findCountById")
+    public int findCountById(@RequestParam("id") int id);
+
+    /**
+     * 根据用户id和课程id查询该课程下完成了多少个目录
+     * @param uid
+     * @param id
+     * @return
+     */
+    @GetMapping("/guliCourse/findCourseCount")
+    public int findCourseCount(@RequestParam("uid") int uid,@RequestParam("id") int id);
 }
