@@ -7,6 +7,7 @@ import com.guli.pojo.GuliCatalogue;
 import com.guli.pojo.GuliClassify;
 import com.guli.pojo.GuliPower;
 import com.guli.pojo.cataloguevo.CatalogueAndAccomplish;
+import com.guli.pojo.cataloguevo.CatalogueAndCourse;
 import com.guli.pojo.response.AllTypePage;
 import com.guli.response.ObjectResult;
 import com.guli.service.GuliCatalogueService;
@@ -52,6 +53,10 @@ public class GuliCatalogueController{
      */
     @PostMapping("/addCatalogue")
     public ObjectResult addCatalogue(@RequestBody GuliCatalogue guliCatalogue){
+        int isCatalogueName = guliCatalogueService.findIsCatalogueName(guliCatalogue.getCatalogueName());
+        if(isCatalogueName > 0){
+            return new ObjectResult(CommonCode.FAIL,"目录名称不存在");
+        }
         int i = guliCatalogueService.addCatalogue(guliCatalogue);
         if(i < 1){
             return new ObjectResult(CommonCode.FAIL,"添加失败");
@@ -88,25 +93,44 @@ public class GuliCatalogueController{
     }
 
     /**
-     * 按条件分页查询课程目录信息
+     * 按条件分页查询目录信息
      * @param pageNo 当前页
      * @param pageSize 数据量
-     * @param userId 教师id
      * @param courseId 课程id
      * @param catalogueName 目录名称
      * @return
      */
     @GetMapping("/findAllPageCatalogue")
     public ObjectResult findAllPageCatalogue(@RequestParam("pageNo") int pageNo,
-                                                                    @RequestParam("pageSize") int pageSize,
-                                                                    @RequestParam("userId") Long userId,
-                                                                    @RequestParam("courseId") Long courseId,
-                                                                    @RequestParam("catalogueName") String catalogueName){
-        GuliPower userIdPower = guliPowerService.findUserIdPower(userId);
-        if(userIdPower.getPowerName().equals("管理员")){
-            userId = -1l;
+                                                                @RequestParam("pageSize")  int pageSize,
+                                                                @RequestParam("courseId")  Long courseId,
+                                                                @RequestParam("catalogueName")  String catalogueName){
+        if(catalogueName.equals("")){
+            catalogueName = "*";
         }
-        return new ObjectResult(CommonCode.SUCCESS, guliCatalogueService.findAllPageCatalogue(pageNo,pageSize,userId,courseId,catalogueName));
+        return new ObjectResult(CommonCode.SUCCESS,guliCatalogueService.findAllPageCatalogue(pageNo,pageSize,courseId,catalogueName));
     }
+
+//    /**
+//     * 按条件分页查询课程目录信息
+//     * @param pageNo 当前页
+//     * @param pageSize 数据量
+//     * @param userId 教师id
+//     * @param courseId 课程id
+//     * @param catalogueName 目录名称
+//     * @return
+//     */
+//    @GetMapping("/findAllPageCatalogue")
+//    public ObjectResult findAllPageCatalogue(@RequestParam("pageNo") int pageNo,
+//                                                                    @RequestParam("pageSize") int pageSize,
+//                                                                    @RequestParam("userId") Long userId,
+//                                                                    @RequestParam("courseId") Long courseId,
+//                                                                    @RequestParam("catalogueName") String catalogueName){
+//        GuliPower userIdPower = guliPowerService.findUserIdPower(userId);
+//        if(userIdPower.getPowerName().equals("管理员")){
+//            userId = -1l;
+//        }
+//        return new ObjectResult(CommonCode.SUCCESS, guliCatalogueService.findAllPageCatalogue(pageNo,pageSize,userId,courseId,catalogueName));
+//    }
 
 }

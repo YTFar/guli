@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guli.pojo.GuliCatalogue;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.guli.pojo.cataloguevo.CatalogueAndAccomplish;
+import com.guli.pojo.cataloguevo.CatalogueAndCourse;
+import com.guli.pojo.response.AllTypePage;
 
 import java.util.List;
 
@@ -21,5 +23,9 @@ public interface GuliCatalogueService extends IService<GuliCatalogue> {
 
     int updateCatalogue(GuliCatalogue guliCatalogue);
 
-    List<CatalogueAndAccomplish> findAllPageCatalogue(Page<CatalogueAndAccomplish> page,Long userId, Long courseId, String catalogueName);
+//    AllTypePage<CatalogueAndCourse> findAllPageCatalogue(int pageNo, int pageSize, Long courseId, String catalogueName);
+
+    List<CatalogueAndCourse> findAllPageCatalogue(Page<CatalogueAndCourse> page, Long courseId, String catalogueName);
+
+//    List<CatalogueAndAccomplish> findAllPageCatalogue(Page<CatalogueAndAccomplish> page,Long userId, Long courseId, String catalogueName);
 }

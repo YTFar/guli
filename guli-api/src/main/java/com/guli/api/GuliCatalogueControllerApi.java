@@ -2,6 +2,7 @@ package com.guli.api;
 
 import com.guli.pojo.GuliCatalogue;
 import com.guli.pojo.cataloguevo.CatalogueAndAccomplish;
+import com.guli.pojo.cataloguevo.CatalogueAndCourse;
 import com.guli.pojo.response.AllTypePage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,7 +24,10 @@ public interface GuliCatalogueControllerApi {
     @ApiOperation("按id修改目录信息")
     int updateCatalogue(GuliCatalogue guliCatalogue);
 
-    @ApiOperation("根据课程id分页查询目录信息")
-    AllTypePage<CatalogueAndAccomplish> findAllPageCatalogue(int pageNo,int pageSize ,Long userId,Long courseId,String catalogueName);
+//    @ApiOperation("根据课程id分页查询目录信息")
+//    AllTypePage<CatalogueAndAccomplish> findAllPageCatalogue(int pageNo,int pageSize ,Long userId,Long courseId,String catalogueName);
+
+    @ApiOperation("按条件分页查询目录信息")
+    public AllTypePage<CatalogueAndCourse> findAllPageCatalogue (int pageNo,int pageSize,Long courseId,String catalogueName);
 
 }

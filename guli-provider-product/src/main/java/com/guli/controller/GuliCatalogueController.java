@@ -10,6 +10,7 @@ import com.guli.pojo.GuliCatalogue;
 import com.guli.pojo.GuliClassify;
 import com.guli.pojo.activitievo.ActivitieAndCourse;
 import com.guli.pojo.cataloguevo.CatalogueAndAccomplish;
+import com.guli.pojo.cataloguevo.CatalogueAndCourse;
 import com.guli.pojo.response.AllTypePage;
 import com.guli.response.ObjectResult;
 import com.guli.service.GuliCatalogueService;
@@ -85,31 +86,58 @@ public class GuliCatalogueController implements GuliCatalogueControllerApi {
     }
 
     /**
-     * 按条件分页查询课程目录信息
+     * 按条件分页查询目录信息
      * @param pageNo 当前页
      * @param pageSize 数据量
-     * @param userId 教师id
      * @param courseId 课程id
      * @param catalogueName 目录名称
      * @return
      */
     @Override
     @GetMapping("/findAllPageCatalogue")
-    public AllTypePage<CatalogueAndAccomplish> findAllPageCatalogue(@RequestParam("pageNo") int pageNo,
-                                                                    @RequestParam("pageSize") int pageSize,
-                                                                    @RequestParam("userId") Long userId,
-                                                                    @RequestParam("courseId") Long courseId,
-                                                                    @RequestParam("catalogueName") String catalogueName) {
+    public AllTypePage<CatalogueAndCourse> findAllPageCatalogue(@RequestParam("pageNo") int pageNo,
+                                                                @RequestParam("pageSize")  int pageSize,
+                                                                @RequestParam("courseId")  Long courseId,
+                                                                @RequestParam("catalogueName")  String catalogueName) {
         if(catalogueName.equals("*")){
             catalogueName = "";
         }
-        Page<CatalogueAndAccomplish> page = new Page<>(pageNo,pageSize);
-        page.setRecords(guliCatalogueService.findAllPageCatalogue(page,userId,courseId,catalogueName));
-        AllTypePage<CatalogueAndAccomplish> allTypePage = new AllTypePage<CatalogueAndAccomplish>();
+        Page<CatalogueAndCourse> page = new Page<CatalogueAndCourse>(pageNo,pageSize);
+        page.setRecords(guliCatalogueService.findAllPageCatalogue(page,courseId,catalogueName));
+        AllTypePage<CatalogueAndCourse> allTypePage = new AllTypePage<CatalogueAndCourse>();
         allTypePage.setPageNo(pageNo);
         allTypePage.setPageSize(pageSize);
         allTypePage.setPageTotal((int) page.getTotal());
         allTypePage.setPageList(page.getRecords());
         return allTypePage;
     }
+
+//    /**
+//     * 按条件分页查询课程目录信息
+//     * @param pageNo 当前页
+//     * @param pageSize 数据量
+//     * @param userId 教师id
+//     * @param courseId 课程id
+//     * @param catalogueName 目录名称
+//     * @return
+//     */
+//    @Override
+//    @GetMapping("/findAllPageCatalogue")
+//    public AllTypePage<CatalogueAndAccomplish> findAllPageCatalogue(@RequestParam("pageNo") int pageNo,
+//                                                                    @RequestParam("pageSize") int pageSize,
+//                                                                    @RequestParam("userId") Long userId,
+//                                                                    @RequestParam("courseId") Long courseId,
+//                                                                    @RequestParam("catalogueName") String catalogueName) {
+//        if(catalogueName.equals("*")){
+//            catalogueName = "";
+//        }
+//        Page<CatalogueAndAccomplish> page = new Page<>(pageNo,pageSize);
+//        page.setRecords(guliCatalogueService.findAllPageCatalogue(page,userId,courseId,catalogueName));
+//        AllTypePage<CatalogueAndAccomplish> allTypePage = new AllTypePage<CatalogueAndAccomplish>();
+//        allTypePage.setPageNo(pageNo);
+//        allTypePage.setPageSize(pageSize);
+//        allTypePage.setPageTotal((int) page.getTotal());
+//        allTypePage.setPageList(page.getRecords());
+//        return allTypePage;
+//    }
 }

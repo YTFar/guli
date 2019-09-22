@@ -243,7 +243,7 @@
 					count: json.object.pageTotal,//总条数
 					curr: json.object.pageNo,//当前页
 					limit: json.object.pageSize,//每页的条数
-					limits:[2,15,20,25,30,50]//可选择每页数目
+					limits:[10,15,20,25,30,50]//可选择每页数目
 					,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
 					,jump: function (obj, first) { //obj为当前页的属性和方法，第一次加载first为true
 						//非首次加载 do something

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <title>众创数字资产综合运营管理平台</title>
+<!--	<link rel="stylesheet" href="../../layui/css/layui.css"/>-->
+<!--	<link rel="stylesheet" href="../../css/admin.css"/>-->
+	<link rel="stylesheet" href="../../layui_files_upload/css/layui.css"/>
+</head>
+<body>
+<!--	<div class="container">-->
+		<div class="content-search" style="margin-top: 10px;height: 53px">
+			<form class="layui-form layui-form-pane" style="float: left">
+				<div class="layui-inline">
+					<label class="layui-form-label">目录名称</label>
+					<div class="layui-input-block">
+						<input id="catalogueName" name="catalogueName" placeholder="请输入目录名称" autocomplete="off" class="layui-input" type="text"/>
+					</div>
+				</div>
+<!--				<button class="layui-btn layui-btn-normal layui-btn-small add" style="float: right">+添加</button>-->
+			</form>
+            <button class="layui-btn layui-btn-normal layui-btn-small course" style="float: right">返回课程列表</button>
+		</div>
+
+		<div class="table-list roll-x">
+
+			<table class="layui-hide" id="test" lay-filter="test"></table>
+
+			<script type="text/html" id="toolbarDemo">
+				<div class="layui-btn-container">
+					<button class="layui-btn layui-btn-sm" lay-event="add">添加目录</button>
+					<button class="layui-btn layui-btn-sm" lay-event="deleteAll">删除已选数据</button>
+				</div>
+			</script>
+
+			<script type="text/html" id="barDemo">
+				<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+				<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+			</script>
+		</div>
+<!--	</div>-->
+<!--	<div id="table-pages" style="text-align:center"></div>-->
+	<div id="demo7" style="text-align:center"></div>
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="../../layui_files_upload/layui.js"></script>
+    <script>
+		PageNo = 1;
+		PageSize = 10;
+	$(function () {
+		// var courseId = getUrlParam(courseId);
+		// var courseId = $("#guli_all_id").val();
+		var courseId = getQueryVariable("courseId");
+		// alert(courseId);
+		pageShow(1,10,null,courseId);
+		$("#catalogueName").change(function () {
+			pageShow(1,10,null,courseId);
+		});
+	});
+
+	function pageShow(pageNo,pageSize,catalogueName,courseId) {
+		if (catalogueName == null)
+			catalogueName = $("#catalogueName").val();
+
+		var param = "pageNo="+pageNo+"&pageSize="+pageSize+"&courseId="+courseId+"&catalogueName="+catalogueName;
+		// alert(param)
+		$.getJSON("/guliCatalogue/findAllPageCatalogue",param,function (json) {
+			// console.log(json);
+			PageNo = json.object.pageNo;
+			PageSize = json.object.pageSize;
+            layui.use(['table','laypage','layer', 'form'], function(){
+                var table = layui.table,
+                        layer = layui.layer,
+						laypage = layui.laypage
+						,form = layui.form;
+
+                table.render({
+                    elem: '#test'
+                    ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+                    ,defaultToolbar: ['filter', 'exports', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+                        title: '提示'
+                        ,layEvent: 'LAYTABLE_TIPS'
+                        ,icon: 'layui-icon-tips'
+                    }]
+                    ,title: '目录数据表'
+                    ,cols: [[
+                        {type: 'checkbox'}
+                        ,{field:'catalogueId', title:'ID', minWidth:80, sort: true}
+						,{field:'catalogueName', title:'目录名称', minWidth:100}
+                        ,{field:'courseName', title:'课程名称', minWidth:130}
+                        ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+                    ]]
+					,data: json.object.pageList
+                });
+
+                //头工具栏事件
+                table.on('toolbar(test)', function(obj){
+                	// console.log(obj);
+                    var checkStatus = table.checkStatus(obj.config.id);
+					var courseId = getQueryVariable("courseId");
+					// alert(courseId);
+                    switch(obj.event) {
+						case 'add':
+							var index = layer.open({
+								type: 2
+								,title:"添加提示"
+								,area:['80%', '80%']
+								,content:"添加目录.html"
+								,success:function (layero, index){
+									var iframe = window['layui-layer-iframe'+index];
+									//调用子页面的全局函数
+									iframe.child(courseId);
+								}
+							});
+						break;
+							//删除所选id
+						case 'deleteAll':
+							var data = checkStatus.data;
+							if (data.length > 0) {
+								layer.confirm('真的删除选中行么', function(index){
+									// obj.del();
+									console.log(data);
+									var id_str = "";
+									for (var i = 0; i < data.length; i++) {
+										id_str += data[i].catalogueId + ',';
+									}
+									id_str = id_str.substr(0, id_str.length - 1);
+									layer.alert(id_str);
+									layer.close(index);
+									// break;
+								});
+							}else{
+								layer.open({
+									type: 0
+									,area:['60%', '60%']
+									,title:"删除提示"
+									,content:"还没选中数据,请中数据"
+								});
+							}
+							break;
+					}
+                });
+
+                //监听行工具事件
+                table.on('tool(test)', function(obj){
+                    var data = obj.data;
+                    // console.log(data);
+                    if(obj.event === 'detail'){
+                    	var activitieId = data.activitieId;
+						courseName = $("#courseName").val();
+						activitieState = $("#activitieState").val();
+						activitieType = $("#activitieType").val();
+						var index = layer.open({
+							type: 2
+							,title:"查看提示"
+                            ,area:['80%', '80%']
+							,content:"活动详情.html"
+							,success:function (layero, index){
+								var iframe = window['layui-layer-iframe'+index];
+								//调用子页面的全局函数
+								iframe.child(activitieId,index);
+							}
+						});
+                    } else if(obj.event === 'edit'){
+                        var catalogueId = data.catalogueId;
+                        var catalogueName1 = data.catalogueName;
+                        var courseId = getQueryVariable("courseId");
+                        catalogueName = $("#catalogueName").val();
+                        courseName = $("#courseName").val();
+                        var index = layer.open({
+                            type: 2
+                            ,title:"编辑提示"
+                            ,area:['80%', '80%']
+                            ,content:"修改目录.html"
+                            ,success:function (layero, index){
+                                var iframe = window['layui-layer-iframe'+index];
+                                //调用子页面的全局函数
+                                iframe.child(catalogueId,catalogueName1,index,json.object.pageNo,json.object.pageSize,catalogueName,courseId);
+                            }
+                        });
+                    }
+                });
+
+				//完整功能
+				laypage.render({
+					elem: 'demo7',
+					count: json.object.pageTotal,//总条数
+					curr: json.object.pageNo,//当前页
+					limit: json.object.pageSize,//每页的条数
+					limits:[10,15,20,25,30,50]//可选择每页数目
+					,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+					,jump: function (obj, first) { //obj为当前页的属性和方法，第一次加载first为true
+						//非首次加载 do something
+						if (!first) {
+							//清空以前加载的数据
+							$('tbody').empty();
+							//调用加载函数加载数据
+							pageShow(obj.curr, obj.limit,null,courseId);
+						}
+					}
+				});
+				// form.on('select(activitieState)', function (data) {
+				// 	// alert(123);
+				// 	pageShow(1, 10,null,null,null);
+				// });
+				// form.on('select(activitieType)', function (data) {
+				// 	// alert(456);
+				// 	pageShow(1, 10,null,null,null);
+				// });
+            });
+			$(document).on("click", ".course", function() {
+				// alert(1);
+				window.location.href="课程列表.html";
+				// window.location.href="课程列表.html";
+			});
+		});
+	}
+        function getQueryVariable(variable){
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i=0;i<vars.length;i++) {
+                var pair = vars[i].split("=");
+                if(pair[0] == variable){return pair[1];}
+            }
+            return(false);
+        }
+	// function getUrlParam(name)
+	// {
+	// 	var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+	// 	var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+	// 	if (r!=null) return unescape(r[2]); return null; //返回参数值
+	// }
+	</script>
+</body>
+</html>

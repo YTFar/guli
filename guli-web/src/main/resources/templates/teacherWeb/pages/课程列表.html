@@ -164,6 +164,14 @@
                 });
             });
 
+			//添加详细介绍
+			$(document).on("click", ".viewDirectory", function() {
+				// var guli_all_id =  $("#guli_all_id").val();
+				// console.log(guli_all_id+"all_id");
+				var courseId = $(this).siblings("input").val();
+				location.href="目录列表.html?courseId="+courseId;
+			});
+
 			// 删除操作
 		    $(document).on("click", ".a4", function() {
 			    layer.open({
@@ -225,6 +233,7 @@
 								"<button class=\"layui-btn layui-btn-danger layui-btn-small a4\">删除</button>"+
 								"<button class=\"layui-btn layui-btn-normal layui-btn-small activity\" "+disabled+">添加活动</button>\n"+
 								"<button class=\"layui-btn layui-btn-normal layui-btn-small introduce\">添加详细介绍</button>\n"+
+								"<button class=\"layui-btn layui-btn-normal layui-btn-small viewDirectory\">查看目录</button>\n"+
 								"<input class='courseId' value='"+course.courseId+"' type='hidden'>" +
 								"</td>\n" +
 								"</tr>";
