@@ -254,6 +254,8 @@
 							limit: data.object.pageSize,//每页的条数
 							limits:[3,5,10]//可选择每页数目
 							,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+							// ,first: '首页'
+							// ,last: '尾页'
 							,jump: function (obj, first) { //obj为当前页的属性和方法，第一次加载first为true
 								//非首次加载 do something
 								if (!first) {

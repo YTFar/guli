@@ -14,7 +14,7 @@ import lombok.ToString;
 /**
  * 订单与用户集合类
  */
-public class GuliOrderAndUser extends GuliOrder {
+public class OrderAndUser extends GuliOrder {
 
     private Long userId;
 

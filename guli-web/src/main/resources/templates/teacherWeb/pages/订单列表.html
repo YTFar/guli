@@ -5,255 +5,235 @@
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
     <title>众创数字资产综合运营管理平台</title>
-	<link rel="stylesheet" href="../../layui/css/layui.css"/>
-	<link rel="stylesheet" href="../../css/admin.css"/>
+<!--	<link rel="stylesheet" href="../../layui/css/layui.css"/>-->
+<!--	<link rel="stylesheet" href="../../css/admin.css"/>-->
+	<link rel="stylesheet" href="../../layui_files_upload/css/layui.css"/>
 </head>
 <body>
-	<div class="container">
-		<div class="content-search">
-			<form class="layui-form layui-form-pane" action="">
+<!--	<div class="container">-->
+		<div class="content-search" style="margin-top: 10px">
+			<form class="layui-form layui-form-pane">
 				<div class="layui-inline">
-					<label class="layui-form-label">订单编号</label>
+					<label class="layui-form-label">课程名称</label>
 					<div class="layui-input-block">
-						<input name="date" placeholder="请输入订单编号" autocomplete="off" class="layui-input" type="text"/>
+						<input id="courseName" name="courseName" placeholder="请输入课程名称" autocomplete="off" class="layui-input" type="text"/>
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">收货人</label>
+					<div class="layui-input-block">
+						<input id="userName" name="courseName" placeholder="请输入课程名称" autocomplete="off" class="layui-input" type="text"/>
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">订单状态</label>
 					<div class="layui-input-inline">
-						<select name="city" lay-verify="">
-						  <option value="0">请选择</option>
-						  <option value="1">待发货</option>
-						  <option value="2">待签收</option>
-						  <option value="3">已签收</option>
+						<select id="activitieState" lay-filter="activitieState" name="activitieState" lay-verify="">
+						  <option value="-1">订单状态(全部)</option>
+						  <option value="0">未付款</option>
+						  <option value="1">已付款</option>
+							<option value="2">交易关闭</option>
+							<option value="3">退款</option>
 						</select>
 					</div>
 				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">变更时间</label>
-					<div class="layui-input-inline">
-						<input class="layui-input layui-date" placeholder="变更时间" id="end">
-					</div>
-				</div>
-				<div class="layui-inline"><button class="layui-btn" lay-submit="">查询</button></div>
 			</form>
 		</div>
 
 		<div class="table-list roll-x">
-			<table class="layui-table" lay-skin="line">
-			  <thead>
-			    <tr>
-			      <th>订单编号</th>
-			      <th>商品名称</th>
-			      <th>成交金额</th>
-			      <th>收货人</th>
-					<th>手机号码</th>
-					<th>邮箱</th>
-			      <th>订单状态</th>
-			      <th>变更时间</th>
-			      <th>操作</th>
-			    </tr> 
-			  </thead>
-			  <tbody id="order-form-tbody">
 
-			  </tbody>
-			</table>   
+			<table class="layui-hide" id="test" lay-filter="test"></table>
+
+			<script type="text/html" id="toolbarDemo">
+				<div class="layui-btn-container">
+					<button class="layui-btn layui-btn-sm" lay-event="deleteAll">删除已选数据</button>
+				</div>
+			</script>
+
+			<script type="text/html" id="barDemo">
+				<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+				<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+			</script>
 		</div>
-	</div>
-	<div id="table-pages" style="text-align:center"></div>
+<!--	</div>-->
+<!--	<div id="table-pages" style="text-align:center"></div>-->
+	<div id="demo7" style="text-align:center"></div>
 	<script type="text/javascript" src="../../layui/layui.js"></script>
 	<script type="text/javascript" src="../../js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="../../layui_files_upload/layui.js"></script>
     <script>
-		$(function () {
-			//订单数据加载
-			$.ajax({
-			    //请求方式
-			    type:'GET',
-			    //发送请求的地址
-			    url:'/guliOrder/orderAll?id='+1,
-			    //服务器返回的数据类型
-			    dataType:'json',
-			    //发送到服务器的数据，对象必须为key/value的格式，jquery会自动转换为字符串格式
-			    // data:{name:xxx,age:xxx},
-			    success:function(data){
-			        //请求成功函数内容
-					// console.log(data);
-					$("#order-form-tbody").find("tr").remove();
-					//判断信息是否为空
-					if(data==null){
-						layui.use('layer', function(){
-							var layer = layui.layer;
-							layer.open({
-								area:['60%', '60%'],
-								type:0,
-								title: '数据信息提示'
-								,content: '你的显示数据为空!'
-							});
+		// PageNo = 1;
+		// PageSize = 10;
+	$(function () {
+		pageShow(1,10,null,null,null);
+		// $("#layui-btn").click(function () {
+        //     pageShow(1,10,null,null,null);
+        // });
+		$("#courseName").change(function () {
+			// alert(1);
+			pageShow(1,10,null,null,null);
+		});
+
+	});
+
+	function pageShow(pageNo,pageSize,courseName,activitieState,activitieType) {
+		if (courseName == null)
+			courseName = $("#courseName").val();
+
+		if(activitieState == null)
+		activitieState = $("#activitieState").val();
+
+		if (activitieType == null)
+		activitieType = $("#activitieType").val();
+		var param = "pageNo="+pageNo+"&pageSize="+pageSize+"&userId="+1+"&activitieType="+activitieType+"&courseName="+courseName+"&activitieState="+activitieState;
+		// alert(param)
+		$.getJSON("/guliActivitie/findPageActivitie",param,function (json) {
+			// console.log(json);
+			// PageNo = json.object.pageNo;
+			// PageSize = json.object.pageSize;
+            layui.use(['table','laypage','layer', 'form'], function(){
+                var table = layui.table,
+                        layer = layui.layer,
+						laypage = layui.laypage
+						,form = layui.form;
+
+                table.render({
+                    elem: '#test'
+                    ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+                    ,defaultToolbar: ['filter', 'exports', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+                        title: '提示'
+                        ,layEvent: 'LAYTABLE_TIPS'
+                        ,icon: 'layui-icon-tips'
+                    }]
+                    ,title: '订单数据表'
+					,cols: [[
+						{type: 'checkbox'}
+						,{field:'orderId', title:'ID', minWidth:60}
+						,{field:'orderNumber', title:'订单号', minWidth:80}
+						,{field:'orderTradeName', title:'课程名称', minWidth:130}
+						,{field:'orderTradePrice', title:'成交金额', minWidth:90}
+						,{field:'userName', title:'收货人', minWidth:90}
+						,{field:'userPhone', title:'手机号码', minWidth:90}
+						,{field:'userEmail', title:'邮箱', minWidth:90}
+						,{field:'orderStatusStr', title:'订单状态', minWidth:90}
+						,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+					]]
+                    ,data: json.object.pageList
+                });
+
+                //头工具栏事件
+                table.on('toolbar(test)', function(obj){
+                	console.log(obj);
+                    var checkStatus = table.checkStatus(obj.config.id);
+                    switch(obj.event) {
+							//删除所选id
+						case 'deleteAll':
+							var data = checkStatus.data;
+							if (data.length > 0) {
+								layer.confirm('真的删除行么', function(index){
+									// obj.del();
+									console.log(data);
+									var id_str = "";
+									for (var i = 0; i < data.length; i++) {
+										id_str += data[i].activitieId + ',';
+									}
+									id_str = id_str.substr(0, id_str.length - 1);
+									layer.alert(id_str);
+									layer.close(index);
+									// break;
+								});
+							}else{
+								layer.open({
+									type: 0
+									,area:['60%', '60%']
+									,title:"删除提示"
+									,content:"还没选中数据,请中数据"
+								});
+							}
+							break;
+					}
+                });
+
+                //监听行工具事件
+                table.on('tool(test)', function(obj){
+                    var data = obj.data;
+                    // console.log(data);
+                    if(obj.event === 'detail'){
+                    	var activitieId = data.activitieId;
+						courseName = $("#courseName").val();
+						activitieState = $("#activitieState").val();
+						activitieType = $("#activitieType").val();
+						var index = layer.open({
+							type: 2
+							,title:"查看提示"
+                            ,area:['80%', '80%']
+							,content:"活动详情.html"
+							,success:function (layero, index){
+								var iframe = window['layui-layer-iframe'+index];
+								//调用子页面的全局函数
+								iframe.child(activitieId,index);
+							}
 						});
-					}else{
-						for (var i = 0;i < data.length;i++){
-							var order = data[i];
-							var tr = "<tr>\n" +
-									"<td><a href=\"javascript:;\" class=\"a1\">"+order.orderNumber+"</a></td>\n" +
-									"<td>"+order.orderTradeName+"</td>\n" +
-									"<td><span class=\"price\">"+order.orderTradePrice+"</span></td>\n" +
-									"<td>"+order.userName+"</td>\n" +
-									"<td>"+order.userPhone+"</td>\n" +
-									"<td>"+order.userEmail+"</td>\n" +
-									"<td><span class=\"red\">"+order.orderStatusStr+"</span></td>\n" +
-									"<td>"+order.orderUpdateTime+"</td>\n" +
-									"<td>\n" +
-									"<input type='hidden' value='"+order.orderNumber+"'>" +
-									"<button class=\"layui-btn layui-btn-danger layui-btn-small a4\">订单详情</button>\n" +
-									"</td>\n" +
-									"</tr>";
-							$("#order-form-tbody").append(tr);
+                    } else if(obj.event === 'edit'){
+						var activitieId = data.activitieId;
+						var courseId = data.courseId;
+						courseName = $("#courseName").val();
+						activitieState = $("#activitieState").val();
+						activitieType = $("#activitieType").val();
+						$.getJSON("/guliActivitie/findIsActivitieExcludeOneself","activitieId="+activitieId+"&courseId="+courseId,function (isActivitie) {
+							console.log(json);
+							if (isActivitie.success){
+								var index = layer.open({
+									type: 2
+									,title:"编辑提示"
+									,area:['75%', '75%']
+									,content:"修改活动.html"
+									,success:function (layero, index){
+										var iframe = window['layui-layer-iframe'+index];
+										//调用子页面的全局函数
+										iframe.child(activitieId,index,json.object.pageNo,json.object.pageSize,courseName,activitieState,activitieType);
+									}
+								});
+							} else{
+								layer.open({
+									type:0
+									,area:['60%', '60%']
+									,title: "编辑提示"
+									,content: json.object
+								});
+							}
+						});
+                    }
+                });
+				//完整功能
+				laypage.render({
+					elem: 'demo7',
+					count: json.object.pageTotal,//总条数
+					curr: json.object.pageNo,//当前页
+					limit: json.object.pageSize,//每页的条数
+					limits:[10,15,20,25,30,50]//可选择每页数目
+					,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+					,jump: function (obj, first) { //obj为当前页的属性和方法，第一次加载first为true
+						//非首次加载 do something
+						if (!first) {
+							//清空以前加载的数据
+							$('tbody').empty();
+							//调用加载函数加载数据
+							pageShow(obj.curr, obj.limit,null,null,null);
 						}
 					}
-			    },
-			    error:function(jqXHR){
-			        //请求失败函数内容
-			        console.log(jqXHR);
-					layui.use('layer', function(){
-						var layer = layui.layer;
-						layer.open({
-							area:['60%', '60%'],
-							type:0,
-							title: '错误信息提示'
-							,content: '服务错误,代码为999999,请联系管理员!'
-						});
-					});
-			    }
-
-			});
+				});
+				form.on('select(activitieState)', function (data) {
+					// alert(123);
+					pageShow(1, 10,null,null,null);
+				});
+				form.on('select(activitieType)', function (data) {
+					// alert(456);
+					pageShow(1, 10,null,null,null);
+				});
+            });
 		});
-
-		layui.use(['jquery', 'laydate','form','layer','laypage'], function(){
-			var $ = layui.jquery,
-			    laydate = layui.laydate,
-			    layer = layui.layer,
-			    laypage = layui.laypage;
-
-			// 分页
-			 laypage({
-			    cont: 'table-pages'
-			    ,pages: 100
-			    ,skip: true
-			  });
-
-            // 开始时间及截止时间
-            var start = {
-			   choose: function(datas){
-			      end.min = datas; //开始日选好后，重置结束日的最小日期
-			      end.start = datas //将结束日的初始值设定为开始日
-			    }
-			  };
-
-			  var end = {
-			    choose: function(datas){
-			      start.max = datas; //结束日选好后，重置开始日的最大日期
-			    }
-			  };
-
-			$('#start').click(function(){
-				start.elem = this;
-    			laydate(start);
-			});
-
-			$('#end').click(function(){
-				end.elem = this
-    			laydate(end);
-			});
-
-
-			//待发货详情
-			$(document).on("click", ".a1", function() {
-				layer.open({
-			      type:2
-			      ,area:['80%', '90%']
-			      ,title:"订单详情"
-				  ,content: '平台待发货详情.html'
-				});
-			});
-
-			$(document).on("click", ".a5", function() {
-				layer.open({
-			      type:2
-			      ,area:['80%', '90%']
-			      ,title:"订单详情"
-				  ,content: '第三方待发货详情.html'
-				});
-			});
-
-			// 待签收，已签收详情
-			$(document).on("click", ".a7", function() {
-				layer.open({
-			      type:2
-			      ,area:['80%', '90%']
-			      ,title:"订单详情"
-				  ,content: '平台已发货详情.html'
-				});
-			});
-			$(document).on("click", ".a8", function() {
-				layer.open({
-			      type:2
-			      ,area:['80%', '90%']
-			      ,title:"订单详情"
-				  ,content: '第三方已发货详情.html'
-				});
-			});
-
-			// 会员详情
-			$(document).on("click", ".a2", function() {
-			    layer.open({
-			      type:2
-			      ,area:['50%', '70%']
-			      ,title:"会员详情"
-				  ,content: '会员详情.html'
-				});
-			});
-			// 平台发货
-			$(document).on("click", ".a3", function() {
-			    layer.open({
-			      type:2
-			      ,area:['50%', '50%']
-			      ,title:"平台发货"
-				  ,content: '平台发货.html'
-				});
-			});
-			// 平台替第三方发货
-			// $(document).on("click", ".a6", function() {
-			// 	layer.open({
-			//       title:"第三方发货提醒"
-			// 	  ,content: '该订单为第三方（XXX公司）订单您确认由平台发货吗?'
-			// 	  ,btn: ['取消', '确认']
-			// 	  ,yes: function(index, layero){
-			// 	       layer.closeAll();
-			// 	  }
-			// 	  ,btn2: function(index, layero){
-			// 	  	layer.open({
-			// 	  		type:2
-			//       		,area:['50%', '70%']
-			// 	      	,title:"平台发货"
-			// 	  		,content: '订单详情.html'
-			// 		});
-			// 	  }
-			// 	});
-            //
-			// });
-
-			// 取消订单
-			$(document).on("click", ".a4", function() {
-
-			    layer.open({
-			      type:2
-				  ,area:['50%', '70%']
-			      ,title:"订单详情"
-				  ,content: 'pages/订单详情.html'
-				});
-			});
-
-		});
+	}
 	</script>
 </body>
 </html>
