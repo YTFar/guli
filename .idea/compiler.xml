@@ -14,14 +14,12 @@
         <module name="test-session1" />
         <module name="guli-api" />
         <module name="guli-video-manager" />
-        <module name="test-rabbitmq-consumer" />
         <module name="guli-model" />
         <module name="guli-utils" />
         <module name="guli-eureka" />
         <module name="guli-common" />
         <module name="guli-web" />
         <module name="guli-video-upload" />
-        <module name="test-rabbitmq-product" />
         <module name="xc-service-manage-media-processor" />
         <module name="test-mybatis" />
       </profile>
@@ -29,6 +27,8 @@
     <bytecodeTargetLevel>
       <module name="guli-video2" target="1.8" />
       <module name="test-mybatis-plus" target="1.8" />
+      <module name="test-rabbitmq-consumer" target="1.8" />
+      <module name="test-rabbitmq-product" target="1.8" />
       <module name="xc-service-manage-media-processor" target="1.8" />
     </bytecodeTargetLevel>
   </component>
