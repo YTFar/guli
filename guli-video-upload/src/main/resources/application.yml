@@ -1,0 +1,81 @@
+server:
+  port: 7003
+xc-service-manage-media:
+  upload-location: D:/test/video/
+  mq:
+    routingkey-media-video: routingkey_media_video
+#  ignore-unresolvable: true
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: guli-upload
+  data:
+    mongodb:
+      uri:  mongodb://root:123456@localhost:27017
+      database: xc_media
+    #jackson
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  # Redis数据库
+  redis:
+    database: 0
+    host: 106.15.187.32
+    password: 123456
+    port: 12312
+    timeout: 5000
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 5
+        min-idle: -1
+  servlet:
+    multipart:
+      #默认支持文件上传.
+      enabled: true
+      #支持文件写入磁盘.
+      file-size-threshold: 0
+      # 上传文件的临时目录
+      location:
+      # 最大支持文件大小
+      max-file-size: 10000MB
+      # 最大支持请求大小
+      max-request-size: 10000MB
+
+#整合mybatisplus
+mybatis-plus:
+  type-aliases-package: com.cssl.pojo
+  mapper-locations: mapper/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+      field-strategy: not_empty
+      column-underline: false
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+      refresh: true
+
+eureka:
+  client: #客户端注册进eureka服务列表内
+    #实例是否在eureka服务器上注册自己的信息以供其他服务发现，默认为true
+    #    register-with-eureka: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:6001/eureka
+      #Eureka服务器集群
+      #defaultZone: http://eureka6001.com:6001/eureka/,http://eureka6002.com:6002/eureka/
+  instance:
+    instance-id: guli-upload7003
+    prefer-ip-address: true     #访问路径可以显示IP地址
+
+xuecheng:
+  fastdfs:
+    connect_timeout_in_seconds: 500
+    network_timeout_in_seconds: 3000
+    charset: UTF-8
+    tracker_servers: 39.106.18.84:22122 #多个 trackerServer中间以逗号分隔
+
+

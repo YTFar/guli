@@ -1,17 +1,15 @@
 package com.guli.mapper;
 
-        import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-        import com.baomidou.mybatisplus.core.metadata.IPage;
-        import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-        import com.guli.pojo.GuliEvaluate;
-        import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-        import com.guli.vo.CourseVO;
-        import com.guli.vo.GuliEvaluateVO;
-        import com.guli.vo.UserVO;
-        import org.apache.ibatis.annotations.Param;
-        import org.apache.ibatis.annotations.Select;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.guli.pojo.GuliEvaluate;
+import com.guli.vo.CourseVO;
+import com.guli.vo.GuliEvaluateVO;
+import com.guli.vo.UserVO;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
-        import java.util.List;
+import java.util.List;
 
 /**
  * <p>

@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/guli-web/pom.xml" />
         <option value="$PROJECT_DIR$/test-mybatis/pom.xml" />
+        <option value="$PROJECT_DIR$/guli-video-manager/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -22,7 +23,7 @@
     <resource url="http://mybatis.org/dtd/mybatis-3-config.dtd" location="C:/jar/mybatis-3-mapper/mybatis-3-config.dtd" />
     <resource url="http://mybatis.org/dtd/mybatis-3-mapper.dtd" location="C:/jar/mybatis-3-mapper/mybatis-3-mapper.dtd" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

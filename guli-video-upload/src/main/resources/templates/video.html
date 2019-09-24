@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8" />
+    <title>upload file</title>
+    <link type="text/css" th:href="@{upload/bootstrap.min.css}" rel="stylesheet" />
+    <link type="text/css" th:href="@{upload/webuploader.css}" rel="stylesheet" />
+
+<!--    <style>-->
+<!--        #picker div:nth-child(2){width:100%!important;height:100%!important;}-->
+<!--    </style>-->
+</head>
+<body >
+
+<!--<div id="uploader" class="wu-example" >-->
+<!--    &lt;!&ndash;用来存放文件信息&ndash;&gt;-->
+<!--    <div id="thelist" class="uploader-list" style="width:500px;"></div>-->
+<!--    <div class="btns">-->
+<!--        <div id="picker">选择文件</div>-->
+<!--        <button id="ctlBtn" class="btn btn-default">开始上传</button>-->
+<!--    </div>-->
+<!--</div>-->
+<div id="uploadfile">
+    <div id="picker" >选择文件</div>
+    <!--用来存放文件信息-->
+    <div id="thelist" class="uploader-list">
+        <table class="table" border="1" cellpadding="0" cellspacing="0" width="100%">
+            <tr class="filelist-head">
+                <th width="5%" class="file-num">序号</th>
+                <th class="file-name">视频名称</th>
+                <th class="file-size">大小</th>
+                <th width="20%" class="file-pro">进度</th>
+                <th class="file-status">状态</th>
+                <th width="20%" class="file-manage">操作</th>
+            </tr>
+        </table>
+    </div>
+    <div id="ctlBtn" class="btn btn-default">开始上传</div>
+</div>
+
+<script th:src="@{upload/jquery-1.8.3.min.js}"></script>
+<script th:src="@{upload/webuploader.min.js}"></script>
+<script th:src="@{upload/md5.js}"></script>
+<script type="text/javascript">
+    $(function(){
+        //视频上传 start
+        var $list = $('#thelist .table'),
+            $btn = $('#ctlBtn');
+
+        $btn.on('click', function () {
+            if ($(this).hasClass('disabled')) {
+                return false;
+            }
+            if($(".table .file-item") == null){
+                alert("请选择要上传的文件!");
+            }
+            uploader.upload();
+        });
+
+        var uploader = WebUploader.create({
+        // auto: true,// 选完文件后，自动上传。
+        swf: 'upload/Uploader.swf',// swf文件路径
+        server: '/upload',// 文件接收服务端。
+        pick: '#picker',// 选择文件的按钮。可选。
+        resize: false, // 不压缩image
+        chunked: true, //是否要分片处理大文件上传
+        chunkSize:2*1024*1024, //分片上传，每片2M，默认是5M
+        // auto: true, //选择文件后是否自动上传
+        // chunkRetry : 2, //如果某个分片由于网络问题出错，允许自动重传次数
+        //runtimeOrder: 'html5,flash',
+        // accept: {
+        //   title: 'Images',
+        //   extensions: 'gif,jpg,jpeg,bmp,png',
+        //   mimeTypes: 'image/*'
+        // }
+        duplicate: false //是否支持重复上传
+    });
+
+    // 当有文件被添加进队列的时候
+    uploader.on( 'fileQueued', function( file ) {
+        $("#picker").hide();//隐藏上传框
+        $("#thelist").append( '<div id="' + file.id + '" class="item">' +
+            '<h4 class="info">' + file.name + '</h4>' +
+            '<p class="state">等待中...</p>' +
+            '</div>' );
+        $list.append('<tr id="'+ file.id +'" class="file-item">'+'<td width="5%" class="file-num">111</td>'+'<td class="file-name">'+ file.name +'</td>'+ '<td width="20%" class="file-size">'+ (file.size/1024/1024).toFixed(1)+'M' +'</td>' +'<td width="20%" class="file-pro">0%</td>'+'<td class="file-status">等待上传</td>'+'<td width="20%" class="file-manage"><a class="stop-btn" href="javascript:;">暂停</a><a class="remove-this" href="javascript:;">取消</a></td>'+'</tr>');
+
+        //暂停上传的文件
+        $list.on('click','.stop-btn',function(){
+            uploader.stop(true);
+        })
+        //删除上传的文件
+        $list.on('click','.remove-this',function(){
+            if ($(this).parents(".file-item").attr('id') == file.id) {
+                uploader.removeFile(file);
+                $(this).parents(".file-item").remove();
+            }
+        })
+    });
+
+    // 文件上传过程中创建进度条实时显示。
+    uploader.on( 'uploadProgress', function( file, percentage ) {
+        var $li = $( '#'+file.id ).find('.file-pro'),
+        // var $li = $( '#'+file.id ),
+            $percent = $li.find('.progress .progress-bar');
+        $li.find('.per').text("");
+        // 避免重复创建
+        if ( !$percent.length ) {
+            $percent = $('<div class="progress progress-striped active">' +
+                '<div class="progress-bar" role="progressbar" style="width: 0%"></div>' +
+                '</div><div class="per">0%</div>').appendTo( $li ).find('.progress-bar');
+        }
+        // $li.find('p.state').text('Uploading');
+        // $percent.css( 'width', percentage * 100 + '%' );
+        $li.siblings('.file-status').text('上传中');
+        $percent.css( 'width', percentage * 100 + '%' );
+        $li.find('.per').text((percentage * 100).toFixed(2) + '%');
+    });
+
+    //上传成功后
+    uploader.on('uploadSuccess', function(file,response) {
+        if(response){
+            $("td.file-pro").text("100.00%");
+            $('#' + file.id).find('p.state').text('上传成功!');
+        }else{
+            $('#' + file.id).find('p.state').text('上传失败!');
+        }
+    });
+
+    //不管成功或者失败，文件上传完成时触发。
+    uploader.on('uploadComplete', function(file) {
+        // $('#' + file.id).find('.progress').fadeOut();
+        // $('#' + file.id).find('#cancel').fadeOut();
+        var addtr = '<tr id="'+ file.id +'" class="file-item"><td width="5%"><input type="checkbox" /></td><td width="5%">12</td><td>会计/初级</td><td>00:30:00</td>								<td>是</td><td>2018.05.30  21:24</td><td width="25%" class="mtns"><a class="edit" href="javascript:;">编辑</a><a class="t-btn transcode-btn" href="javascript:;">转码中...</a><a class="t-btn del-btn" href="javascript:;">删除课程</a></td></tr>'
+        $(".add-video-bd tr:first").after(addtr);
+    });
+
+
+    });
+</script>
+</body>
+</html>

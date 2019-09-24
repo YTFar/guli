@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/test-rabbitmq-consumer/test-rabbitmq-consumer.iml" filepath="$PROJECT_DIR$/test-rabbitmq-consumer/test-rabbitmq-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test-rabbitmq-product/test-rabbitmq-product.iml" filepath="$PROJECT_DIR$/test-rabbitmq-product/test-rabbitmq-product.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-session1/test-session1.iml" filepath="$PROJECT_DIR$/test-session1/test-session1.iml" />
     </modules>
   </component>

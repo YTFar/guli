@@ -1,6 +1,8 @@
 server:
   port: 8001
 
+guli-web:
+  upload-location: D:/Users/YT/IdeaProjects/guli/guli-web/src/main/resources/static/video/
 eureka:
   client:
     #实例是否在eureka服务器上注册自己的信息以供其他服务发现，默认为true
@@ -11,6 +13,8 @@ eureka:
     instance-id: guli-web8001
     prefer-ip-address: true     #访问路径可以显示IP地址
 
+
+
 spring:
   application:
     name: guli-web
@@ -20,6 +24,10 @@ spring:
       encoding: utf-8
       cache: false
       suffix: .html
+      prefix: classpath:/templates/showWeb/
+      servlet:
+        content-type: text/html
+
   mvc:
     view:
       prefix: /
@@ -35,6 +43,19 @@ spring:
     ConnectTimeout: 60000
     MaxAutoRetries: 0
     MaxAutoRetriesNextServer: 1
+  # Redis数据库
+  redis:
+    database: 0
+    host: 106.15.187.32
+    password: 123456
+    port: 12312
+    timeout: 5000
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 5
+        min-idle: -1
   servlet:
     multipart:
       #默认支持文件上传.
@@ -53,3 +74,16 @@ xuecheng:
     network_timeout_in_seconds: 30003
     charset: UTF-8
     tracker_servers: 39.106.18.84:22122 #多个 trackerServer中间以逗号分隔
+
+#整合mybatisplus
+mybatis-plus:
+  type-aliases-package: com.cssl.mapper
+  mapper-locations: mapper/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+      field-strategy: not_empty
+      column-underline: false
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+      refresh: true

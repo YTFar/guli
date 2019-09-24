@@ -18,6 +18,8 @@
         <module>guli-utils</module>
         <module>guli-common</module>
         <module>test-mybatis</module>
+        <module>guli-video-upload</module>
+        <module>guli-video-manager</module>
     </modules>
 
     <!--依赖环境的版本信息-->

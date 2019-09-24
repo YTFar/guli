@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "guli-video-upload.mq.ignore-unresolvable",
+      "type": "java.lang.String",
+      "description": "Description for guli-video-upload.mq.ignore-unresolvable."
+  }
+] }

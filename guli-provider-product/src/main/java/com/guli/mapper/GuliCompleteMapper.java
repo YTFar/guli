@@ -1,7 +1,7 @@
 package com.guli.mapper;
 
-import com.guli.pojo.GuliComplete;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.guli.pojo.GuliComplete;
 
 /**
  * <p>

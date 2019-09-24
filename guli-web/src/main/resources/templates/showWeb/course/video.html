@@ -1,0 +1,62 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="content-type"  content="text/html; charset=utf-8" />
+    <title>视频播放</title>
+<!--    <link rel="stylesheet" media="screen" href="../videojs/video-js.css">-->
+
+    <link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet">
+    <style>
+        .vjs-paused .vjs-big-play-button,
+        .vjs-paused.vjs-has-started .vjs-big-play-button {
+            display: block;
+        }
+        .video-js {
+            width: 100%;
+            height: 475px;
+        }
+    </style>
+</head>
+<body>
+<video id=myVideo width=100% height=490 class="video-js vjs-default-skin vjs-big-play-centered" autoplay controls poster="/video/hls/add.jpg">
+    <source th:src="${path}"
+            type="application/x-mpegURL">
+</video>
+<!--<script src="/static-dist/app/js/jquery-1.8.3.min.js"></script>-->
+<!--<script src="../videojs/video.js"></script>-->
+<script src="https://unpkg.com/video.js/dist/video.min.js"></script>
+<script src="https://unpkg.com/videojs-flash/dist/videojs-flash.js"></script>
+<!--<script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>-->
+<script>
+    var player = videojs('myVideo', function () {
+
+    });
+    // $(function(){
+    //     var path = $(parent.document).find("#myrame").attr("src")+".m3u8";
+    //     // $("#myVideo source").attr("src",path );
+    //     console.log(path);
+    //     console.log($(parent.document).find("#myrame").attr("src"));
+    // })
+
+    //Chrome报错 Uncaught (in promise) DOMException
+    //新版chrome 不支持自动播放
+    // player.play();
+
+    // function switchvideo(){
+    //     player.src({
+    //         src: 'http://xcvideo.java.itcast.cn/video/lucene.m3u8',
+    //         type: 'application/x-mpegURL',
+    //         withCredentials: true
+    //     });
+    //     player.play();
+    // }
+    // myVideo.play() // 视频播放
+
+    // /video/hls/lucene.m3u8
+
+
+</script>
+
+</body>
+</html>

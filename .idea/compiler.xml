@@ -5,24 +5,31 @@
       <file url="file://$PROJECT_DIR$/guli-eureka/src/main/java/com/guli/EurekaApplication.java" />
     </excludeFromCompile>
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="guli-web" />
-        <module name="guli-eureka" />
         <module name="guli-provider-product" />
-        <module name="guli-utils" />
-        <module name="test-mybatis" />
-        <module name="guli-model" />
         <module name="test-session1" />
-        <module name="guli-provider-user" />
-        <module name="guli-common" />
         <module name="guli-api" />
+        <module name="guli-video-manager" />
+        <module name="test-rabbitmq-consumer" />
+        <module name="guli-model" />
+        <module name="guli-utils" />
+        <module name="guli-eureka" />
+        <module name="guli-common" />
+        <module name="guli-web" />
+        <module name="guli-video-upload" />
+        <module name="test-rabbitmq-product" />
+        <module name="xc-service-manage-media-processor" />
+        <module name="test-mybatis" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="guli-video2" target="1.8" />
       <module name="test-mybatis-plus" target="1.8" />
+      <module name="xc-service-manage-media-processor" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

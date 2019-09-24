@@ -708,13 +708,7 @@
   
       </div>
 
-      <div class="col-lg-3 col-md-4 course-sidebar">
-
-        
-
-
-                                                    
-                                                                    <div class="panel panel-default">
+      <div class="col-lg-3 col-md-4 course-sidebar">           <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">课程特色</h3>
     </div>
@@ -1279,56 +1273,181 @@
   <div id="modal" class="modal"></div>
   <div id="attachment-modal" class="modal"></div>
 
-    
-
-    <script>
-  if (typeof app === 'undefined') {
-      var app = {};
-  }
-  app.version = '8.3.2';
-  app.httpHost = 'http://www.gulixueyuan.com';
-  app.basePath = 'http://www.gulixueyuan.com';
-  app.theme = 'june';
-
-    
-  var CLOUD_FILE_SERVER = ""; 
-
-  app.config = {"api":{"weibo":{"key":"101226163"},"qq":{"key":"101226163"},"douban":{"key":""},"renren":{"key":""}},"loading_img_path":"\/assets\/img\/default\/loading.gif?version=8.3.2"};
-
-  app.arguments = {};
-      
-  app.scripts = null;
-
-  app.fileSingleSizeLimit = 10;
-  app.uploadUrl = '/file/upload';
-  app.imgCropUrl = '/file/img/crop';
-  app.lessonCopyEnabled = '1';
-  app.cloudPlayerSdkUrl = '//service-cdn.qiqiuyun.net/js-sdk/sdk-v1.js?15662876';
-  app.cloudPlayServer = '';
-  app.cloudVideoPlayerSdkUrl = '//service-cdn.qiqiuyun.net/js-sdk/video-player/sdk-v1.js?15662876';
-  app.cloudOldUploaderSdkUrl = '//service-cdn.qiqiuyun.net/js-sdk/uploader/sdk-v1.js?15662876';
-  app.cloudOldDocumentSdkUrl = '//service-cdn.qiqiuyun.net/js-sdk/document-player/v7/viewer.html?15662876';
-  app.lang = 'zh_CN';
-</script>
-
 <script src="../bundles/translations/translator.min-8.3.2.js"></script>
 
-  <script src="../bundles/translations/zh_CN-8.3.2.js"></script>
-      <script src="../static-dist/libs/base-8.3.2.js"></script>
-        <script src="../static-dist/app/js/common-8.3.2.js"></script>
-        <!--<script src="../static-dist/app/js/main-8.3.2.js"></script>-->
-        <!--<script src="../static-dist/junetheme/js/default/main-8.3.2.js"></script>-->
-        <script src="../static-dist/libs/easy-pie-chart/dist/jquery.easypiechart-8.3.2.js"></script>
-        <script src="../static-dist/libs/excanvas-compiled-8.3.2.js"></script>
-        <script src="../static-dist/libs/echo-js-8.3.2.js"></script>
-        <script src="../static-dist/libs/jquery-countdown-8.3.2.js"></script>
-        <script src="../static-dist/app/js/courseset/show/index-8.3.2.js"></script>
-        <script src="../static-dist/app/js/course/header-top/index-8.3.2.js"></script>
-        <script src="../static-dist/app/js/share/index-8.3.2.js"></script>
-        <script src="../static-dist/app/js/announcement/announcement-swiper-slide/index-8.3.2.js"></script>
-  
+<script src="../bundles/translations/zh_CN-8.3.2.js"></script>
+<script src="../static-dist/libs/base-8.3.2.js"></script>
+<script src="../static-dist/app/js/common-8.3.2.js"></script>
+<!--<script src="../static-dist/app/js/main-8.3.2.js"></script>-->
+<!--<script src="../static-dist/junetheme/js/default/main-8.3.2.js"></script>-->
+<script src="../static-dist/libs/easy-pie-chart/dist/jquery.easypiechart-8.3.2.js"></script>
+<script src="../static-dist/libs/excanvas-compiled-8.3.2.js"></script>
+<script src="../static-dist/libs/echo-js-8.3.2.js"></script>
+<script src="../static-dist/libs/jquery-countdown-8.3.2.js"></script>
+<script src="../static-dist/app/js/courseset/show/index-8.3.2.js"></script>
+<script src="../static-dist/app/js/course/header-top/index-8.3.2.js"></script>
+<script src="../static-dist/app/js/share/index-8.3.2.js"></script>
+<script src="../static-dist/app/js/announcement/announcement-swiper-slide/index-8.3.2.js"></script>
+
 <script type="text/javascript">
-  window.seajsBoot && window.seajsBoot();
+    $(function(){
+
+
+        function getUrlParam(name)
+        {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg); //匹配目标参数
+            if(r != null) return decodeURI(r[2]);//返回参数值
+            return null;
+        }
+
+        var id = getUrlParam("id");
+
+        $("#tasksA").click(function(){
+            window.location.href = "favorite.html?id="+id;
+        });
+
+        //课程分级显示信息
+        $.get("/guliClassify/findCourseTowClassify?id="+id,function(rs){
+            var item = rs.object;
+            $("#classfiy").append("<li><a href='/guliCourse/findPageAllCourseById?id="+item.classifyId+"'>"+item.classifyName+"</a></li><li><a href='/guliCourse/findPageAllCourseById?id="+item.classifyTowId+"'>"+item.classifyTowName+"</a></li><li>"+item.courseName+"</li>");
+        });
+
+        //根据id查询课程介绍信息
+        $.get("/guliIntroduce/findByIdIntroduce?id="+id,function(rs){
+            var item = rs.object;
+            $("#introduce").append("<div class=\"es-piece\">\n" +
+                "  <div class=\"piece-header\">课程介绍</div>\n" +
+                "  <div class=\"piece-body p-lg clearfix\">\n" +
+                "    <p><strong>谷粉技术交流群 </strong></p>\n" +
+                "\n" +
+                "<p><strong>与万千谷粉一起学习，点击加入：<a href=\"//shang.qq.com/wpa/qunwpa?idkey=68547df5d222bc8512e589b1d088c0850f7cfe5d79cc190c462b1ed3aa88b686\" target=\"_blank\" rel=\"noreferrer noopener\"><img alt=\"尚硅谷谷粉第61群\" border=\"0\" src=\"//pub.idqqimg.com/wpa/images/group.png\" title=\"尚硅谷谷粉第61群\"></a>（群号824325192 &nbsp;）</strong></p>" +
+                ""+ item.introduceName+"  </div>\n" +
+                "</div>");
+            if(null == item.introduceProgram){
+                var isNull_1 = "<div class=\"es-piece hidden \">\n" +
+                    "  <div class=\"piece-header\">课程目标</div>\n" +
+                    "  <div class=\"piece-body\">\n" +
+                    "    <ul class=\"piece-body-list\">\n" +
+                    "              <span class=\"empty\">为设置目标</span>\n" +
+                    "          </ul>\n" +
+                    "  </div>\n" +
+                    "</div>";
+                $("#introduce").append(isNull_1);
+            }else{
+                $("#introduce").append("<div class=\"es-piece \">\n" +
+                    "  <div class=\"piece-header\">课程目标</div>\n" +
+                    "  <div class=\"piece-body\">\n" +
+                    "    <ul class=\"piece-body-list\">\n" +
+                    "        <li>\n" +
+                    "            <i class=\"es-icon es-icon-dot mrm\"></i>\n" +
+                    "          "+item.introduceProgram+"\n" +
+                    "        </li>\n" +
+                    "    </ul>\n" +
+                    "  </div>\n" +
+                    "</div>");
+            }
+
+            if(null == item.introduceTarget){
+                var isNull_2 = "<div class=\"es-piece hidden \">\n" +
+                    "  <div class=\"piece-header\">适合人群</div>\n" +
+                    "  <div class=\"piece-body\">\n" +
+                    "    <ul class=\"piece-body-list\">\n" +
+                    "              <span class=\"empty\">为设置目标</span>\n" +
+                    "          </ul>\n" +
+                    "  </div>\n" +
+                    "</div>";
+                $("#introduce").append(isNull_2);
+            }else{
+                $("#introduce").append("<div class=\"es-piece \">\n" +
+                    "  <div class=\"piece-header\">适合人群</div>\n" +
+                    "  <div class=\"piece-body\">\n" +
+                    "    <ul class=\"piece-body-list\">\n" +
+                    "        <li>\n" +
+                    "            <i class=\"es-icon es-icon-dot mrm\"></i>\n" +
+                    "          "+item.introduceTarget+"\n" +
+                    "        </li>\n" +
+                    "    </ul>\n" +
+                    "  </div>\n" +
+                    "</div>");
+            }
+
+
+        });
+
+
+        //根据课程id查询课程目录
+        $.get("/guliCatalogue/findByIdCatalogue?id="+id, function (rs) {
+            // $("#catalogue").remove();
+            $.each(rs.object,function(i,item){
+                console.log(item.catalogueName)
+            });
+            $.each(rs.object,function(i,item){
+                var str = "<li class=\"task-item bg-gray-lighter js-task-chapter infinite-item\" display-if=\"true\"><i class=\"es-icon es-icon-menu left-menu\"></i>\n" +
+                    "    <a href=\"javascript:\" class=\"title gray-dark\">第" + (i + 1) + "章" + item.catalogueName + "</a>\n" +
+                    "    <i class=\"right-menu es-icon js-remove-icon es-icon-remove\"></i>\n" +
+                    "  </li>";
+                var id2 = item.catalogueId;
+                //根据目录id查询子目录
+                $.get("/guliSubdirectory/findByIdSubdirectory?id="+id2, function (rs2) {
+                    $.each(rs2.object,function(j,item2){
+                        //视频时长
+                        var sc = "";
+                        if(item2.subdirectoryType != 1){
+                            sc = "17:12";
+                        }
+                        //预览
+                        var yl = "<span class=\"right-menu color-gray  mouse-leave \">\n" +
+                        "<tmp hide-if=\"false\">\n" +
+                        ""+sc+"\n" +
+                        "</tmp>\n" +
+                        "<i class=\"es-icon es-icon-videoclass\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title=\"视频任务\" data-container=\"body\"></i>\n" +
+                        "</span>\n" +
+                        "<span class=\"right-menu mouse-enter\">\n" +
+                        "<a class=\"btn btn-primary\" href=\"#modal\" data-toggle=\"modal\" data-url=\"/course/309/task/7667/preview\" style=\"margin-top:-6px\">预览</a>\n" +
+                        "</span>"
+
+                        //下载
+                        var xz = "<span class=\"right-menu color-gray  mouse-leave \">\n" +
+                        "<tmp hide-if=\"false\">    \n" +
+                        ""+sc+"\n" +
+                        "</tmp>\n" +
+                        "<i class=\"es-icon es-icon-filedownload\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title=\"下载资料任务\" data-container=\"body\"></i>\n" +
+                        "</span>\n" +
+                        "<span class=\"right-menu mouse-enter\"><a class=\"btn btn-warning\" href=\"#modal\" data-toggle=\"modal\" data-url=\"/course/309/task/9375/preview\" style=\"margin-top:-6px\">加入</a></span>"
+
+                        //是否免费
+                        var mf = "";
+                        if(i < 1 && j < 4 && item2.subdirectoryType != 1){
+                            mf = "<span display-if=\"1\" class=\"label label-success mr10\">免费</span>";
+                        }
+
+                        //预览与加入
+                        var flag = "";
+                        if(item2.subdirectoryType == 1){
+                            flag = xz;
+                        } else if(i >= 1 || j >= 4){
+                            flag = xz;
+                        }else if(i < 1 && j < 4){
+                            flag = yl;
+                        }
+                         str = str + "<li class=\"task-item task-content mouse-control infinite-item\" display-if=\"true\" style=\"\">\n" +
+                            "    <i hide-if=\"false\" class=\"es-icon left-menu es-icon-undone-check color-gray\">\n" +
+                            "    </i>\n" +
+                            "      <a class=\"title\" href=\"#modal\" data-toggle=\"modal\" data-url=\"/course/309/task/7667/preview\" style=\"margin-top:-6px\">"+mf+"\n" +
+                            "任务1-1： "+item2.subdirectoryName+"</a>\n" +
+                            ""+flag+"\n" +
+                            "  </li>";
+
+                    });
+                    $("#catalogue").append(str);
+                });
+
+            });
+        });
+
+
+    })
 </script>
 
 <script>
