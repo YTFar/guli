@@ -1,22 +1,13 @@
 package com.guli.controller;
 
 
-import com.guli.api.GuliClassifyControllerApi;
 import com.guli.message.response.CommonCode;
 import com.guli.pojo.GuliCatalogue;
-import com.guli.pojo.GuliClassify;
-import com.guli.pojo.GuliPower;
-import com.guli.pojo.cataloguevo.CatalogueAndAccomplish;
-import com.guli.pojo.cataloguevo.CatalogueAndCourse;
-import com.guli.pojo.response.AllTypePage;
 import com.guli.response.ObjectResult;
 import com.guli.service.GuliCatalogueService;
 import com.guli.service.GuliPowerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * <p>
@@ -42,7 +33,7 @@ public class GuliCatalogueController{
      * @return
      */
     @GetMapping("/findByIdCatalogue")
-    public ObjectResult findByIdCatalogue(@RequestParam("id")int id){
+    public ObjectResult findByIdCatalogue(@RequestParam("courseId")int id){
         return new ObjectResult(CommonCode.SUCCESS,guliCatalogueService.findByIdCatalogue(id));
     }
 

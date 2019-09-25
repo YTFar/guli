@@ -1,23 +1,17 @@
 package com.guli.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.guli.message.response.CommonCode;
 import com.guli.pojo.GuliCourse;
 import com.guli.pojo.GuliPower;
 import com.guli.pojo.coursevo.CourseAndClassify;
-import com.guli.pojo.coursevo.CourseAndClassifyAndUser;
-import com.guli.pojo.request.PageCourse;
 import com.guli.pojo.response.AllTypePage;
 import com.guli.response.ObjectResult;
 import com.guli.service.GuliCourseService;
 import com.guli.service.GuliPowerService;
 import com.guli.service.fastdfs.FastDFSService;
-import com.guli.vo.CourseVO;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -148,9 +142,9 @@ public class GuliCourseController {
     @GetMapping("/findAllPageCourse")
     public ObjectResult findAllPageCourse(@RequestParam("pageNo") int pageNo,@RequestParam("pageSize")  int pageSize,@RequestParam("userId")  int userId,@RequestParam("courseName")  String courseName){
         GuliPower userIdPower = guliPowerService.findUserIdPower((long) userId);
-        if(userIdPower.getPowerName().equals("管理员")){
-            userId = -1;
-        }
+//        if(userIdPower.getPowerName().equals("管理员")){
+//            userId = -1;
+//        }
         if(courseName == null|| courseName.equals("")){
             courseName = "*";
         }

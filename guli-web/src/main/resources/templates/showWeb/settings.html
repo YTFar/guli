@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- saved from url=(0035)http://www.gulixueyuan.com/settings -->
-<html lang="zh_CN" class=""><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">/*!
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">/*!
  * Datetimepicker for Bootstrap
  *
  * Copyright 2012 Stefan Petre
@@ -10,196 +10,196 @@
  *
  */
 .datetimepicker {
-	padding: 4px;
-	margin-top: 1px;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-	direction: ltr;
+    padding: 4px;
+    margin-top: 1px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    direction: ltr;
 }
 
 .datetimepicker-inline {
-	width: 220px;
+    width: 220px;
 }
 
 .datetimepicker.datetimepicker-rtl {
-	direction: rtl;
+    direction: rtl;
 }
 
 .datetimepicker.datetimepicker-rtl table tr td span {
-	float: right;
+    float: right;
 }
 
 .datetimepicker-dropdown, .datetimepicker-dropdown-left {
-	top: 0;
-	left: 0;
+    top: 0;
+    left: 0;
 }
 
 [class*=" datetimepicker-dropdown"]:before {
-	content: '';
-	display: inline-block;
-	border-left: 7px solid transparent;
-	border-right: 7px solid transparent;
-	border-bottom: 7px solid #cccccc;
-	border-bottom-color: rgba(0, 0, 0, 0.2);
-	position: absolute;
+    content: '';
+    display: inline-block;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #cccccc;
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+    position: absolute;
 }
 
 [class*=" datetimepicker-dropdown"]:after {
-	content: '';
-	display: inline-block;
-	border-left: 6px solid transparent;
-	border-right: 6px solid transparent;
-	border-bottom: 6px solid #ffffff;
-	position: absolute;
+    content: '';
+    display: inline-block;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #ffffff;
+    position: absolute;
 }
 
 [class*=" datetimepicker-dropdown-top"]:before {
-	content: '';
-	display: inline-block;
-	border-left: 7px solid transparent;
-	border-right: 7px solid transparent;
-	border-top: 7px solid #cccccc;
-	border-top-color: rgba(0, 0, 0, 0.2);
-	border-bottom: 0;
+    content: '';
+    display: inline-block;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid #cccccc;
+    border-top-color: rgba(0, 0, 0, 0.2);
+    border-bottom: 0;
 }
 
 [class*=" datetimepicker-dropdown-top"]:after {
-	content: '';
-	display: inline-block;
-	border-left: 6px solid transparent;
-	border-right: 6px solid transparent;
-	border-top: 6px solid #ffffff;
-	border-bottom: 0;
+    content: '';
+    display: inline-block;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #ffffff;
+    border-bottom: 0;
 }
 
 .datetimepicker-dropdown-bottom-left:before {
-	top: -7px;
-	right: 6px;
+    top: -7px;
+    right: 6px;
 }
 
 .datetimepicker-dropdown-bottom-left:after {
-	top: -6px;
-	right: 7px;
+    top: -6px;
+    right: 7px;
 }
 
 .datetimepicker-dropdown-bottom-right:before {
-	top: -7px;
-	left: 6px;
+    top: -7px;
+    left: 6px;
 }
 
 .datetimepicker-dropdown-bottom-right:after {
-	top: -6px;
-	left: 7px;
+    top: -6px;
+    left: 7px;
 }
 
 .datetimepicker-dropdown-top-left:before {
-	bottom: -7px;
-	right: 6px;
+    bottom: -7px;
+    right: 6px;
 }
 
 .datetimepicker-dropdown-top-left:after {
-	bottom: -6px;
-	right: 7px;
+    bottom: -6px;
+    right: 7px;
 }
 
 .datetimepicker-dropdown-top-right:before {
-	bottom: -7px;
-	left: 6px;
+    bottom: -7px;
+    left: 6px;
 }
 
 .datetimepicker-dropdown-top-right:after {
-	bottom: -6px;
-	left: 7px;
+    bottom: -6px;
+    left: 7px;
 }
 
 .datetimepicker > div {
-	display: none;
+    display: none;
 }
 
 .datetimepicker.minutes div.datetimepicker-minutes {
-	display: block;
+    display: block;
 }
 
 .datetimepicker.hours div.datetimepicker-hours {
-	display: block;
+    display: block;
 }
 
 .datetimepicker.days div.datetimepicker-days {
-	display: block;
+    display: block;
 }
 
 .datetimepicker.months div.datetimepicker-months {
-	display: block;
+    display: block;
 }
 
 .datetimepicker.years div.datetimepicker-years {
-	display: block;
+    display: block;
 }
 
 .datetimepicker table {
-	margin: 0;
+    margin: 0;
 }
 
 .datetimepicker  td,
 .datetimepicker th {
-	text-align: center;
-	width: 20px;
-	height: 20px;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-	border: none;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: none;
 }
 
 .table-striped .datetimepicker table tr td,
 .table-striped .datetimepicker table tr th {
-	background-color: transparent;
+    background-color: transparent;
 }
 
 .datetimepicker table tr td.minute:hover {
-	background: #eeeeee;
-	cursor: pointer;
+    background: #eeeeee;
+    cursor: pointer;
 }
 
 .datetimepicker table tr td.hour:hover {
-	background: #eeeeee;
-	cursor: pointer;
+    background: #eeeeee;
+    cursor: pointer;
 }
 
 .datetimepicker table tr td.day:hover {
-	background: #eeeeee;
-	cursor: pointer;
+    background: #eeeeee;
+    cursor: pointer;
 }
 
 .datetimepicker table tr td.old,
 .datetimepicker table tr td.new {
-	color: #999999;
+    color: #999999;
 }
 
 .datetimepicker table tr td.disabled,
 .datetimepicker table tr td.disabled:hover {
-	background: none;
-	color: #999999;
-	cursor: default;
+    background: none;
+    color: #999999;
+    cursor: default;
 }
 
 .datetimepicker table tr td.today,
 .datetimepicker table tr td.today:hover,
 .datetimepicker table tr td.today.disabled,
 .datetimepicker table tr td.today.disabled:hover {
-	background-color: #fde19a;
-	background-image: -moz-linear-gradient(top, #fdd49a, #fdf59a);
-	background-image: -ms-linear-gradient(top, #fdd49a, #fdf59a);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fdd49a), to(#fdf59a));
-	background-image: -webkit-linear-gradient(top, #fdd49a, #fdf59a);
-	background-image: -o-linear-gradient(top, #fdd49a, #fdf59a);
-	background-image: linear-gradient(top, #fdd49a, #fdf59a);
-	background-repeat: repeat-x;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdd49a', endColorstr='#fdf59a', GradientType=0);
-	border-color: #fdf59a #fdf59a #fbed50;
-	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    background-color: #fde19a;
+    background-image: -moz-linear-gradient(top, #fdd49a, #fdf59a);
+    background-image: -ms-linear-gradient(top, #fdd49a, #fdf59a);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fdd49a), to(#fdf59a));
+    background-image: -webkit-linear-gradient(top, #fdd49a, #fdf59a);
+    background-image: -o-linear-gradient(top, #fdd49a, #fdf59a);
+    background-image: linear-gradient(top, #fdd49a, #fdf59a);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdd49a', endColorstr='#fdf59a', GradientType=0);
+    border-color: #fdf59a #fdf59a #fbed50;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 
 .datetimepicker table tr td.today:hover,
@@ -222,7 +222,7 @@
 .datetimepicker table tr td.today:hover[disabled],
 .datetimepicker table tr td.today.disabled[disabled],
 .datetimepicker table tr td.today.disabled:hover[disabled] {
-	background-color: #fdf59a;
+    background-color: #fdf59a;
 }
 
 .datetimepicker table tr td.today:active,
@@ -233,27 +233,27 @@
 .datetimepicker table tr td.today:hover.active,
 .datetimepicker table tr td.today.disabled.active,
 .datetimepicker table tr td.today.disabled:hover.active {
-	background-color: #fbf069;
+    background-color: #fbf069;
 }
 
 .datetimepicker table tr td.active,
 .datetimepicker table tr td.active:hover,
 .datetimepicker table tr td.active.disabled,
 .datetimepicker table tr td.active.disabled:hover {
-	background-color: #006dcc;
-	background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
-	background-image: -ms-linear-gradient(top, #0088cc, #0044cc);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
-	background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
-	background-image: -o-linear-gradient(top, #0088cc, #0044cc);
-	background-image: linear-gradient(top, #0088cc, #0044cc);
-	background-repeat: repeat-x;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088cc', endColorstr='#0044cc', GradientType=0);
-	border-color: #0044cc #0044cc #002a80;
-	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-	color: #ffffff;
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-color: #006dcc;
+    background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+    background-image: -ms-linear-gradient(top, #0088cc, #0044cc);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+    background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
+    background-image: -o-linear-gradient(top, #0088cc, #0044cc);
+    background-image: linear-gradient(top, #0088cc, #0044cc);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088cc', endColorstr='#0044cc', GradientType=0);
+    border-color: #0044cc #0044cc #002a80;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    color: #ffffff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
 .datetimepicker table tr td.active:hover,
@@ -276,7 +276,7 @@
 .datetimepicker table tr td.active:hover[disabled],
 .datetimepicker table tr td.active.disabled[disabled],
 .datetimepicker table tr td.active.disabled:hover[disabled] {
-	background-color: #0044cc;
+    background-color: #0044cc;
 }
 
 .datetimepicker table tr td.active:active,
@@ -287,72 +287,72 @@
 .datetimepicker table tr td.active:hover.active,
 .datetimepicker table tr td.active.disabled.active,
 .datetimepicker table tr td.active.disabled:hover.active {
-	background-color: #003399;
+    background-color: #003399;
 }
 
 .datetimepicker table tr td span {
-	display: block;
-	width: 23%;
-	height: 54px;
-	line-height: 54px;
-	float: left;
-	margin: 1%;
-	cursor: pointer;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
+    display: block;
+    width: 23%;
+    height: 54px;
+    line-height: 54px;
+    float: left;
+    margin: 1%;
+    cursor: pointer;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
 }
 
 .datetimepicker .datetimepicker-hours span {
-	height: 26px;
-	line-height: 26px;
+    height: 26px;
+    line-height: 26px;
 }
 
 .datetimepicker .datetimepicker-hours table tr td span.hour_am,
 .datetimepicker .datetimepicker-hours table tr td span.hour_pm {
-	width: 14.6%;
+    width: 14.6%;
 }
 
 .datetimepicker .datetimepicker-hours fieldset legend,
 .datetimepicker .datetimepicker-minutes fieldset legend {
-	margin-bottom: inherit;
-	line-height: 30px;
+    margin-bottom: inherit;
+    line-height: 30px;
 }
 
 .datetimepicker .datetimepicker-minutes span {
-	height: 26px;
-	line-height: 26px;
+    height: 26px;
+    line-height: 26px;
 }
 
 .datetimepicker table tr td span:hover {
-	background: #eeeeee;
+    background: #eeeeee;
 }
 
 .datetimepicker table tr td span.disabled,
 .datetimepicker table tr td span.disabled:hover {
-	background: none;
-	color: #999999;
-	cursor: default;
+    background: none;
+    color: #999999;
+    cursor: default;
 }
 
 .datetimepicker table tr td span.active,
 .datetimepicker table tr td span.active:hover,
 .datetimepicker table tr td span.active.disabled,
 .datetimepicker table tr td span.active.disabled:hover {
-	background-color: #006dcc;
-	background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
-	background-image: -ms-linear-gradient(top, #0088cc, #0044cc);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
-	background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
-	background-image: -o-linear-gradient(top, #0088cc, #0044cc);
-	background-image: linear-gradient(top, #0088cc, #0044cc);
-	background-repeat: repeat-x;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088cc', endColorstr='#0044cc', GradientType=0);
-	border-color: #0044cc #0044cc #002a80;
-	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-	color: #ffffff;
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-color: #006dcc;
+    background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+    background-image: -ms-linear-gradient(top, #0088cc, #0044cc);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+    background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
+    background-image: -o-linear-gradient(top, #0088cc, #0044cc);
+    background-image: linear-gradient(top, #0088cc, #0044cc);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088cc', endColorstr='#0044cc', GradientType=0);
+    border-color: #0044cc #0044cc #002a80;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    color: #ffffff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
 .datetimepicker table tr td span.active:hover,
@@ -375,7 +375,7 @@
 .datetimepicker table tr td span.active:hover[disabled],
 .datetimepicker table tr td span.active.disabled[disabled],
 .datetimepicker table tr td span.active.disabled:hover[disabled] {
-	background-color: #0044cc;
+    background-color: #0044cc;
 }
 
 .datetimepicker table tr td span.active:active,
@@ -386,57 +386,57 @@
 .datetimepicker table tr td span.active:hover.active,
 .datetimepicker table tr td span.active.disabled.active,
 .datetimepicker table tr td span.active.disabled:hover.active {
-	background-color: #003399;
+    background-color: #003399;
 }
 
 .datetimepicker table tr td span.old {
-	color: #999999;
+    color: #999999;
 }
 
 .datetimepicker th.switch {
-	width: 145px;
+    width: 145px;
 }
 
 .datetimepicker th span.glyphicon {
-	pointer-events: none;
+    pointer-events: none;
 }
 
 .datetimepicker thead tr:first-child th,
 .datetimepicker tfoot th {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .datetimepicker thead tr:first-child th:hover,
 .datetimepicker tfoot th:hover {
-	background: #eeeeee;
+    background: #eeeeee;
 }
 
 .input-append.date .add-on i,
 .input-prepend.date .add-on i,
 .input-group.date .input-group-addon span {
-	cursor: pointer;
-	width: 14px;
-	height: 14px;
+    cursor: pointer;
+    width: 14px;
+    height: 14px;
 }
 </style><style type="text/css">.datetimepicker {
-  padding: 4px !important;
+    padding: 4px !important;
 }
 </style>
-  
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-  <meta name="renderer" content="webkit">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-  <title>个人信息 - 谷粒学院 - Java视频|大数据视频|前端视频|HTML5视频|Linux运维视频|Python视频-程序员标配IT在线学习平台 - Powered By EduSoho</title>
-      <meta name="keywords" content="
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>个人信息 - 谷粒学院 - Java视频|大数据视频|前端视频|HTML5视频|Linux运维视频|Python视频-程序员标配IT在线学习平台 - Powered By EduSoho</title>
+    <meta name="keywords" content="
 谷粒学院,IT在线视频教程,Java视频,HTML5视频,前端视频,Python视频,大数据视频,IT在线学习">
     <meta name="description" content="谷粒学院为尚硅谷旗下IT课程在线学习平台。谷粒学院会同上百个知名开发团队联合制定的Java、前端、大数据、Python、Linux运维等课程，致力于打造业界更适合自学、代码量大、案例多、实战性强、技术贴合企业的IT在线学习平台！">
     <meta content="JzxOvm_TfeSV6f5uyzz54llurB6yoZISbdQrzH_xiPk" name="csrf-token">
     <meta content="1" name="is-login">
     <meta content="0" name="wechat_login_bind">
-  
 
-  <meta property="qc:admins" content="240444522214751756375">
-      <link rel="icon" href="http://www.gulixueyuan.com/files/system/2017/06-21/160846e883d7292766.ico?version=8.3.2" type="image/x-icon">
+
+    <meta property="qc:admins" content="240444522214751756375">
+    <link rel="icon" href="http://www.gulixueyuan.com/files/system/2017/06-21/160846e883d7292766.ico?version=8.3.2" type="image/x-icon">
     <link rel="shortcut icon" href="http://www.gulixueyuan.com/files/system/2017/06-21/160846e883d7292766.ico?version=8.3.2" type="image/x-icon" media="screen">
 
     <!--[if lt IE 9]>
@@ -455,7 +455,7 @@
     <link rel="stylesheet" media="screen" href="themes/june/css/sggn-8.3.2.css">
     <link rel="stylesheet" media="screen" href="themes/june/css/june-blue-8.3.2.css">
     <link rel="stylesheet" media="screen" href="themes/june/css/header1-8.3.2.css">
-  <style>.cke{visibility:hidden;}</style>
+    <style>.cke{visibility:hidden;}</style>
     <script type="text/javascript" src="./个人信息_files/config.js.下载"></script>
     <link rel="stylesheet" type="text/css" href="./个人信息_files/editor.css">
     <script type="text/javascript" src="./个人信息_files/zh-cn.js.下载"></script>
@@ -562,693 +562,696 @@
 
 [endif]-->
 
-  <div class="es-wrap">
+<div class="es-wrap">
 
-                  <style type="text/css">
-  @charset "UTF-8";
-.header{
-    height: 60px;
-    background-color: #282d30;
-    box-shadow: none;
-}
-.h-con{
-    height: 60px;
-    box-shadow:none;
-    background-color: #282d30;
-}
-.nav-list a{
-  color: #fff;
-}
-.userName {
-    color: #fff;
-}
-.nav-list .nav-course:hover{
-  background:#282d30;
-}
-.nav-list .nav-course.active:hover{
-  background:#61b13b;
-}
-.login-after:hover .login-after-top {
-    color:#fff;
-  background-color:#000;
-}
+    <style type="text/css">
+        @charset "UTF-8";
+        .header{
+            height: 60px;
+            background-color: #282d30;
+            box-shadow: none;
+        }
+        .h-con{
+            height: 60px;
+            box-shadow:none;
+            background-color: #282d30;
+        }
+        .nav-list a{
+            color: #fff;
+        }
+        .userName {
+            color: #fff;
+        }
+        .nav-list .nav-course:hover{
+            background:#282d30;
+        }
+        .nav-list .nav-course.active:hover{
+            background:#61b13b;
+        }
+        .login-after:hover .login-after-top {
+            color:#fff;
+            background-color:#000;
+        }
 
-@media (max-width: 767px) {
-    body.homepage .es-wrap, body.course-list-page .es-wrap, body.open-course-list .es-wrap, body.course-dashboard-page .es-wrap, body.login .es-wrap, body.register .es-wrap, body.my-course .es-wrap {
-        padding-top: 0;
-    }
-}
+        @media (max-width: 767px) {
+            body.homepage .es-wrap, body.course-list-page .es-wrap, body.open-course-list .es-wrap, body.course-dashboard-page .es-wrap, body.login .es-wrap, body.register .es-wrap, body.my-course .es-wrap {
+                padding-top: 0;
+            }
+        }
 
-</style>
-<header class="header">
-    <div class="relative h-con">
-        <div class="logo-con absolute">
-            <a href="http://www.gulixueyuan.com/" class="logo relative" id="logo"> 
-                <img src="themes/june/img/logo-green1-8.3.2.png">
-          </a>
-        </div> 
-        <div class="slogan">
-            <div class="slogan-t">谷粉力挺老学员推荐</div>
-            <div class="slogan-b">尚硅谷旗下线上平台</div>
-        </div>
-        <div class="header-search">
-            <form action="http://www.gulixueyuan.com/search" method="get" id="searchForm">
-                <div class="header-search-input-wrap">
-                    <input type="text" class="js-header-search header-search-input" placeholder="搜索课程" value="" name="q">
-                    <span class="header-search-icon"></span>
-                </div>
-            </form>
-        </div>
-      
-        <div class="main-width relative main-width-q">
-            <nav class="float-right">
-                <ul class="nav-list">
-                    <li><a href="index.html" class="active">首页</a></li>
-                    <li class="relative">
-                        <a class=" nav-course" href="course/explore.html">全部课程</a>
-                    </li>
-                    <li class="top-nav"><a href="javascript:">学习路线图</a>
-                       <div class="sub-nav">
-                          <ul>
-                            <li><a href="path/java.html" target="_blank">Java开发</a></li>
-                            <li><a href="path/bigdata.html" target="_blank">大数据</a></li>
-                            <li><a href="path/front.html" target="_blank">前端开发</a></li>
-                            <li><a href="http://www.gulixueyuan.com/course/explore/Linux" target="_blank">Linux运维</a></li>
-                            <li><a href="path/android.html" target="_blank">Android</a></li>
-                          </ul>
-                        </div>
-                    </li>
-                    <li><a target="_blank" href="http://www.atguigu.com/">面授高薪班</a></li>
-                    <!-- <li>
-                        <a href="/path/join" target="_blank">讲师合作</a>
-                    </li> -->
-                </ul>
-            </nav>
-             <div class="q-btn-con bg-icon" onclick="headerToggle()"></div>
-         
-                            <!--登录后显示-->
+    </style>
+    <header class="header">
+        <div class="relative h-con">
+            <div class="logo-con absolute">
+                <a href="http://www.gulixueyuan.com/" class="logo relative" id="logo">
+                    <img src="themes/june/img/logo-green1-8.3.2.png">
+                </a>
+            </div>
+            <div class="slogan">
+                <div class="slogan-t">谷粉力挺老学员推荐</div>
+                <div class="slogan-b">尚硅谷旗下线上平台</div>
+            </div>
+            <div class="header-search">
+                <form action="http://www.gulixueyuan.com/search" method="get" id="searchForm">
+                    <div class="header-search-input-wrap">
+                        <input type="text" class="js-header-search header-search-input" placeholder="搜索课程" value="" name="q">
+                        <span class="header-search-icon"></span>
+                    </div>
+                </form>
+            </div>
+
+            <div class="main-width relative main-width-q">
+                <nav class="float-right">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="active">首页</a></li>
+                        <li class="relative">
+                            <a class=" nav-course" href="course/explore.html">全部课程</a>
+                        </li>
+                        <li class="top-nav"><a href="javascript:">学习路线图</a>
+                            <div class="sub-nav">
+                                <ul>
+                                    <li><a href="path/java.html" target="_blank">Java开发</a></li>
+                                    <li><a href="path/bigdata.html" target="_blank">大数据</a></li>
+                                    <li><a href="path/front.html" target="_blank">前端开发</a></li>
+                                    <li><a href="http://www.gulixueyuan.com/course/explore/Linux" target="_blank">Linux运维</a></li>
+                                    <li><a href="path/android.html" target="_blank">Android</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a target="_blank" href="http://www.atguigu.com/">面授高薪班</a></li>
+                        <!-- <li>
+                            <a href="/path/join" target="_blank">讲师合作</a>
+                        </li> -->
+                    </ul>
+                </nav>
+                <div class="q-btn-con bg-icon" onclick="headerToggle()"></div>
+
+                <!--登录后显示-->
                 <div class="login-after absolute">
-                <!--a class="login-after-message absolute" target="_blank" href="user/message.do">消息<span class="login-after-message-count">8</span></a-->
-                <div class="login-after-top" onclick="loginAfterToggle()">
-                        
-          
-                    <p><img src="files/default/2019/08-20/094204c5aaf9383385.jpg"><span class="userName">Strive_Hao</span><span class="bg-icon down-icon"></span></p></div>
-                <ul class="user-list">
-                    <li>
-                        <p>
-                            <a href="my/course/learning.html">
-                            我的学习                            </a>
-                        </p>
-                    </li>
+                    <!--a class="login-after-message absolute" target="_blank" href="user/message.do">消息<span class="login-after-message-count">8</span></a-->
+                    <div class="login-after-top" onclick="loginAfterToggle()">
 
-                     <li>
-                        <p>
-                            <a href="my/orders.html">
-                             账户中心
-                            </a>
-                        </p>
+
+                        <p><img src="files/default/2019/08-20/094204c5aaf9383385.jpg"><span class="userName" th:text="${session.user.userName}"></span><span class="bg-icon down-icon"></span></p></div>
+                    <ul class="user-list">
+                        <li>
+                            <p>
+                                <a href="my/course/learning.html">
+                                    我的学习                            </a>
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                <a th:href="@{/orders(userId=${session.user.userId})}">
+                                    账户中心
+                                </a>
+                            </p>
+                        </li>
+
+
+
+                        <li>
+                            <p>
+                                <a th:href="@{/logOut(userId=${session.user.userId})}">
+                                    退出登录
+                                </a>
+                            </p>
+                        </li>
+                        <!--&lt;!&ndash;<li></li>&ndash;&gt;-->
+                    </ul>
+                    <div class="caret login-caret absolute" style="display: block;"></div>
+                </div>
+                <!--end 登录后-->
+
+
+            </div>
+        </div>
+    </header>
+    <div class="container cd-container">
+        <div class="cd-content">
+            <div class="cd-sidebar">
+                <ul class="cd-sidebar__list">
+                    <li class="cd-sidebar__heading">
+                        账户中心
                     </li>
-                
-                        
-                                              
-                                        <li>
-                        <p>
-                            <a href="http://www.gulixueyuan.com/logout">
-                                退出登录
-                            </a>
-                        </p>
+                    <li class="cd-sidebar__item">
+                        <a th:href="@{/orders(userId=${session.user.userId})}">我的订单</a>
                     </li>
-                    <!--&lt;!&ndash;<li></li>&ndash;&gt;-->
+                    <li class="cd-sidebar__item">
+                        <a th:href="@{/cards(userId=${session.user.userId})}">优惠券</a>
+                    </li>
+                    <!--      <li class="cd-sidebar__item">
+                              <a href="my/vip/history.html">会员记录</a>
+                          </li>-->
+                    <!--  <li class="cd-sidebar__item  ">
+                        <a href="http://www.gulixueyuan.com/my/cards?cardType=moneyCard">学习卡</a>
+                      </li>
+                    <li class="cd-sidebar__item ">
+                      <a href="http://www.gulixueyuan.com/my/reward_point">我的积分</a>
+                    </li>-->
+                    <li class="cd-sidebar__heading">
+                        个人设置
+                    </li>
+                    <li class="cd-sidebar__item active ">
+                        <a th:href="@{/settings(userId=${session.user.userId})}">个人信息</a>
+                    </li>
+                    <!--      <li class="cd-sidebar__item ">
+                              <a href="settings/approval/submit.html">实名认证</a>
+                          </li>-->
+                    <!--      <li class="cd-sidebar__item ">
+                              <a href="settings/security.html">安全设置</a>
+                          </li>
+                          <li class="cd-sidebar__item ">
+                              <a href="settings/binds.html">第三方登录</a>
+                          </li>-->
                 </ul>
-                <div class="caret login-caret absolute" style="display: block;"></div>
             </div>
-             <!--end 登录后-->
-             
-        
-        </div>
-    </div>
-</header>          
-      <div class="container cd-container">
-    <div class="cd-content">
-              <div class="cd-sidebar">
-  <ul class="cd-sidebar__list">
-    <li class="cd-sidebar__heading">
-      账户中心
-    </li>
-      <li class="cd-sidebar__item">
-          <a href="my/orders.html">我的订单</a>
-      </li>
-      <li class="cd-sidebar__item">
-          <a href="my/cards.html">优惠券</a>
-      </li>
-      <li class="cd-sidebar__item">
-          <a href="my/vip/history.html">会员记录</a>
-      </li>
-      <!--  <li class="cd-sidebar__item  ">
-          <a href="http://www.gulixueyuan.com/my/cards?cardType=moneyCard">学习卡</a>
-        </li>
-      <li class="cd-sidebar__item ">
-        <a href="http://www.gulixueyuan.com/my/reward_point">我的积分</a>
-      </li>-->
-      <li class="cd-sidebar__heading">
-          个人设置
-      </li>
-      <li class="cd-sidebar__item active ">
-          <a href="settings.html">个人信息</a>
-      </li>
-      <li class="cd-sidebar__item ">
-          <a href="settings/approval/submit.html">实名认证</a>
-      </li>
-      <li class="cd-sidebar__item ">
-          <a href="settings/security.html">安全设置</a>
-      </li>
-      <li class="cd-sidebar__item ">
-          <a href="settings/binds.html">第三方登录</a>
-      </li>
-      </ul>
-</div>      
-              <div class="cd-main">
-          <div class="cd-main__heading">
-                          <div class="cd-main__title">
-                  个人信息
-              </div>
-                      </div>
-          <div class="cd-main__body">
-              
-    
-  <form id="user-profile-form" class="row cd-row" method="post" novalidate="novalidate">
-    <div class="col-md-11">
-      <div class=" cd-mr24 cd-mb40">
-        
-<div class="cd-image-upload">
-  <img class="cd-avatar cd-avatar-square cd-avatar-lg js-upload-cover" id="profile-avatar" src="files/default/2019/08-20/094204c5aaf9383385.jpg">
-  <div class="image-upload-mask">
-    <div class="image-upload-content">
-      <i class="cd-icon cd-icon-camera"></i>
-      修改头像
-    </div>
-  </div>
-  <label class="image-upload-label">
-    <input type="file" name="file" class="js-upload-input hidden" accept="image/bmp,image/jpeg,image/png" data-token="Njc2OTF8ZGVmYXVsdHxpbWFnZXwxNTY3MDE2OTcwfGZlY2IzZmU4ZDVlYTgwOTFjZDc1YWI2MzNkNDc3NWJl" data-file-upload="/file/upload" data-crop="/file/img/crop" data-save-url="/settings/profile/avatar/crop/modal" data-target-img="#profile-avatar" data-crop-width="270" data-crop-height="270">
-  </label>
-</div>      </div>
-      <p class="image-upload-tip">请上传jpg, gif, png格式的图片, 建议图片大小不超过2MB</p>
-      <div class="form-group cd-form-group cd-form-group-inline cd-form-group-action" id="nickname-form-group">
+            <div class="cd-main">
+                <div class="cd-main__heading">
+                    <div class="cd-main__title">
+                        个人信息
+                    </div>
+                </div>
+                <div class="cd-main__body">
 
-        <label for="nickname">用户名</label>
 
-        <div class="static-text input-edit__static-dom">
-          <span class="input-edit__static-text">Strive_Hao</span>
-                  </div>
+                    <form id="user-profile-form" class="row cd-row" >
+                        <div class="col-md-11">
+                            <div class=" cd-mr24 cd-mb40">
 
-        <div class="input-edit__edit-dom" style="display:none">
-          <input data-url="/settings/nickname/check" name="nickname" id="nickname" type="text" class="form-control input-edit__input" value="Strive_Hao">
+                                <div class="cd-image-upload">
+                                    <img class="cd-avatar cd-avatar-square cd-avatar-lg js-upload-cover" id="profile-avatar" src="files/default/2019/08-20/094204c5aaf9383385.jpg">
+                                    <div class="image-upload-mask">
+                                        <div class="image-upload-content">
+                                            <i class="cd-icon cd-icon-camera"></i>
+                                            修改头像
+                                        </div>
+                                    </div>
+                                    <label class="image-upload-label">
+                                        <input type="file" name="file" id="image_upload" class="js-upload-input hidden" accept="image/bmp,image/jpeg,image/png" data-token="Njc2OTF8ZGVmYXVsdHxpbWFnZXwxNTY3MDE2OTcwfGZlY2IzZmU4ZDVlYTgwOTFjZDc1YWI2MzNkNDc3NWJl" data-file-upload="/file/upload" data-crop="/file/img/crop" data-save-url="/settings/profile/avatar/crop/modal" data-target-img="#profile-avatar" data-crop-width="270" data-crop-height="270">
+                                    </label>
+                                </div>      </div>
+                            <p class="image-upload-tip">请上传jpg, gif, png格式的图片, 建议图片大小不超过2MB</p>
+                            <div class="form-group cd-form-group cd-form-group-inline cd-form-group-action" id="nickname-form-group">
 
-          <div class="action-button">
-            <button type="button" class="btn cd-btn cd-btn-primary input-edit__save-btn" data-input-name="nickname" data-url="/settings/nickname" data-loading-text="正在保存...">
-              保存
-            </button>
-            <button type="button" class="btn cd-btn cd-btn-flat-default input-edit__cancel-btn">
-              取消
-            </button>
-          </div>
-        </div> 
+                                <label for="nickname">用户名</label>
 
-      </div>
-    </div>
-    <div class="col-md-5">
-      <div class="form-group cd-form-group">
-        <label for="profile_truename">真实姓名</label>
-                  <input type="text" id="profile_truename" name="profile[truename]" class="form-control" value="">
-              </div>
-    </div>
-    <div class="col-md-5 col-md-offset-1">
-      <div class="form-group cd-form-group">
-        <label>性别</label>
-        <div class="cd-radio-group">
-          <label class="cd-radio " for="profile_gender_0">
-            <input type="radio" id="profile_gender_0" name="profile[gender]" value="male" data-toggle="cd-radio">
-            男
-          </label>
+                                <div class="static-text input-edit__static-dom">
+                                    <span class="input-edit__static-text" id="user_name">uLGnb</span>
+                                </div>
 
-          <label class="cd-radio " for="profile_gender_1">
-            <input type="radio" id="profile_gender_1" name="profile[gender]" value="female" data-toggle="cd-radio">
-            女
-          </label>
-        </div>
-      </div>
-    </div>
+                                <div class="input-edit__edit-dom" style="display:none">
+                                    <input data-url="/settings/nickname/check" name="nickname" id="nickname" type="text" class="form-control input-edit__input" value="Strive_Hao">
 
-    <div class="col-md-5">
-      <div class="form-group cd-form-group">
-        <label for="profile_title">头衔</label>
-        <input type="text" id="profile_title" name="profile[title]" class="form-control" value="">
-      </div>
-    </div>
+                                    <div class="action-button">
+                                        <button type="button" class="btn cd-btn cd-btn-primary input-edit__save-btn" data-input-name="nickname" data-url="/settings/nickname" data-loading-text="正在保存...">
+                                            保存
+                                        </button>
+                                        <button type="button" class="btn cd-btn cd-btn-flat-default input-edit__cancel-btn">
+                                            取消
+                                        </button>
+                                    </div>
+                                </div>
 
-    <div class="col-md-5 col-md-offset-1">
-      <div class="form-group cd-form-group">
-        <label for="profile_signature">个人签名</label>
-        <input type="text" id="profile_signature" name="profile[signature]" class="form-control" value="">
-      </div>
-    </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group cd-form-group">
+                                <label for="profile_truename">真实姓名</label>
+                                <input type="text" id="profile_truename" name="userRealName" class="form-control" value="">
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                            <div class="form-group cd-form-group">
+                                <label>性别</label>
+                                <div class="cd-radio-group">
+                                    <label class="cd-radio" id="profile_gender_0">
+                                        <input type="radio"  name="userSex" value="男" data-toggle="cd-radio">
+                                        男
+                                    </label>
 
-    <div class="col-md-11">
-      <div class="form-group cd-form-group">
-        <label for="profile_about">自我介绍</label>
-        <textarea name="profile[about]" rows="10" id="profile_about" class="form-control" data-image-upload-url="/editor/upload?token=Njc2OTF8dXNlcnxpbWFnZXwxNTY3MDE2OTcwfDVmOGMwOGRjNGE5Yzk4MTI2YTc2ZGY2YmY1Yjg0ZTdj" style="visibility: hidden; display: none;"></textarea><div id="cke_profile_about" class="cke_1 cke cke_reset cke_chrome cke_editor_profile_about cke_ltr cke_browser_webkit" dir="ltr" lang="zh-cn" role="application"><div class="cke_inner cke_reset" role="presentation"><span id="cke_1_top" class="cke_top cke_reset_all" role="presentation" style="height: auto; user-select: none;"><span id="cke_9" class="cke_voice_label">工具栏</span><span id="cke_1_toolbox" class="cke_toolbox" role="group" aria-labelledby="cke_9" onmousedown="return false;"><span id="cke_10" class="cke_toolbar cke_toolbar_last" role="toolbar"><span class="cke_toolbar_start"></span><span class="cke_toolgroup" role="presentation"><a id="cke_11" class="cke_button cke_button__bold cke_button_off" href="javascript:void(&#39;加粗&#39;)" title="加粗 (Ctrl+B)" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_11_label" aria-describedby="cke_11_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(1,event);" onfocus="return CKEDITOR.tools.callFunction(2,event);" onclick="CKEDITOR.tools.callFunction(3,this);return false;"><span class="cke_button_icon cke_button__bold_icon" style="background-image:url(#);background-position:0 -24px;background-size:auto;">&nbsp;</span><span id="cke_11_label" class="cke_button_label cke_button__bold_label" aria-hidden="false">加粗</span><span id="cke_11_description" class="cke_button_label" aria-hidden="false">快捷键 Ctrl+B</span></a><a id="cke_12" class="cke_button cke_button__italic cke_button_off" href="javascript:void(&#39;倾斜&#39;)" title="倾斜 (Ctrl+I)" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_12_label" aria-describedby="cke_12_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(4,event);" onfocus="return CKEDITOR.tools.callFunction(5,event);" onclick="CKEDITOR.tools.callFunction(6,this);return false;"><span class="cke_button_icon cke_button__italic_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -48px;background-size:auto;">&nbsp;</span><span id="cke_12_label" class="cke_button_label cke_button__italic_label" aria-hidden="false">倾斜</span><span id="cke_12_description" class="cke_button_label" aria-hidden="false">快捷键 Ctrl+I</span></a><a id="cke_13" class="cke_button cke_button__underline cke_button_off" href="javascript:void(&#39;下划线&#39;)" title="下划线 (Ctrl+U)" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_13_label" aria-describedby="cke_13_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(7,event);" onfocus="return CKEDITOR.tools.callFunction(8,event);" onclick="CKEDITOR.tools.callFunction(9,this);return false;"><span class="cke_button_icon cke_button__underline_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -144px;background-size:auto;">&nbsp;</span><span id="cke_13_label" class="cke_button_label cke_button__underline_label" aria-hidden="false">下划线</span><span id="cke_13_description" class="cke_button_label" aria-hidden="false">快捷键 Ctrl+U</span></a><a id="cke_14" class="cke_button cke_button__textcolor cke_button_off" href="javascript:void(&#39;文本颜色&#39;)" title="文本颜色" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_14_label" aria-describedby="cke_14_description" aria-haspopup="true" onkeydown="return CKEDITOR.tools.callFunction(10,event);" onfocus="return CKEDITOR.tools.callFunction(11,event);" onclick="CKEDITOR.tools.callFunction(12,this);return false;"><span class="cke_button_icon cke_button__textcolor_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -432px;background-size:auto;">&nbsp;</span><span id="cke_14_label" class="cke_button_label cke_button__textcolor_label" aria-hidden="false">文本颜色</span><span id="cke_14_description" class="cke_button_label" aria-hidden="false"></span><span class="cke_button_arrow"></span></a><span class="cke_toolbar_separator" role="separator"></span><a id="cke_15" class="cke_button cke_button__removeformat cke_button_off" href="javascript:void(&#39;清除格式&#39;)" title="清除格式" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_15_label" aria-describedby="cke_15_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(13,event);" onfocus="return CKEDITOR.tools.callFunction(14,event);" onclick="CKEDITOR.tools.callFunction(15,this);return false;"><span class="cke_button_icon cke_button__removeformat_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -1800px;background-size:auto;">&nbsp;</span><span id="cke_15_label" class="cke_button_label cke_button__removeformat_label" aria-hidden="false">清除格式</span><span id="cke_15_description" class="cke_button_label" aria-hidden="false"></span></a><a id="cke_16" class="cke_button cke_button__pastetext cke_button_off" href="javascript:void(&#39;粘贴为无格式文本&#39;)" title="粘贴为无格式文本 (Ctrl+Shift+V)" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_16_label" aria-describedby="cke_16_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(16,event);" onfocus="return CKEDITOR.tools.callFunction(17,event);" onclick="CKEDITOR.tools.callFunction(18,this);return false;"><span class="cke_button_icon cke_button__pastetext_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -1680px;background-size:auto;">&nbsp;</span><span id="cke_16_label" class="cke_button_label cke_button__pastetext_label" aria-hidden="false">粘贴为无格式文本</span><span id="cke_16_description" class="cke_button_label" aria-hidden="false">快捷键 Ctrl+Shift+V</span></a><span class="cke_toolbar_separator" role="separator"></span><a id="cke_17" class="cke_button cke_button__numberedlist cke_button_off" href="javascript:void(&#39;编号列表&#39;)" title="编号列表" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_17_label" aria-describedby="cke_17_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(19,event);" onfocus="return CKEDITOR.tools.callFunction(20,event);" onclick="CKEDITOR.tools.callFunction(21,this);return false;"><span class="cke_button_icon cke_button__numberedlist_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -1440px;background-size:auto;">&nbsp;</span><span id="cke_17_label" class="cke_button_label cke_button__numberedlist_label" aria-hidden="false">编号列表</span><span id="cke_17_description" class="cke_button_label" aria-hidden="false"></span></a><a id="cke_18" class="cke_button cke_button__bulletedlist cke_button_off" href="javascript:void(&#39;项目列表&#39;)" title="项目列表" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_18_label" aria-describedby="cke_18_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(22,event);" onfocus="return CKEDITOR.tools.callFunction(23,event);" onclick="CKEDITOR.tools.callFunction(24,this);return false;"><span class="cke_button_icon cke_button__bulletedlist_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -1392px;background-size:auto;">&nbsp;</span><span id="cke_18_label" class="cke_button_label cke_button__bulletedlist_label" aria-hidden="false">项目列表</span><span id="cke_18_description" class="cke_button_label" aria-hidden="false"></span></a><span class="cke_toolbar_separator" role="separator"></span><a id="cke_19" class="cke_button cke_button__link cke_button_off" href="javascript:void(&#39;插入/编辑超链接&#39;)" title="插入/编辑超链接 (Ctrl+L)" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_19_label" aria-describedby="cke_19_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(25,event);" onfocus="return CKEDITOR.tools.callFunction(26,event);" onclick="CKEDITOR.tools.callFunction(27,this);return false;"><span class="cke_button_icon cke_button__link_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -1320px;background-size:auto;">&nbsp;</span><span id="cke_19_label" class="cke_button_label cke_button__link_label" aria-hidden="false">插入/编辑超链接</span><span id="cke_19_description" class="cke_button_label" aria-hidden="false">快捷键 Ctrl+L</span></a><a id="cke_20" class="cke_button cke_button__unlink cke_button_disabled " href="javascript:void(&#39;取消超链接&#39;)" title="取消超链接" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_20_label" aria-describedby="cke_20_description" aria-haspopup="false" aria-disabled="true" onkeydown="return CKEDITOR.tools.callFunction(28,event);" onfocus="return CKEDITOR.tools.callFunction(29,event);" onclick="CKEDITOR.tools.callFunction(30,this);return false;"><span class="cke_button_icon cke_button__unlink_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -1344px;background-size:auto;">&nbsp;</span><span id="cke_20_label" class="cke_button_label cke_button__unlink_label" aria-hidden="false">取消超链接</span><span id="cke_20_description" class="cke_button_label" aria-hidden="false"></span></a><a id="cke_21" class="cke_button cke_button__uploadpictures cke_button_off" href="javascript:void(&#39;批量图片上传&#39;)" title="批量图片上传" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_21_label" aria-describedby="cke_21_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(31,event);" onfocus="return CKEDITOR.tools.callFunction(32,event);" onclick="CKEDITOR.tools.callFunction(33,this);return false;"><span class="cke_button_icon cke_button__uploadpictures_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/uploadpictures/icons/uploadpictures.png?t=H7HG&#39;);background-position:0 0px;background-size:16px;">&nbsp;</span><span id="cke_21_label" class="cke_button_label cke_button__uploadpictures_label" aria-hidden="false">批量图片上传</span><span id="cke_21_description" class="cke_button_label" aria-hidden="false"></span></a><a id="cke_22" class="cke_button cke_button__codesnippet cke_button_off" href="javascript:void(&#39;插入代码段&#39;)" title="插入代码段" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_22_label" aria-describedby="cke_22_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(34,event);" onfocus="return CKEDITOR.tools.callFunction(35,event);" onclick="CKEDITOR.tools.callFunction(36,this);return false;"><span class="cke_button_icon cke_button__codesnippet_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -384px;background-size:auto;">&nbsp;</span><span id="cke_22_label" class="cke_button_label cke_button__codesnippet_label" aria-hidden="false">插入代码段</span><span id="cke_22_description" class="cke_button_label" aria-hidden="false"></span></a><span class="cke_toolbar_separator" role="separator"></span><a id="cke_23" class="cke_button cke_button__source cke_button_off" href="javascript:void(&#39;源码&#39;)" title="源码" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_23_label" aria-describedby="cke_23_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(37,event);" onfocus="return CKEDITOR.tools.callFunction(38,event);" onclick="CKEDITOR.tools.callFunction(39,this);return false;"><span class="cke_button_icon cke_button__source_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -1992px;background-size:auto;">&nbsp;</span><span id="cke_23_label" class="cke_button_label cke_button__source_label" aria-hidden="false">源码</span><span id="cke_23_description" class="cke_button_label" aria-hidden="false"></span></a></span><span class="cke_toolbar_end"></span></span></span></span><div id="cke_1_contents" class="cke_contents cke_reset" role="presentation" style="height: 200px;"><span id="cke_27" class="cke_voice_label">按 ALT+0 获得帮助</span><iframe src="./个人信息_files/saved_resource.html" frameborder="0" class="cke_wysiwyg_frame cke_reset" style="width: 100%; height: 100%;" aria-describedby="cke_27" tabindex="0" allowtransparency="true"></iframe></div></div></div>
-      </div>
-    </div>
+                                    <label class="cd-radio" id="profile_gender_1">
+                                        <input type="radio"  name="userSex" value="女" data-toggle="cd-radio">
+                                        女
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
 
-    <div class="col-md-5">
-      <div class="form-group cd-form-group">
-        <label for="profile_company">公司</label>
-        <input type="text" id="profile_company" name="profile[company]" class="form-control" value="">
-      </div>
-    </div>
+                        <div class="col-md-5">
+                            <div class="form-group cd-form-group">
+                                <label for="profile_title">头衔</label>
+                                <input type="text" id="profile_title" name="userActor" class="form-control" value="">
+                            </div>
+                        </div>
 
-    <div class="col-md-5  col-md-offset-1">
-      <div class="form-group cd-form-group">
-        <label for="profile_job">职业</label>
-        <input type="text" id="profile_job" name="profile[job]" class="form-control" value="">
-      </div>
-    </div>
+                        <div class="col-md-5 col-md-offset-1">
+                            <div class="form-group cd-form-group">
+                                <label for="profile_signature">个人签名</label>
+                                <input type="text" id="profile_signature" name="userBrief" class="form-control" value="">
+                            </div>
+                        </div>
 
-    <div class="col-md-5">
-      <div class="form-group cd-form-group">
-        <label for="profile_site">个人空间</label>
-        <input type="text" id="profile_site" name="profile[site]" class="form-control" value="" placeholder="http://">
-      </div>
-    </div>
+                        <div class="col-md-11">
+                            <div class="form-group cd-form-group">
+                                <label for="profile_about">自我介绍</label>
+                                <textarea name="userIntroduce" rows="10" id="profile_about" class="form-control" >
 
-    <div class="col-md-5  col-md-offset-1">
-      <div class="form-group cd-form-group">
-        <label for="weibo">微博</label>
-        <input type="text" id="weibo" name="profile[weibo]" class="form-control" value="" placeholder="http://">
-        <input class="hidden" type="text" name="profile[isWeiboPublic]" value="1">
-        <div class="help-block">微博、微信、QQ信息将会展示在您的个人主页</div>
-      </div>
-    </div>
+        </textarea>
+                                <!--          <div id="cke_profile_about" class="cke_1 cke cke_reset cke_chrome cke_editor_profile_about cke_ltr cke_browser_webkit" dir="ltr" lang="zh-cn" role="application"><div class="cke_inner cke_reset" role="presentation"><span id="cke_1_top" class="cke_top cke_reset_all" role="presentation" style="height: auto; user-select: none;"><span id="cke_9" class="cke_voice_label">工具栏</span><span id="cke_1_toolbox" class="cke_toolbox" role="group" aria-labelledby="cke_9" onmousedown="return false;"><span id="cke_10" class="cke_toolbar cke_toolbar_last" role="toolbar"><span class="cke_toolbar_start"></span><span class="cke_toolgroup" role="presentation"><a id="cke_11" class="cke_button cke_button__bold cke_button_off" href="javascript:void(&#39;加粗&#39;)" title="加粗 (Ctrl+B)" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_11_label" aria-describedby="cke_11_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(1,event);" onfocus="return CKEDITOR.tools.callFunction(2,event);" onclick="CKEDITOR.tools.callFunction(3,this);return false;"><span class="cke_button_icon cke_button__bold_icon" style="background-image:url(#);background-position:0 -24px;background-size:auto;">&nbsp;</span><span id="cke_11_label" class="cke_button_label cke_button__bold_label" aria-hidden="false">加粗</span><span id="cke_11_description" class="cke_button_label" aria-hidden="false">快捷键 Ctrl+B</span></a><a id="cke_12" class="cke_button cke_button__italic cke_button_off" href="javascript:void(&#39;倾斜&#39;)" title="倾斜 (Ctrl+I)" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_12_label" aria-describedby="cke_12_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(4,event);" onfocus="return CKEDITOR.tools.callFunction(5,event);" onclick="CKEDITOR.tools.callFunction(6,this);return false;"><span class="cke_button_icon cke_button__italic_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -48px;background-size:auto;">&nbsp;</span><span id="cke_12_label" class="cke_button_label cke_button__italic_label" aria-hidden="false">倾斜</span><span id="cke_12_description" class="cke_button_label" aria-hidden="false">快捷键 Ctrl+I</span></a><a id="cke_13" class="cke_button cke_button__underline cke_button_off" href="javascript:void(&#39;下划线&#39;)" title="下划线 (Ctrl+U)" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_13_label" aria-describedby="cke_13_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(7,event);" onfocus="return CKEDITOR.tools.callFunction(8,event);" onclick="CKEDITOR.tools.callFunction(9,this);return false;"><span class="cke_button_icon cke_button__underline_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -144px;background-size:auto;">&nbsp;</span><span id="cke_13_label" class="cke_button_label cke_button__underline_label" aria-hidden="false">下划线</span><span id="cke_13_description" class="cke_button_label" aria-hidden="false">快捷键 Ctrl+U</span></a><a id="cke_14" class="cke_button cke_button__textcolor cke_button_off" href="javascript:void(&#39;文本颜色&#39;)" title="文本颜色" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_14_label" aria-describedby="cke_14_description" aria-haspopup="true" onkeydown="return CKEDITOR.tools.callFunction(10,event);" onfocus="return CKEDITOR.tools.callFunction(11,event);" onclick="CKEDITOR.tools.callFunction(12,this);return false;"><span class="cke_button_icon cke_button__textcolor_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -432px;background-size:auto;">&nbsp;</span><span id="cke_14_label" class="cke_button_label cke_button__textcolor_label" aria-hidden="false">文本颜色</span><span id="cke_14_description" class="cke_button_label" aria-hidden="false"></span><span class="cke_button_arrow"></span></a><span class="cke_toolbar_separator" role="separator"></span><a id="cke_15" class="cke_button cke_button__removeformat cke_button_off" href="javascript:void(&#39;清除格式&#39;)" title="清除格式" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_15_label" aria-describedby="cke_15_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(13,event);" onfocus="return CKEDITOR.tools.callFunction(14,event);" onclick="CKEDITOR.tools.callFunction(15,this);return false;"><span class="cke_button_icon cke_button__removeformat_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -1800px;background-size:auto;">&nbsp;</span><span id="cke_15_label" class="cke_button_label cke_button__removeformat_label" aria-hidden="false">清除格式</span><span id="cke_15_description" class="cke_button_label" aria-hidden="false"></span></a><a id="cke_16" class="cke_button cke_button__pastetext cke_button_off" href="javascript:void(&#39;粘贴为无格式文本&#39;)" title="粘贴为无格式文本 (Ctrl+Shift+V)" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_16_label" aria-describedby="cke_16_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(16,event);" onfocus="return CKEDITOR.tools.callFunction(17,event);" onclick="CKEDITOR.tools.callFunction(18,this);return false;"><span class="cke_button_icon cke_button__pastetext_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -1680px;background-size:auto;">&nbsp;</span><span id="cke_16_label" class="cke_button_label cke_button__pastetext_label" aria-hidden="false">粘贴为无格式文本</span><span id="cke_16_description" class="cke_button_label" aria-hidden="false">快捷键 Ctrl+Shift+V</span></a><span class="cke_toolbar_separator" role="separator"></span><a id="cke_17" class="cke_button cke_button__numberedlist cke_button_off" href="javascript:void(&#39;编号列表&#39;)" title="编号列表" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_17_label" aria-describedby="cke_17_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(19,event);" onfocus="return CKEDITOR.tools.callFunction(20,event);" onclick="CKEDITOR.tools.callFunction(21,this);return false;"><span class="cke_button_icon cke_button__numberedlist_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -1440px;background-size:auto;">&nbsp;</span><span id="cke_17_label" class="cke_button_label cke_button__numberedlist_label" aria-hidden="false">编号列表</span><span id="cke_17_description" class="cke_button_label" aria-hidden="false"></span></a><a id="cke_18" class="cke_button cke_button__bulletedlist cke_button_off" href="javascript:void(&#39;项目列表&#39;)" title="项目列表" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_18_label" aria-describedby="cke_18_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(22,event);" onfocus="return CKEDITOR.tools.callFunction(23,event);" onclick="CKEDITOR.tools.callFunction(24,this);return false;"><span class="cke_button_icon cke_button__bulletedlist_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -1392px;background-size:auto;">&nbsp;</span><span id="cke_18_label" class="cke_button_label cke_button__bulletedlist_label" aria-hidden="false">项目列表</span><span id="cke_18_description" class="cke_button_label" aria-hidden="false"></span></a><span class="cke_toolbar_separator" role="separator"></span><a id="cke_19" class="cke_button cke_button__link cke_button_off" href="javascript:void(&#39;插入/编辑超链接&#39;)" title="插入/编辑超链接 (Ctrl+L)" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_19_label" aria-describedby="cke_19_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(25,event);" onfocus="return CKEDITOR.tools.callFunction(26,event);" onclick="CKEDITOR.tools.callFunction(27,this);return false;"><span class="cke_button_icon cke_button__link_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -1320px;background-size:auto;">&nbsp;</span><span id="cke_19_label" class="cke_button_label cke_button__link_label" aria-hidden="false">插入/编辑超链接</span><span id="cke_19_description" class="cke_button_label" aria-hidden="false">快捷键 Ctrl+L</span></a><a id="cke_20" class="cke_button cke_button__unlink cke_button_disabled " href="javascript:void(&#39;取消超链接&#39;)" title="取消超链接" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_20_label" aria-describedby="cke_20_description" aria-haspopup="false" aria-disabled="true" onkeydown="return CKEDITOR.tools.callFunction(28,event);" onfocus="return CKEDITOR.tools.callFunction(29,event);" onclick="CKEDITOR.tools.callFunction(30,this);return false;"><span class="cke_button_icon cke_button__unlink_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -1344px;background-size:auto;">&nbsp;</span><span id="cke_20_label" class="cke_button_label cke_button__unlink_label" aria-hidden="false">取消超链接</span><span id="cke_20_description" class="cke_button_label" aria-hidden="false"></span></a><a id="cke_21" class="cke_button cke_button__uploadpictures cke_button_off" href="javascript:void(&#39;批量图片上传&#39;)" title="批量图片上传" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_21_label" aria-describedby="cke_21_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(31,event);" onfocus="return CKEDITOR.tools.callFunction(32,event);" onclick="CKEDITOR.tools.callFunction(33,this);return false;"><span class="cke_button_icon cke_button__uploadpictures_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/uploadpictures/icons/uploadpictures.png?t=H7HG&#39;);background-position:0 0px;background-size:16px;">&nbsp;</span><span id="cke_21_label" class="cke_button_label cke_button__uploadpictures_label" aria-hidden="false">批量图片上传</span><span id="cke_21_description" class="cke_button_label" aria-hidden="false"></span></a><a id="cke_22" class="cke_button cke_button__codesnippet cke_button_off" href="javascript:void(&#39;插入代码段&#39;)" title="插入代码段" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_22_label" aria-describedby="cke_22_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(34,event);" onfocus="return CKEDITOR.tools.callFunction(35,event);" onclick="CKEDITOR.tools.callFunction(36,this);return false;"><span class="cke_button_icon cke_button__codesnippet_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -384px;background-size:auto;">&nbsp;</span><span id="cke_22_label" class="cke_button_label cke_button__codesnippet_label" aria-hidden="false">插入代码段</span><span id="cke_22_description" class="cke_button_label" aria-hidden="false"></span></a><span class="cke_toolbar_separator" role="separator"></span><a id="cke_23" class="cke_button cke_button__source cke_button_off" href="javascript:void(&#39;源码&#39;)" title="源码" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_23_label" aria-describedby="cke_23_description" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(37,event);" onfocus="return CKEDITOR.tools.callFunction(38,event);" onclick="CKEDITOR.tools.callFunction(39,this);return false;"><span class="cke_button_icon cke_button__source_icon" style="background-image:url(&#39;http://www.gulixueyuan.com/static-dist/libs/es-ckeditor/plugins/icons.png?t=H7HG&#39;);background-position:0 -1992px;background-size:auto;">&nbsp;</span><span id="cke_23_label" class="cke_button_label cke_button__source_label" aria-hidden="false">源码</span><span id="cke_23_description" class="cke_button_label" aria-hidden="false"></span></a></span><span class="cke_toolbar_end"></span></span></span></span><div id="cke_1_contents" class="cke_contents cke_reset" role="presentation" style="height: 200px;"><span id="cke_27" class="cke_voice_label">按 ALT+0 获得帮助</span><iframe src="./个人信息_files/saved_resource.html" frameborder="0" class="cke_wysiwyg_frame cke_reset" style="width: 100%; height: 100%;" aria-describedby="cke_27" tabindex="0" allowtransparency="true"></iframe></div></div></div>-->
+                            </div>
+                        </div>
 
-    <div class="col-md-5">
-      <div class="form-group cd-form-group">
-        <label for="profile_weixin">微信</label>
-        <input type="text" id="profile_weixin" name="profile[weixin]" class="form-control" value="">
-        <input class="hidden" type="text" name="profile[isWeixinPublic]" value="1">
-      </div>
-    </div>
+                        <div class="col-md-5">
+                            <div class="form-group cd-form-group">
+                                <label for="profile_company">公司</label>
+                                <input type="text" id="profile_company" name="userCompany" class="form-control" value="">
+                            </div>
+                        </div>
 
-    <div class="col-md-5  col-md-offset-1">
-      <div class="form-group cd-form-group">
-        <label for="profile_qq">QQ</label>
-        <input type="text" id="profile_qq" name="profile[qq]" class="form-control" value="">
-        <input class="hidden" type="text" name="profile[isQQPublic]" value="1">
-      </div>
-    </div>
+                        <div class="col-md-5  col-md-offset-1">
+                            <div class="form-group cd-form-group">
+                                <label for="profile_job">职业</label>
+                                <input type="text" id="profile_job" name="userProfession" class="form-control" value="">
+                            </div>
+                        </div>
 
-    
-    <div class="col-md-11">
-      <button id="profile-save-btn" data-loading-text="正在保存..." type="submit" class="btn cd-btn cd-btn-primary cd-btn-lg">保存</button>
-    </div>
-    <input type="hidden" name="_csrf_token" value="JzxOvm_TfeSV6f5uyzz54llurB6yoZISbdQrzH_xiPk">
-  </form>
-          </div>
-        </div>
-          </div>
-  </div>
+                        <div class="col-md-5">
+                            <div class="form-group cd-form-group">
+                                <label for="profile_site">个人空间</label>
+                                <input type="text" id="profile_site" name="userPersonalSpace" class="form-control" value="" placeholder="http://">
+                            </div>
+                        </div>
 
-          <div class="sgg_bot">
-    <div class="sgg_bot1">
-      <div class="sgg_bot1topbig">
-          <div class="sgg_bot1top">
-              <div class="sgg_bottopimg"><img src="themes/june/img/bot1.png">业界大牛亲自授课</div>
-              <div class="sgg_bottopimg"><img src="themes/june/img/bot2.png">前沿技术实时更新</div>
-              <div class="sgg_bottopimg sgg_bottopimg3"><img src="themes/june/img/bot3.png">足不出户免费学编程</div>
-          </div>
-      </div>
-      <div class="sgg_botcenter">
-        <div class="sgg_botleft">
-            <ul>
-                <li><b>新手入门</b></li>
-                <li><a href="register.html">新用户注册</a></li>
-                <li><a href="login.html">用户登录</a></li>
-                <li><a href="password/reset.html">找回密码</a></li>
-            </ul>          
-            <ul>
-                <li><b>关于我们</b></li>
-                <li><a href="http://www.atguigu.com/teacher.shtml" target="_blank">名师团队</a></li>
-                <li><a href="http://www.atguigu.com/news.shtml" target="_blank">新闻动态</a></li>
-                <li><a href="http://www.atguigu.com/zhaopin.shtml" target="_blank">合作企业</a></li>
-            </ul>
-            <ul>
-                <li><b>资源下载</b></li>
-                <li><a href="http://www.atguigu.com/download.shtml" target="_blank">视频下载</a></li>
-                <li><a href="http://www.atguigu.com/opensource.shtml" target="_blank">资料下载</a></li>
-                <li><a href="http://www.atguigu.com/opensource.shtml#2" target="_blank">工具下载</a></li>
-            </ul>
-            <ul>
-                <li><b>联系我们</b></li>
-                <li><a href="http://search.51job.com/list/co,c,3261804,000000,10,1.html" target="_blank">工作机会</a></li>
-                <li><a href="http://www.atguigu.com/join.shtml" target="_blank">招贤纳师</a></li>
-                <li><a href="http://www.gulixueyuan.com/page/contacts" target="_blank">联系方式</a></li>
-            </ul>
-        </div>
-            <div class="sgg_botright">
-                <img src="themes/june/img/wx.png" width="110" height="110" alt="关注尚硅谷微信 一键下载全部视频教程" title="关注尚硅谷微信 一键下载全部视频教程">
-                <p>关注尚硅谷微信</p>
-                <p>一键下载全部视频教程</p>
+                        <div class="col-md-5  col-md-offset-1">
+                            <div class="form-group cd-form-group">
+                                <label for="weibo">微博</label>
+                                <input type="text" id="weibo" name="userMicroblog" class="form-control" value="" placeholder="http://">
+                                <input class="hidden" type="text" name="userMicroblog" value="1">
+                                <div class="help-block">微博、微信、QQ信息将会展示在您的个人主页</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            <div class="form-group cd-form-group">
+                                <label for="profile_weixin">微信</label>
+                                <input type="text" id="profile_weixin" name="userWeChat" class="form-control" value="">
+                                <input class="hidden" type="text" name="userWeChat" value="1">
+                            </div>
+                        </div>
+
+                        <div class="col-md-5  col-md-offset-1">
+                            <div class="form-group cd-form-group">
+                                <label for="profile_qq">QQ</label>
+                                <input type="text" id="profile_qq" name="userQQ" class="form-control" value="">
+                                <input class="hidden" type="text" name="userQQ" value="1">
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-11">
+                            <button id="profile-save-btn" data-loading-text="正在保存..." type="button" class="btn cd-btn cd-btn-primary cd-btn-lg">保存</button>
+                        </div>
+                        <input type="hidden" name="_csrf_token" value="JzxOvm_TfeSV6f5uyzz54llurB6yoZISbdQrzH_xiPk">
+                    </form>
+                </div>
             </div>
         </div>
-          </div>
-</div>
-        <div class="sgg_botbotbg">
-          <div class="sgg_botbot">
-          <p>
-            
-            
-            ©2018课程版权均归<a href="http://www.gulixueyuan.com/">谷粒学院</a>所有&nbsp;            <a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备17055252号</a>
-                      </p>
-          </div>
-        </div>
-
-<!-- toolbar -->
-<style type="text/css">
-.toolbar {
-  position:fixed;
-  right:10px;
-  bottom:4%;
-  z-index:1020;
-  -webkit-transition:all .3s;
-  -moz-transition:all .3s;
-  -ms-transition:all .3s;
-  -o-transition:all .3s;
-  transition:all .3s
-}
-.toolbarbox {
-  width:52px;
-  background:#fff;
-  position:fixed;
-  right:0;
-  bottom: 10px;
-  color:#fff
-}
-.toolbarbox img {
-  display: block;
-  border:0;
-  max-width:100%;
-  margin: 5px auto;
-}
-
-.mobel {
-  width:52px;
-  height:56px;
-  text-align:center;
-  position:relative;
-  cursor:pointer
-}
-.mobel >a {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-.tb-qq{
-    background: url(themes/june/img/toolbar/qq-gray-8.3.2.png) no-repeat center center;
-}
-.tb-qq:hover{
-    background: url(themes/june/img/toolbar/qq-green-8.3.2.png) no-repeat center center;
-}
-.tb-tel{
-    background: url(themes/june/img/toolbar/phone-8.3.2.png) no-repeat center center;
-}
-.tb-tel:hover{
-    background: url(themes/june/img/toolbar/phone-green-8.3.2.png) no-repeat center center;
-}
-.tb-mail{
-    background: url(themes/june/img/toolbar/mail-gray-8.3.2.png) no-repeat center center;
-}
-.tb-mail:hover{
-    background: url(themes/june/img/toolbar/mail-green-8.3.2.png) no-repeat center center;
-}
-
-.tb-zx{
-    background: url(themes/june/img/toolbar/zx-green-8.3.2.png) no-repeat center center;
-}
-.tb-zx a,.tb-zx a:hover,.tb-zx a:active,.tb-zx a:visited{
-  color: #fff;
-}
-
-.tb-wx{
-    background: url(themes/june/img/toolbar/weixin-gray-8.3.2.png) no-repeat center center;
-}
-.tb-wx:hover{
-    background: url(themes/june/img/toolbar/weixin-green-8.3.2.png) no-repeat center center;
-}
-.tb-top{
-    background: url(themes/june/img/toolbar/top-gray-8.3.2.png) no-repeat center center;
-}
-.tb-top:hover{
-    background: url(themes/june/img/toolbar/top-green-8.3.2.png) no-repeat center center;
-}
-
-.mobel:hover .hidemobelBox{
-  display: block;
-}
-.hidemobelBox {
-  /*width:110px;
-  padding:10px;*/
-  background:none;
-  display:none;
-  position:absolute;
-  right:50px;
-  top:17px;
- 
-}
-.hidemobelBox-content{
-    width:110px;
-    padding:10px;
-    background:#fff;
-    position:relative;
-    cursor:pointer;
-    font-weight:700;
-    text-align:center;
-    line-height:30px;
-    color: #999;
-    font-size: 12px;
-    margin-right: 15px;
-    position: relative;
-}
-.hidemobelBox a{
-  cursor:pointer;
-  font-weight:700;
-  text-align:left;
-  line-height:30px;
-  color: #999;
-}
-
-
-.tb-wx .hidemobelBox {
-  padding-top: 8px;
-  height:auto;
-  text-align:center;
-  line-height: 25px;
-  font-size: 12px;
-  top: -35px;
-}
-.tb-wx .hidemobelBox:after {
- 
-  top:24px;
- 
-}
-.tb-wx .hidemobelBox img{
-  width: 100%;
-  margin: 0;
-}
-
-.tb-wx .hidemobelBox-content:after {
-  top:50px;
-}
-
-
-.hidemobelBox-content:after {
-  content:'';
-  position:absolute;
-  top:6px;
-  right:-8px;
-  display:block;
-  border-top:8px solid transparent;
-  border-bottom:8px solid transparent;
-  border-left:8px solid #fff
-}
-
-.tool-line {
-  width:25px;
-  height:1px;
-  border-bottom:1px solid #e7e7e7;
-  margin:0 auto;
-}
-
-@-webkit-keyframes ball-scale {
-  0% {
-    -webkit-transform:scale(0);
-    transform:scale(0)
-  }
-  100% {
-    -webkit-transform:scale(1);
-    transform:scale(1);
-    opacity:0
-  }
-}
-
-@keyframes ball-scale {
-  0% {
-    -webkit-transform:scale(0);
-    transform:scale(0)
-  }
-  100% {
-    -webkit-transform:scale(1);
-    transform:scale(1);
-    opacity:0
-  }
-}
-
-.hidemsg {
-  width:210px;
-  height:40px;
-  line-height:28px;
-  background:#10c46e;
-  text-align:center;
-  overflow:hidden
-}
-.hidemsg div {
-  position:absolute;
-  left:0;
-  right:0;
-  top:0;
-  bottom:0;
-  margin:auto;
-  pointer-events:none;
-  background-color:#fff;
-  -webkit-border-radius:100%;
-  -moz-border-radius:100%;
-  -o-border-radius:100%;
-  -ms-border-radius:100%;
-  border-radius:100%;
-  -webkit-animation-fill-mode:both;
-  -moz-animation-fill-mode:both;
-  -ms-animation-fill-mode:both;
-  -o-animation-fill-mode:both;
-  animation-fill-mode:both;
-  display:inline-block;
-  width:204px;
-  height:204px;
-  -webkit-animation:ball-scale 1s 0s ease-in-out infinite;
-  -moz-animation:ball-scale 1s 0s ease-in-out infinite;
-  -ms-animation:ball-scale 1s 0s ease-in-out infinite;
-  -o-animation:ball-scale 1s 0s ease-in-out infinite;
-  animation:ball-scale 1s 0s ease-in-out infinite
-}
-.hidemsg p {
-  line-height:40px;
-  color:#fff;
-  font-weight:700;
-  font-size:16px
-}
-.hidemsgAfter {
-  width:225px;
-  height:40px;
-  position:relative;
-  left:-222px;
-  top:-45px;
-  overflow:hidden;
-  cursor:pointer
-}
-.hidemsgAfter :after {
-  content:'';
-  position:absolute;
-  top:11px;
-  right:7px;
-  display:block;
-  border-top:8px solid transparent;
-  border-bottom:8px solid transparent;
-  border-left:8px solid #10c46e
-}
-
-@media (max-width: 767px) {
-   .toolbar{
-    display: none;
-   }
-}
-
-</style>
-
-<div class="toolbar">
-<div class="toolbarbox">
-
-
-  <div class="mobel tb-zx">
-    <a href="https://tb.53kf.com/code/client/10007377/1" target="_blank">
-    </a>
-    <div class="hidemsgAfter"><div class="hidemsg"><p><a target="_blank" href="https://tb.53kf.com/code/client/10007377/1">现在就与学习导师聊一聊</a></p><div></div></div></div>
-  </div>
-  <div class="tool-line"></div>
-
-  
-  <div class="mobel tb-qq">
-    <a href="https://jq.qq.com/?_wv=1027&amp;k=5ckaUWz" target="_blank">
-    </a>
-    <div class="hidemobelBox">
-      <div class="hidemobelBox-content">
-        <a href="https://jq.qq.com/?_wv=1027&amp;k=5ckaUWz" target="_blank">
-             <img src="themes/june/img/toolbar/qqun-8.3.2.png">
-          加入技术交流群
-        </a>
-      </div>
     </div>
-  </div>
-  <div class="tool-line"></div>
 
-  <div class="mobel tb-wx">
-    <div class="hidemobelBox">
-      <div class="hidemobelBox-content">
-        <img src="themes/june/img/wx.png">
-  关注微信
-      </div>
-  </div>
-  </div>
-  <div class="tool-line"></div>
-  <div class="mobel tb-top">
-    <a href="http://www.gulixueyuan.com/settings#">
-      </a>
-  </div>
-</div>
-</div>        
-<script src="http://push.zhanzhang.baidu.com/push.js"></script><script type="text/javascript">
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
+    <div class="sgg_bot">
+        <div class="sgg_bot1">
+            <div class="sgg_bot1topbig">
+                <div class="sgg_bot1top">
+                    <div class="sgg_bottopimg"><img src="themes/june/img/bot1.png">业界大牛亲自授课</div>
+                    <div class="sgg_bottopimg"><img src="themes/june/img/bot2.png">前沿技术实时更新</div>
+                    <div class="sgg_bottopimg sgg_bottopimg3"><img src="themes/june/img/bot3.png">足不出户免费学编程</div>
+                </div>
+            </div>
+            <div class="sgg_botcenter">
+                <div class="sgg_botleft">
+                    <ul>
+                        <li><b>新手入门</b></li>
+                        <li><a href="register.html">新用户注册</a></li>
+                        <li><a href="login.html">用户登录</a></li>
+                        <li><a href="password/reset.html">找回密码</a></li>
+                    </ul>
+                    <ul>
+                        <li><b>关于我们</b></li>
+                        <li><a href="http://www.atguigu.com/teacher.shtml" target="_blank">名师团队</a></li>
+                        <li><a href="http://www.atguigu.com/news.shtml" target="_blank">新闻动态</a></li>
+                        <li><a href="http://www.atguigu.com/zhaopin.shtml" target="_blank">合作企业</a></li>
+                    </ul>
+                    <ul>
+                        <li><b>资源下载</b></li>
+                        <li><a href="http://www.atguigu.com/download.shtml" target="_blank">视频下载</a></li>
+                        <li><a href="http://www.atguigu.com/opensource.shtml" target="_blank">资料下载</a></li>
+                        <li><a href="http://www.atguigu.com/opensource.shtml#2" target="_blank">工具下载</a></li>
+                    </ul>
+                    <ul>
+                        <li><b>联系我们</b></li>
+                        <li><a href="http://search.51job.com/list/co,c,3261804,000000,10,1.html" target="_blank">工作机会</a></li>
+                        <li><a href="http://www.atguigu.com/join.shtml" target="_blank">招贤纳师</a></li>
+                        <li><a href="http://www.gulixueyuan.com/page/contacts" target="_blank">联系方式</a></li>
+                    </ul>
+                </div>
+                <div class="sgg_botright">
+                    <img src="themes/june/img/wx.png" width="110" height="110" alt="关注尚硅谷微信 一键下载全部视频教程" title="关注尚硅谷微信 一键下载全部视频教程">
+                    <p>关注尚硅谷微信</p>
+                    <p>一键下载全部视频教程</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sgg_botbotbg">
+        <div class="sgg_botbot">
+            <p>
+
+
+                ©2018课程版权均归<a href="http://www.gulixueyuan.com/">谷粒学院</a>所有&nbsp;            <a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备17055252号</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- toolbar -->
+    <style type="text/css">
+        .toolbar {
+            position:fixed;
+            right:10px;
+            bottom:4%;
+            z-index:1020;
+            -webkit-transition:all .3s;
+            -moz-transition:all .3s;
+            -ms-transition:all .3s;
+            -o-transition:all .3s;
+            transition:all .3s
+        }
+        .toolbarbox {
+            width:52px;
+            background:#fff;
+            position:fixed;
+            right:0;
+            bottom: 10px;
+            color:#fff
+        }
+        .toolbarbox img {
+            display: block;
+            border:0;
+            max-width:100%;
+            margin: 5px auto;
+        }
+
+        .mobel {
+            width:52px;
+            height:56px;
+            text-align:center;
+            position:relative;
+            cursor:pointer
+        }
+        .mobel >a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .tb-qq{
+            background: url(themes/june/img/toolbar/qq-gray-8.3.2.png) no-repeat center center;
+        }
+        .tb-qq:hover{
+            background: url(themes/june/img/toolbar/qq-green-8.3.2.png) no-repeat center center;
+        }
+        .tb-tel{
+            background: url(themes/june/img/toolbar/phone-8.3.2.png) no-repeat center center;
+        }
+        .tb-tel:hover{
+            background: url(themes/june/img/toolbar/phone-green-8.3.2.png) no-repeat center center;
+        }
+        .tb-mail{
+            background: url(themes/june/img/toolbar/mail-gray-8.3.2.png) no-repeat center center;
+        }
+        .tb-mail:hover{
+            background: url(themes/june/img/toolbar/mail-green-8.3.2.png) no-repeat center center;
+        }
+
+        .tb-zx{
+            background: url(themes/june/img/toolbar/zx-green-8.3.2.png) no-repeat center center;
+        }
+        .tb-zx a,.tb-zx a:hover,.tb-zx a:active,.tb-zx a:visited{
+            color: #fff;
+        }
+
+        .tb-wx{
+            background: url(themes/june/img/toolbar/weixin-gray-8.3.2.png) no-repeat center center;
+        }
+        .tb-wx:hover{
+            background: url(themes/june/img/toolbar/weixin-green-8.3.2.png) no-repeat center center;
+        }
+        .tb-top{
+            background: url(themes/june/img/toolbar/top-gray-8.3.2.png) no-repeat center center;
+        }
+        .tb-top:hover{
+            background: url(themes/june/img/toolbar/top-green-8.3.2.png) no-repeat center center;
+        }
+
+        .mobel:hover .hidemobelBox{
+            display: block;
+        }
+        .hidemobelBox {
+            /*width:110px;
+            padding:10px;*/
+            background:none;
+            display:none;
+            position:absolute;
+            right:50px;
+            top:17px;
+
+        }
+        .hidemobelBox-content{
+            width:110px;
+            padding:10px;
+            background:#fff;
+            position:relative;
+            cursor:pointer;
+            font-weight:700;
+            text-align:center;
+            line-height:30px;
+            color: #999;
+            font-size: 12px;
+            margin-right: 15px;
+            position: relative;
+        }
+        .hidemobelBox a{
+            cursor:pointer;
+            font-weight:700;
+            text-align:left;
+            line-height:30px;
+            color: #999;
+        }
+
+
+        .tb-wx .hidemobelBox {
+            padding-top: 8px;
+            height:auto;
+            text-align:center;
+            line-height: 25px;
+            font-size: 12px;
+            top: -35px;
+        }
+        .tb-wx .hidemobelBox:after {
+
+            top:24px;
+
+        }
+        .tb-wx .hidemobelBox img{
+            width: 100%;
+            margin: 0;
+        }
+
+        .tb-wx .hidemobelBox-content:after {
+            top:50px;
+        }
+
+
+        .hidemobelBox-content:after {
+            content:'';
+            position:absolute;
+            top:6px;
+            right:-8px;
+            display:block;
+            border-top:8px solid transparent;
+            border-bottom:8px solid transparent;
+            border-left:8px solid #fff
+        }
+
+        .tool-line {
+            width:25px;
+            height:1px;
+            border-bottom:1px solid #e7e7e7;
+            margin:0 auto;
+        }
+
+        @-webkit-keyframes ball-scale {
+            0% {
+                -webkit-transform:scale(0);
+                transform:scale(0)
+            }
+            100% {
+                -webkit-transform:scale(1);
+                transform:scale(1);
+                opacity:0
+            }
+        }
+
+        @keyframes ball-scale {
+            0% {
+                -webkit-transform:scale(0);
+                transform:scale(0)
+            }
+            100% {
+                -webkit-transform:scale(1);
+                transform:scale(1);
+                opacity:0
+            }
+        }
+
+        .hidemsg {
+            width:210px;
+            height:40px;
+            line-height:28px;
+            background:#10c46e;
+            text-align:center;
+            overflow:hidden
+        }
+        .hidemsg div {
+            position:absolute;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+            margin:auto;
+            pointer-events:none;
+            background-color:#fff;
+            -webkit-border-radius:100%;
+            -moz-border-radius:100%;
+            -o-border-radius:100%;
+            -ms-border-radius:100%;
+            border-radius:100%;
+            -webkit-animation-fill-mode:both;
+            -moz-animation-fill-mode:both;
+            -ms-animation-fill-mode:both;
+            -o-animation-fill-mode:both;
+            animation-fill-mode:both;
+            display:inline-block;
+            width:204px;
+            height:204px;
+            -webkit-animation:ball-scale 1s 0s ease-in-out infinite;
+            -moz-animation:ball-scale 1s 0s ease-in-out infinite;
+            -ms-animation:ball-scale 1s 0s ease-in-out infinite;
+            -o-animation:ball-scale 1s 0s ease-in-out infinite;
+            animation:ball-scale 1s 0s ease-in-out infinite
+        }
+        .hidemsg p {
+            line-height:40px;
+            color:#fff;
+            font-weight:700;
+            font-size:16px
+        }
+        .hidemsgAfter {
+            width:225px;
+            height:40px;
+            position:relative;
+            left:-222px;
+            top:-45px;
+            overflow:hidden;
+            cursor:pointer
+        }
+        .hidemsgAfter :after {
+            content:'';
+            position:absolute;
+            top:11px;
+            right:7px;
+            display:block;
+            border-top:8px solid transparent;
+            border-bottom:8px solid transparent;
+            border-left:8px solid #10c46e
+        }
+
+        @media (max-width: 767px) {
+            .toolbar{
+                display: none;
+            }
+        }
+
+    </style>
+
+    <div class="toolbar">
+        <div class="toolbarbox">
+
+
+            <div class="mobel tb-zx">
+                <a href="https://tb.53kf.com/code/client/10007377/1" target="_blank">
+                </a>
+                <div class="hidemsgAfter"><div class="hidemsg"><p><a target="_blank" href="https://tb.53kf.com/code/client/10007377/1">现在就与学习导师聊一聊</a></p><div></div></div></div>
+            </div>
+            <div class="tool-line"></div>
+
+
+            <div class="mobel tb-qq">
+                <a href="https://jq.qq.com/?_wv=1027&amp;k=5ckaUWz" target="_blank">
+                </a>
+                <div class="hidemobelBox">
+                    <div class="hidemobelBox-content">
+                        <a href="https://jq.qq.com/?_wv=1027&amp;k=5ckaUWz" target="_blank">
+                            <img src="themes/june/img/toolbar/qqun-8.3.2.png">
+                            加入技术交流群
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-line"></div>
+
+            <div class="mobel tb-wx">
+                <div class="hidemobelBox">
+                    <div class="hidemobelBox-content">
+                        <img src="themes/june/img/wx.png">
+                        关注微信
+                    </div>
+                </div>
+            </div>
+            <div class="tool-line"></div>
+            <div class="mobel tb-top">
+                <a href="http://www.gulixueyuan.com/settings#">
+                </a>
+            </div>
+        </div>
+    </div>
+    <script src="http://push.zhanzhang.baidu.com/push.js"></script><script type="text/javascript">
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
 </script>
-<!--<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1264603569'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D1264603569' type='text/javascript'%3E%3C/script%3E"));</script><span id="cnzz_stat_icon_1264603569"><a href="https://www.cnzz.com/stat/website.php?web_id=1264603569" target="_blank" title="站长统计">站长统计</a></span><script src="./个人信息_files/stat.php" type="text/javascript"></script><script src="./个人信息_files/core.php" charset="utf-8" type="text/javascript"></script> -->
-        
-      </div>
+    <!--<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1264603569'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D1264603569' type='text/javascript'%3E%3C/script%3E"));</script><span id="cnzz_stat_icon_1264603569"><a href="https://www.cnzz.com/stat/website.php?web_id=1264603569" target="_blank" title="站长统计">站长统计</a></span><script src="./个人信息_files/stat.php" type="text/javascript"></script><script src="./个人信息_files/core.php" charset="utf-8" type="text/javascript"></script> -->
 
-  
-  
-  <div id="login-modal" class="modal" data-url="/login/ajax"></div>
-  <div id="modal" class="modal"></div>
-  <div id="attachment-modal" class="modal"></div>
+</div>
 
-    
 
-    <script>
+
+<div id="login-modal" class="modal" data-url="/login/ajax"></div>
+<div id="modal" class="modal"></div>
+<div id="attachment-modal" class="modal"></div>
+
+
+
+<!--    <script>
   if (typeof app === 'undefined') {
       var app = {};
   }
@@ -1276,7 +1279,7 @@
   app.cloudOldUploaderSdkUrl = '//service-cdn.qiqiuyun.net/js-sdk/uploader/sdk-v1.js?15669990';
   app.cloudOldDocumentSdkUrl = '//service-cdn.qiqiuyun.net/js-sdk/document-player/v7/viewer.html?15669990';
   app.lang = 'zh_CN';
-</script>
+</script>-->
 
 <script src="bundles/translations/translator.min-8.3.2.js"></script>
 <script src="bundles/translations/zh_CN-8.3.2.js"></script>
@@ -1285,9 +1288,77 @@
 <script src="static-dist/app/js/main-8.3.2.js"></script>
 <script src="static-dist/libs/echo-js-8.3.2.js"></script>
 <script src="static-dist/junetheme/js/default/main-8.3.2.js"></script>
-  
+
 <script type="text/javascript">
-  window.seajsBoot && window.seajsBoot();
+    $(function () {
+
+        function getUrlParam(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+            if (r!=null) return unescape(r[2]);
+            return null; //返回参数值
+        }
+        var id = getUrlParam("userId");
+
+
+        $.getJSON("/guliUser/findUserById?userId="+id,function (json) {
+            var result = json.object;
+            $("#user_name").text(result.userName);
+            $("#profile_truename").val(result.userRealName);
+            $("#profile_title").val(result.userActor);
+            $("#profile_signature").val(result.userBrief);
+            $("#profile_about").val(result.userIntroduce);
+            $("#profile_company").val(result.userCompany);
+            $("#profile_job").val(result.userProfession);
+            $("#profile_site").val(result.userPersonalSpace);
+            $("#weibo").val(result.userMicroblog);
+            $("#profile_weixin").val(result.userWeChat);
+            $("#profile_qq").val(result.userQQ);
+            if(result.userSex == "男"){
+                $("#profile_gender_0").addClass("checked");
+                $("#profile_gender_0 input").attr("checked");
+                $("#profile_gender_1 input").attr("");
+            }
+            if(result.userSex == "女"){
+                $("#profile_gender_1").addClass("checked");
+                $("#profile_gender_1 input").attr("checked");
+                $("#profile_gender_0 input").attr("");
+            }
+
+        });
+
+        $("#profile_gender_0").click(function(){
+            $(this).addClass("checked");
+            $("#profile_gender_0 input").attr("checked");
+            $("#profile_gender_1").removeClass("checked");
+            $("#profile_gender_1 input").attr("");
+        });
+        $("#profile_gender_1").click(function(){
+            $(this).addClass("checked");
+            $("#profile_gender_1 input").attr("checked");
+            $("#profile_gender_0").removeClass("checked");
+            $("#profile_gender_0 input").attr("");
+        });
+
+
+        $("#profile-save-btn").click(function () {
+            var param = $("input:text,input:password,input:radio,textarea").serialize();
+            $.post("/guliUser/updateUserInfo?userId="+id,param,function (result) {
+                if(result.success == true){
+                    alert(result.message);
+                    window.location.href = "/settings?userId="+id;
+                }
+                if(result.success == false){
+                    alert(result.message);
+                    window.location.href = "/settings?userId="+id;
+                }
+            })
+        });
+
+
+
+    })
 </script>
 
 

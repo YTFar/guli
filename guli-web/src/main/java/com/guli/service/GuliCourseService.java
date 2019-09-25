@@ -1,16 +1,11 @@
 package com.guli.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.guli.pojo.GuliCourse;
 import com.guli.pojo.coursevo.CourseAndClassify;
 import com.guli.pojo.coursevo.CourseAndClassifyAndUser;
-import com.guli.pojo.request.PageCourse;
 import com.guli.pojo.response.AllTypePage;
-import com.guli.response.ObjectResult;
 import com.guli.vo.CourseVO;
-import com.guli.vo.GuliEvaluateVO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 

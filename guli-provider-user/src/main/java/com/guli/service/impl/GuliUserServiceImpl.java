@@ -1,10 +1,9 @@
 package com.guli.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.guli.pojo.GuliUser;
-import com.guli.mapper.GuliUserMapper;
-import com.guli.service.GuliUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.guli.mapper.GuliUserMapper;
+import com.guli.pojo.GuliUser;
+import com.guli.service.GuliUserService;
 import org.springframework.stereotype.Service;
 
 /**

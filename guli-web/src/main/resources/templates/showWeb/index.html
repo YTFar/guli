@@ -189,7 +189,7 @@
             </nav>
             <div class="q-btn-con bg-icon" onclick="headerToggle()"></div>
 
-            <!--登录前显示-->
+            <!--            登录前
             <div class="absolute login-box login-before">
                 <p>
                     <span class="bg-icon"></span>
@@ -198,9 +198,40 @@
                     <a href="register.html">注册</a>
                 </p>
             </div>
-            <!--end 登录前-->
+            登录前-->
+
+            <div id="login_after" class="login-after absolute">
+                <!--a class="login-after-message absolute" target="_blank" href="user/message.do">消息<span class="login-after-message-count">8</span></a-->
+                <div class="login-after-top" onclick="loginAfterToggle()">
+                    <p><img src = "/files/default/2019/08-20/093543fdf953638322.jpg"><span class="userName" id="user" th:text="${session.user.userName}"></span><span class="bg-icon down-icon"></span></p></div>
+                <ul class="user-list">
+                    <li>
+                        <p>
+                            <a th:href="@{'/my.html'+${session.user.userId}}">
+                                我的学习                            </a>
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            <a th:href="@{/orders(userId=${session.user.userId})}">
+                                账户中心
+                            </a>
+                        </p>
+                    </li>
 
 
+                    <li>
+                        <p>
+                            <a th:href="@{/logOut(userId=${session.user.userId})}">
+                                退出登录
+                            </a>
+                        </p>
+                    </li>
+                    <!--&lt;!&ndash;<li></li>&ndash;&gt;-->
+                </ul>
+                <div class="caret login-caret absolute" style="display: block;"></div>
+            </div>
         </div>
     </div>
 </header>

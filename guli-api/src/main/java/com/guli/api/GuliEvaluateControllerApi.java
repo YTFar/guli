@@ -1,8 +1,5 @@
 package com.guli.api;
 
-import com.guli.pojo.GuliCourse;
-import com.guli.pojo.GuliEvaluate;
-import com.guli.pojo.GuliUser;
 import com.guli.vo.CourseVO;
 import com.guli.vo.GuliEvaluateVO;
 import com.guli.vo.UserVO;

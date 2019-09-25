@@ -29,6 +29,7 @@ package com.guli.pojo;
 
     private Integer receiveStatus;
 
+
         public Long getReceiveId() {
         return receiveId;
         }
