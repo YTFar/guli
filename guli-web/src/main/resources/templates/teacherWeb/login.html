@@ -24,6 +24,7 @@
     <!--</script>-->
     <link id="layuicss-layer" rel="stylesheet" href="../ls_files/layer.css" media="all">
     <link id="layuicss-layuiAdmin" rel="stylesheet" href="../ls_files/admin.css" media="all">
+    <link rel="stylesheet" href="../../layui_files_upload/css/layui.css"/>
 </head>
 <body layadmin-themealias="classic-black-header" class="layui-layout-body">
 <div id="LAY_app" class="layadmin-tabspage-none">
@@ -67,24 +68,26 @@
     </div>
     <script src="../js/jquery.min.js"></script>
     <script src="../js/verify.js"></script>
+    <script type="text/javascript" src="../../layui_files_upload/layui.js"></script>
     <script>
-        // //用户名与电话
-        // $("#LAY-user-login-username").blur(function(){
-        //     verify($(this));
-        // });
-        //
-        // //密码
-        // $("#LAY-user-login-password").blur(function(){
-        //     verify($(this));
-        // });
+        //用户名与电话
+        $("#LAY-user-login-username").blur(function(){
+            verify($(this));
+        });
+
+        //密码
+        $("#LAY-user-login-password").blur(function(){
+            verify($(this));
+        });
 
         //点击登录
         $("#layui-button").click(function(){
-            // if(verify($("#LAY-user-login-username"))==false || verify($("#LAY-user-login-password"))==false){
-            //     return false;
-            // }
+            if(verify($("#LAY-user-login-username"))==false || verify($("#LAY-user-login-password"))==false){
+                return false;
+            }
+
             //此处发送登录请求
-            window.location.href="首页.html";
+            // window.location.href="首页.html";
         });
     </script>
 

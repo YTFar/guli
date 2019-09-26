@@ -1,12 +1,13 @@
 package com.guli.service;
 
+import com.guli.pojo.GuliOrder;
+import com.guli.pojo.ordervo.OrderAndUser;
 import com.guli.pojo.response.AllTypePage;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.guli.pojo.OrderVo.OrderAndUser;
-
-import java.util.List;
 
 /**
  * @author 齐天大圣
@@ -28,7 +29,24 @@ public interface GuliOrderService {
     @GetMapping("/guliOrder/findAllPageOrdel")
     public AllTypePage<OrderAndUser> findAllPageOrdel(@RequestParam("pageNo") int pageNo,
                                                       @RequestParam("pageSize") int pageSize,
-                                                      @RequestParam("userId") int userId,
+                                                      @RequestParam("userId") Long userId,
                                                       @RequestParam("orderNumber") String orderNumber,
-                                                      @RequestParam("userName")String userName);
+                                                      @RequestParam("userName")String userName,
+                                                      @RequestParam("orderStatus") int orderStatus);
+
+    /**
+     * 修改订单
+     * @param guliOrder 订单信息
+     * @return
+     */
+    @PutMapping("/updateOrder")
+    public int updateOrder(@RequestBody GuliOrder guliOrder);
+
+    /**
+     * 按订单id查询订单信息
+     * @param orderId
+     * @return
+     */
+    @GetMapping("/guliOrder/findOneOrder")
+    public OrderAndUser findOneOrder(@RequestParam("orderId") int orderId);
 }

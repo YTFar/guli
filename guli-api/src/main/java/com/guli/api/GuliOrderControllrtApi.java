@@ -1,10 +1,10 @@
 package com.guli.api;
 
 import com.guli.pojo.GuliOrder;
+import com.guli.pojo.ordervo.OrderAndUser;
 import com.guli.pojo.response.AllTypePage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import com.guli.pojo.OrderVo.OrderAndUser;
 
 /**
  * @author 齐天大圣
@@ -15,8 +15,11 @@ import com.guli.pojo.OrderVo.OrderAndUser;
 public interface GuliOrderControllrtApi {
 
     @ApiOperation("按教师id分页查询所有订单")
-    public AllTypePage<OrderAndUser> findAllPageOrdel(int pageNo,int pageSize,int userId,String orderNumber,String userName);
+    public AllTypePage<OrderAndUser> findAllPageOrdel(int pageNo, int pageSize, Long userId, String orderNumber, String userName, int orderStatus);
 
     @ApiOperation("按订单id修改指定信息")
     public int updateOrder(GuliOrder guliOrder);
+
+    @ApiOperation("按订单id查询订单信息")
+    public OrderAndUser findOneOrder(int orderId);
 }

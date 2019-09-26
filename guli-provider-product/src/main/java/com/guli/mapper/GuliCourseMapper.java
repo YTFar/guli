@@ -1,14 +1,11 @@
 package com.guli.mapper;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guli.pojo.GuliCourse;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.guli.pojo.coursevo.CourseAndClassify;
 import com.guli.pojo.coursevo.CourseAndClassifyAndUser;
-import com.guli.pojo.request.PageCourse;
 import com.guli.vo.CourseVO;
-import com.guli.vo.GuliEvaluateVO;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 

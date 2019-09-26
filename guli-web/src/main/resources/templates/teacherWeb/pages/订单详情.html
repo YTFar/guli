@@ -7,57 +7,86 @@
     <title>后台管理系统</title>
     <link rel="stylesheet" href="../../layui/css/layui.css"/>
     <link rel="stylesheet" href="../../css/admin.css"/>
+	<link rel="stylesheet" href="../../layui_files_upload/css/layui.css"/>
 </head>
 <body>
 	    <table class="layui-table layui-table-add" lay-skin="nob">
 		  <tbody>
 		  	<tr>
 		      <th class="pad" width="100">订单编号</th>
-		      <td>SW00152100</td>
+		      <td id="orderNumber">空</td>
 		    </tr>
 		    <tr>
 		      <th class="pad">收货人</th>
-		      <td>张三</td>
+		      <td id="userName">空</td>
 		    </tr>
 		    <tr>
 		      <th class="pad">手机号码</th>
-		      <td>13688888888</td>
+		      <td id="userPhone">空</td>
 		    </tr>
 			<tr>
 				<th class="pad" width="100">商品名称</th>
-				<td>java基础</td>
+				<td id="orderTradeName">空</td>
+			</tr>
+			<tr>
+				<th class="pad">商品价格</th>
+				<td><span class="price" id="orderTradePrice">-1</span></td>
 			</tr>
 			<tr>
 				<th class="pad">订单价格</th>
-				<td><span class="price">10000</span></td>
+				<td><span class="price" id="orderPrice">-1</span></td>
 			</tr>
 			<tr>
 				<th class="pad">优惠抵扣</th>
-				<td><span class="price">25000</span></td>
+				<td><span class="price" id="orderDiscount">-1</span></td>
 			</tr>
 			<tr>
 				<th class="pad">订单状态</th>
-				<td>交易关闭</td>
+				<td id="orderStatusStr">空</td>
 			</tr>
 			<tr>
 				<th class="pad">创建时间</th>
-				<td>2017-05-05 12:00:00</td>
+				<td id="orderCreateTime">空</td>
 			</tr>
 			<tr>
 				<th class="pad">变更时间</th>
-				<td>2018-05-08 08:00:00</td>
+				<td id="orderUpdateTime">空</td>
 			</tr>
 			<tr>
 				<th class="pad">退款有效期</th>
-				<td>7天</td>
+				<td id="orderValidity">空</td>
+			</tr>
+			<tr>
+				<th class="pad">发货人</th>
+				<td id="shipper">空</td>
 			</tr>
 		  </tbody>
 		</table>
 
 
 	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script type="text/javascript" src="../../layui_files_upload/layui.js"></script>
+	<script type="text/javascript" src="../../js/jquery-1.8.3.min.js"></script>
 	<script>
-
+		function child(orderId) {
+			$(function () {
+				$.get("/guliOrder/findOneOrder?orderId="+orderId,function (json) {
+					console.log(json)
+					$("#orderNumber").text(json.object.orderNumber);
+					$("#userName").text(json.object.userName);
+					$("#userPhone").text(json.object.userPhone);
+					$("#orderTradeName").text(json.object.orderTradeName);
+					$("#orderPrice").text(json.object.orderPrice);
+					$("#orderDiscount").text(json.object.orderDiscount);
+					$("#orderStatusStr").text(json.object.orderStatusStr);
+					$("#orderCreateTime").text(json.object.orderCreateTime);
+					$("#orderUpdateTime").text(json.object.orderUpdateTime);
+					$("#orderValidity").text(json.object.orderValidity);
+					$("#shipper").text(json.object.shipper);
+					$("#orderTradePrice").text(json.object.orderTradePrice);
+				});
+			});
+		}
 		layui.use(['jquery','form'], function(){
 			var $ = layui.jquery;
 		});

@@ -1,4 +1,4 @@
-package com.guli.pojo.OrderVo;
+package com.guli.pojo.ordervo;
 
 import com.guli.pojo.GuliOrder;
 import lombok.Data;
@@ -16,11 +16,13 @@ import lombok.ToString;
  */
 public class OrderAndUser extends GuliOrder {
 
-    private Long userId;
-
     private String userName;
 
     private String userPhone;
 
     private String  userEmail;
+
+    private String shipper;
+
+    private String shipperId;
 }

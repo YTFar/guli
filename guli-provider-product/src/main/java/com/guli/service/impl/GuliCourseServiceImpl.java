@@ -2,23 +2,18 @@ package com.guli.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.guli.mapper.GuliItemMapper;
-import com.guli.message.response.CommonCode;
-import com.guli.pojo.GuliCourse;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.guli.mapper.GuliCourseMapper;
+import com.guli.mapper.GuliItemMapper;
+import com.guli.pojo.GuliCourse;
 import com.guli.pojo.GuliItem;
 import com.guli.pojo.coursevo.CourseAndClassifyAndUser;
-import com.guli.pojo.request.PageCourse;
-import com.guli.response.ObjectResult;
 import com.guli.service.GuliCourseService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -47,7 +42,7 @@ public class GuliCourseServiceImpl extends ServiceImpl<GuliCourseMapper, GuliCou
     public GuliCourse addCourse(GuliCourse guliCourse) {
         //填写项的值
         GuliItem guliItem = new GuliItem();
-        guliItem.setUserId(1l);
+        guliItem.setUserId(8l);
         guliItem.setCourseId(0l);
         guliItem.setCourseAffiliate(0);
         guliItem.setCourseCollect(0);

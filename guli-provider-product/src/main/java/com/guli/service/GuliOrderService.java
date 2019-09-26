@@ -1,9 +1,9 @@
 package com.guli.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.guli.pojo.GuliOrder;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.guli.pojo.OrderVo.OrderAndUser;
+import com.guli.pojo.GuliOrder;
+import com.guli.pojo.ordervo.OrderAndUser;
 
 import java.util.List;
 
@@ -17,7 +17,9 @@ import java.util.List;
  */
 public interface GuliOrderService extends IService<GuliOrder> {
 
-    List<OrderAndUser> findAllPageOrdel(Page<OrderAndUser> page, int userId, String orderNumber, String userName);
+    List<OrderAndUser> findAllPageOrdel(Page<OrderAndUser> page, Long userId, String orderNumber, String userName, int orderStatus);
 
     int updateOrder(GuliOrder guliOrder);
+
+    OrderAndUser findOneOrder(int orderId);
 }

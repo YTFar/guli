@@ -1,10 +1,10 @@
 package com.guli.pojo;
 
     import com.baomidou.mybatisplus.annotation.IdType;
-    import com.baomidou.mybatisplus.extension.activerecord.Model;
-    import com.baomidou.mybatisplus.annotation.TableId;
-    import java.io.Serializable;
-    import java.util.Date;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
+
+import java.io.Serializable;
 
 /**
 * <p>
@@ -25,11 +25,7 @@ package com.guli.pojo;
 
     private Long courseId;
 
-    private Date affiliate_time;
 
-    public Date getAffiliate_time() {
-        return affiliate_time;
-    }
 
     @Override
     public String toString() {
@@ -37,14 +33,9 @@ package com.guli.pojo;
                 "itemId=" + itemId +
                 ", userId=" + userId +
                 ", courseId=" + courseId +
-                ", affiliate_time=" + affiliate_time +
                 ", courseCollect=" + courseCollect +
                 ", courseAffiliate=" + courseAffiliate +
                 '}';
-    }
-
-    public void setAffiliate_time(Date affiliate_time) {
-        this.affiliate_time = affiliate_time;
     }
 
     /**

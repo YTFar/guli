@@ -14,21 +14,21 @@
 		<div class="content-search" style="margin-top: 10px">
 			<form class="layui-form layui-form-pane">
 				<div class="layui-inline">
-					<label class="layui-form-label">课程名称</label>
+					<label class="layui-form-label">订单编号</label>
 					<div class="layui-input-block">
-						<input id="courseName" name="courseName" placeholder="请输入课程名称" autocomplete="off" class="layui-input" type="text"/>
+						<input id="orderNumber" name="orderNumber" placeholder="请输入订单编号" autocomplete="off" class="layui-input" type="text"/>
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">收货人</label>
 					<div class="layui-input-block">
-						<input id="userName" name="courseName" placeholder="请输入课程名称" autocomplete="off" class="layui-input" type="text"/>
+						<input id="userName" name="userName" placeholder="请输入收货人名称" autocomplete="off" class="layui-input" type="text"/>
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">订单状态</label>
 					<div class="layui-input-inline">
-						<select id="activitieState" lay-filter="activitieState" name="activitieState" lay-verify="">
+						<select id="orderStatus" lay-filter="orderStatus" name="orderStatus" lay-verify="">
 						  <option value="-1">订单状态(全部)</option>
 						  <option value="0">未付款</option>
 						  <option value="1">已付款</option>
@@ -52,7 +52,7 @@
 
 			<script type="text/html" id="barDemo">
 				<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-				<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+<!--				<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
 			</script>
 		</div>
 <!--	</div>-->
@@ -62,32 +62,40 @@
 	<script type="text/javascript" src="../../js/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="../../layui_files_upload/layui.js"></script>
     <script>
-		// PageNo = 1;
-		// PageSize = 10;
+		PageNo = 1;
+		PageSize = 10;
 	$(function () {
-		pageShow(1,10,null,null,null);
+		pageShow(1,10,null,null,null,null);
 		// $("#layui-btn").click(function () {
         //     pageShow(1,10,null,null,null);
         // });
-		$("#courseName").change(function () {
+		$("#orderNumber").change(function () {
 			// alert(1);
-			pageShow(1,10,null,null,null);
+			pageShow(1,10,null,null,null,null);
+		});
+
+		$("#userName").change(function () {
+			// alert(1);
+			pageShow(1,10,null,null,null,null);
 		});
 
 	});
 
-	function pageShow(pageNo,pageSize,courseName,activitieState,activitieType) {
-		if (courseName == null)
-			courseName = $("#courseName").val();
+	function pageShow(pageNo,pageSize,userId,userName,orderNumber,orderStatus) {
+		if (userName == null)
+			userName = $("#userName").val();
 
-		if(activitieState == null)
-		activitieState = $("#activitieState").val();
+		if(orderStatus == null)
+			orderStatus = $("#orderStatus").val();
 
-		if (activitieType == null)
-		activitieType = $("#activitieType").val();
-		var param = "pageNo="+pageNo+"&pageSize="+pageSize+"&userId="+1+"&activitieType="+activitieType+"&courseName="+courseName+"&activitieState="+activitieState;
+		if(userId == null)
+			// orderStatus = $("#orderStatus").val();
+
+		if (orderNumber == null)
+			orderNumber = $("#orderNumber").val();
+		var param = "pageNo="+pageNo+"&pageSize="+pageSize+"&userId="+1+"&userName="+userName+"&orderNumber="+orderNumber+"&orderStatus="+orderStatus;
 		// alert(param)
-		$.getJSON("/guliActivitie/findPageActivitie",param,function (json) {
+		$.getJSON("/guliOrder/findAllPageOrdel",param,function (json) {
 			// console.log(json);
 			// PageNo = json.object.pageNo;
 			// PageSize = json.object.pageSize;
@@ -111,7 +119,7 @@
 						,{field:'orderId', title:'ID', minWidth:60}
 						,{field:'orderNumber', title:'订单号', minWidth:80}
 						,{field:'orderTradeName', title:'课程名称', minWidth:130}
-						,{field:'orderTradePrice', title:'成交金额', minWidth:90}
+						,{field:'orderPrice', title:'成交金额', minWidth:90}
 						,{field:'userName', title:'收货人', minWidth:90}
 						,{field:'userPhone', title:'手机号码', minWidth:90}
 						,{field:'userEmail', title:'邮箱', minWidth:90}
@@ -135,7 +143,7 @@
 									console.log(data);
 									var id_str = "";
 									for (var i = 0; i < data.length; i++) {
-										id_str += data[i].activitieId + ',';
+										id_str += data[i].orderId + ',';
 									}
 									id_str = id_str.substr(0, id_str.length - 1);
 									layer.alert(id_str);
@@ -159,7 +167,7 @@
                     var data = obj.data;
                     // console.log(data);
                     if(obj.event === 'detail'){
-                    	var activitieId = data.activitieId;
+                    	var orderId = data.orderId;
 						courseName = $("#courseName").val();
 						activitieState = $("#activitieState").val();
 						activitieType = $("#activitieType").val();
@@ -167,11 +175,11 @@
 							type: 2
 							,title:"查看提示"
                             ,area:['80%', '80%']
-							,content:"活动详情.html"
+							,content:"订单详情.html"
 							,success:function (layero, index){
 								var iframe = window['layui-layer-iframe'+index];
 								//调用子页面的全局函数
-								iframe.child(activitieId,index);
+								iframe.child(orderId);
 							}
 						});
                     } else if(obj.event === 'edit'){
@@ -223,14 +231,14 @@
 						}
 					}
 				});
-				form.on('select(activitieState)', function (data) {
+				form.on('select(orderStatus)', function (data) {
 					// alert(123);
 					pageShow(1, 10,null,null,null);
 				});
-				form.on('select(activitieType)', function (data) {
-					// alert(456);
-					pageShow(1, 10,null,null,null);
-				});
+				// form.on('select(activitieType)', function (data) {
+				// 	// alert(456);
+				// 	pageShow(1, 1,null,null,null,null);
+				// });
             });
 		});
 	}
